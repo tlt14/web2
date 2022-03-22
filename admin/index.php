@@ -1,9 +1,9 @@
 <?php
-session_start();
-if(!isset($_SESSION['mySession'])){
-    header('location:index.php');
-    exit();
-}
+// session_start();
+// if(!isset($_SESSION['mySession'])){
+//     header('location:index.php');
+//     exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +15,9 @@ if(!isset($_SESSION['mySession'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;family=Satisfy&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
-    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-free-5.15.4-web/css/all.min.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <title>Document</title>
 </head>
