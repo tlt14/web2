@@ -12,7 +12,7 @@
     <!-- <script src="./public/js/d3efa8ea96.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" type="text/css" href="./css/slick.css" />
     <link rel="stylesheet" href="./fonts/fontawesome-free-5.15.4-web/css/all.css">
-
+    <link rel="stylesheet" href="./css/shop-page.css">
 
 </head>
 
@@ -25,35 +25,21 @@
     require_once('./templates/menu_top.php');
     ?>
     <?php
-    require_once('./templates/slider.php');
-    ?>
-    <?php
-    require_once('./templates/offer.php');
-    ?>
-    <div class="content row">
-        <div class="content__header">
-            <div class="">
-                <button class="button new_products">sản phẩm mới</button>
-            </div>
-            <div class="">
-                <button class="button selling_products">sản phẩm bán chạy</button>
-            </div>
-            <div>
-                <button class="button popular_products">sản phẩm phổ biến</button>
-            </div>
-        </div>
-        <div class="products row">
-            <div class="product__wrapper">
-                <?php
-                require_once('./templates/featured_products.php');
-                ?>
-            </div>
-        </div>
-
-    </div>
-
-    <?php
-    require_once('./templates/promotional_products.php');
+        $page='home';
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+        }
+        switch ($page) {
+            case 'home':
+                require_once('./pages/home.php');
+                break;
+            case 'products':
+                require_once('./pages/products.php');
+                break;
+            default:
+                require_once('./pages/home.php');
+                break;
+        }
     ?>
     <?php
     require_once('./templates/footer.php');

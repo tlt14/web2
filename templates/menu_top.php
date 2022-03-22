@@ -17,7 +17,7 @@ $dropdown = $conn->query($sql);
 <div class="menu_top">
     <ul class=" dropdown-menu">
         <li>
-            <a href="#">TRANG CHỦ</a>
+            <a href="?page=home">TRANG CHỦ</a>
         </li>
         <?php
         if ($result->num_rows > 0) {
@@ -26,7 +26,7 @@ $dropdown = $conn->query($sql);
                 $i++;
                 if ($i < 4) {
                     echo '  <li>
-                                <a href="#">GIÀY ' . $row['tenLoai'] . '</a>
+                                <a href="?page=products&idLoai='. $row['maLoai'] .'">GIÀY ' . $row['tenLoai'] . '</a>
                             </li>';
                 }
             }
@@ -44,7 +44,7 @@ $dropdown = $conn->query($sql);
                                     $dem++;
                                     if ($dem >= 4) {
                                         echo '  <li>
-                                                    <a href="#">GIÀY ' . $row['tenLoai'] . '</a>
+                                                    <a href="?page=products&idLoai='. $row['maLoai'] .'">GIÀY ' . $row['tenLoai'] . '</a>
                                                 </li>'; 
                                     }
                                 }

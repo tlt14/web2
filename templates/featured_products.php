@@ -15,7 +15,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 $result = $db->select($sql);
-
 ?>
 <div class="products__main">
     <?php
