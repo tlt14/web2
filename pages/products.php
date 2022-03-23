@@ -1,3 +1,32 @@
+<?php
+require_once(__DIR__ . './../classes/product.php');
+$product = new product();
+// BƯỚC 2: TÌM TỔNG SỐ RECORDS
+$maLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] : $_POST['maloai'];
+$result = $product->get_products_by_loai($maLoai, null, null);
+$total_records = $result->num_rows;
+
+// BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
+$current_page = isset($_POST['p']) ? $_POST['p'] : 1;
+$limit = 5;
+// BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
+// tổng số trang
+$total_page = ceil($total_records / $limit);
+
+// Giới hạn current_page trong khoảng 1 đến total_page
+if ($current_page > $total_page) {
+    $current_page = $total_page;
+} else if ($current_page < 1) {
+    $current_page = 1;
+}
+
+// Tìm Start
+$start = ($current_page - 1) * $limit;
+
+// BƯỚC 5: TRUY VẤN LẤY DANH SÁCH TIN TỨC
+// Có limit và start rồi thì truy vấn CSDL lấy danh sách tin tức
+echo $current_page;
+?>
 <div class="shop-page-title">
     <div class="page-title-inner">
         <div>
@@ -84,121 +113,27 @@
                             <span>1.000.000đ</span>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
         <div class="main-content">
             <div class="shop-container">
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
-                <div class="product__item">
-                    <a href="single_page.php?id=' . $row['maSanPham'] . '">
-                        <img src="./admin/public/uploads/1588064170.jpg" alt="" />
-                        <div class="product__name">Tên sản phẩm</div>
-                        <div class="product__price">1.22220 đ</div>
-                    </a>
-                    <button class="add_to_cart" data-maSanPham='. $row[' maSanPham'] .'>Thêm vào giỏ</button>
-                </div>
+                <?php
+                    require_once("./templates/product_items.php");
+                ?>
             </div>
             <ul class="pagi">
-                <li class="pagi-item pagi-action pagi-prev is-disabled">
-                    <i class="fas fa-angle-left"></i>
-                </li>
-                <li class="pagi-item">1</li>
-                <li class="pagi-item is-active">2</li>
-                <li class="pagi-item">3</li>
-                <li class="pagi-item">4</li>
-                <li class="pagi-item">5</li>
-                <li class="pagi-item pagi-action pagi-next">
-                    <i class="fas fa-angle-right"></i>
-                </li>
+                <?php
+                    // require_once("./templates/pagination.php");
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        if ($i == $current_page) {
+                            echo '<li class="pagi-item is-active"  data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
+                        } else {
+                            echo '<li class="pagi-item" data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
+                        }
+                    }   
+                ?>
             </ul>
         </div>
     </div>

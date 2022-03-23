@@ -1,14 +1,8 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "web2";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "SELECT * FROM `tbl_sanpham` WHERE giamGia <>-1";
-    $result = $conn->query($sql);
+    require_once('./classes/database.php');
+    $db = new Database();
+    $sql = "SELECT * FROM `tbl_sanpham` WHERE GiamGia <> 0 limit 8";
+    $result = $db->select($sql);
 ?>
 
 <div class="sales row">
@@ -22,13 +16,13 @@
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo '<div class="sale__item">
-                            <div class="onsale">'.$row['giamGia'].'%</div>
+                            <div class="onsale">'.$row['GiamGia'].'%</div>
                             <a href="">
-                                <img src="admin/public/uploads/'.$row['hinhAnhSanPham'].'" alt="" />
-                                <div class="product__name">'.$row['tenSanPham'].'</div>
+                                <img src="admin/public/uploads/'.$row['HinhAnhSanPham'].'" alt="" />
+                                <div class="product__name">'.$row['TenSanPham'].'</div>
                                 <div class="sale__price">
-                                    <span class="amount giacu">'.number_format($row['giaSanPham'],'0',',','.').'đ</span>
-                                    <span class="amount giagiam">'.number_format($row['giaSanPham']-($row['giaSanPham']*$row['giamGia']/100),'0',',','.').'đ</span>
+                                    <span class="amount giacu">'.number_format($row['GiaSanPham'],'0',',','.').'đ</span>
+                                    <span class="amount giagiam">'.number_format($row['GiaSanPham']-($row['GiaSanPham']*$row['GiamGia']/100),'0',',','.').'đ</span>
                                 </div>
                             </a>
                             <button class="add_to_cart">Thêm vào giỏ</button>

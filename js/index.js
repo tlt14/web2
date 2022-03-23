@@ -176,19 +176,31 @@ $(document).ready(function () {
       flag = -1;
     }
   });
-  $.each($(".add_to_cart"), function (i, item) {
+  $.each($(".pagi-item"), function (i, item) {
     item.addEventListener("click", () => {
-      console.log(item.dataset);
+      data = {
+        limit:  item.dataset.limit,
+        p:      item.dataset.p,
+        idLoai: item.dataset.maloai
+      }
       $.ajax({
-        type: "get",
-        url: "./templates/header.php",
-        data: {
-          masanpham: item.dataset.masanpham,
-        },
+        type: "GET",
+        url: "./templates/product_items.php",
+        data: data,
         success: function (response) {
-          console.log(response);
-        },
+          $('.shop-container').html(response);
+        }
       });
-    });
+    })
   });
+    $.each($(".pagi-item"), function (i, item) {
+      item.addEventListener("click", () => {
+        item.classList.add('is-active');
+        $.each($(".pagi-item"), function (j, item) {
+          if(i!==j) item.classList.remove('is-active');
+        })
+      })
+    });
+
+
 });

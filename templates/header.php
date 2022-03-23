@@ -13,7 +13,7 @@ $db = new Database();
                 $result = $result->fetch_assoc();
                 echo('
                 <div class="xt-ct-menu">
-                    <div class="xtlab-ctmenu-item">'.$result['hoTenKhachHang'].'</div>
+                    <div class="xtlab-ctmenu-item">'.$result['HoTenKhachHang'].'</div>
                     <div class="xtlab-ctmenu-sub">
                         <a href="#">Profile</a>
                         <a href="./pages/logout.php">Logout</a>
