@@ -211,7 +211,7 @@ $(document).ready(function () {
           url: "./templates/add_cart.php",
           data: item.dataset,
           success: function (response) {
-            console.log(response);
+            $('.qty_cart').text(response);
           }
         });
       })

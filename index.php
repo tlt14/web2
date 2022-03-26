@@ -1,4 +1,8 @@
-
+<?php
+    if(!isset($_COOKIE['idCart'])){
+        setcookie('idCart',uniqid(),time()+60*60*24*30*12);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

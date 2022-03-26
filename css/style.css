@@ -705,3 +705,25 @@ footer a:hover{
   border: none;
 
 }
+.cart{
+  position: relative;
+}
+.icon_cart{
+  color: white;
+  font-size: 20px;
+}
+.cart span{
+  background-color:red;
+  position: absolute;
+  font-size:12px;
+  line-height:16px;
+  width:16px;
+  height:16px;
+  text-align: center;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+
+}
+.fa-search{
+  font-size:20px;
+}
