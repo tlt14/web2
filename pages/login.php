@@ -1,17 +1,18 @@
 <?php
 session_start();
 $flag =-1;
-$conn = mysqli_connect('localhost', 'root', '', 'web2');
+$conn = mysqli_connect('localhost', 'root', '', 'do_an');
 $username ="";
 $password ="";
 if (isset($_POST['user-name'])) {
     $username = $conn->real_escape_string($_POST['user-name']);
     $password = $conn->real_escape_string($_POST['user-password']);
-    $sql = "SELECT * FROM tbl_khachhang WHERE tenDangNhap='$username' AND matKhau = '".md5($password)."'";
+    $sql = "SELECT * FROM tbl_khachhang WHERE TenDangNhap='$username' AND MatKhau = '".md5($password)."'";
     $data = $conn->query($sql);
     if ($data->num_rows > 0) {
         $user = $data->fetch_assoc();
-        $_SESSION['maKhachHang'] = $user['maKhachHang'];
+        $_SESSION['maKhachHang'] = $user['MaKhachHang'];
+        setcookie('maKhachHang',$user['MaKhachHang'] , time() + (86400 * 30), "/");
         header('Location: ./../index.php');
     } else {
         $flag =1;

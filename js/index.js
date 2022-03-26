@@ -202,5 +202,19 @@ $(document).ready(function () {
       })
     });
 
+    //add_to_cart
+    $.each($(".add_to_cart"), function (i, item) {
+      item.addEventListener("click", () => {
+        console.log(item.dataset);
+        $.ajax({
+          type: "POST",
+          url: "./templates/add_cart.php",
+          data: item.dataset,
+          success: function (response) {
+            console.log(response);
+          }
+        });
+      })
+    });
 
 });

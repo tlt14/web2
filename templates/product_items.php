@@ -3,7 +3,7 @@
 require_once(__DIR__.'./../classes/product.php');
 $product = new product();
 $maLoai = $_GET['idLoai'];
-$result = $product->get_products_by_loai($maLoai, 0, 5);
+$result = $product->get_products_by_loai($maLoai, 0, 12);
 
 if(isset($_GET['p'])&&$_GET['limit']&&$_GET['idLoai']){
     $p = $_GET['p'];

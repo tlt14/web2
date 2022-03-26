@@ -2,7 +2,7 @@
 session_start();
 require_once(__DIR__ . './../classes/database.php');
 $db = new Database();
-
+var_dump($_COOKIE);
 ?>
 <header>
     <div class="header_left">
@@ -13,7 +13,7 @@ $db = new Database();
                 $result = $result->fetch_assoc();
                 echo('
                 <div class="xt-ct-menu">
-                    <div class="xtlab-ctmenu-item">'.$result['HoTenKhachHang'].'</div>
+                    <div class="xtlab-ctmenu-item">'.$result['TenKhachHang'].'</div>
                     <div class="xtlab-ctmenu-sub">
                         <a href="#">Profile</a>
                         <a href="./pages/logout.php">Logout</a>
@@ -38,7 +38,26 @@ $db = new Database();
             <i class="fas fa-search"></i>
         </div>
         <div class="cart">
-            <a href="">Giỏ hàng / 0đ</a>
+            <?php
+                if(isset($_COOKIE['maKhachHang'])){
+                    $sql="select SUM(SoLuong) from tbl_giohang where MaKhachHang = '".$_COOKIE['maKhachHang']."'";
+                    $result = $db->select($sql);
+                    if($result->num_rows > 0){
+                        $result = $result->fetch_assoc();
+                        echo '<span><i class="fas fa-shopping-cart"></i>'.$result['SUM(SoLuong)'].'</span>';
+                    }
+                }
+                else if(isset($_SESSION['cart'])){
+                    $sql="select SUM(SoLuong) from tbl_giohang where session_id = '".session_id()."'";
+                    $result = $db->select($sql);
+                    if($result->num_rows > 0){
+                        $result = $result->fetch_assoc();
+                        echo '<span><i class="fas fa-shopping-cart"></i>'.$result['SUM(SoLuong)'].'</span>';
+                    }
+                }else{
+                    echo'<a href="">Giỏ hàng / 0đ</a>';
+                }
+            ?>
         </div>
     </div>
 </header>

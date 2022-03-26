@@ -8,7 +8,7 @@ $total_records = $result->num_rows;
 
 // BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
 $current_page = isset($_POST['p']) ? $_POST['p'] : 1;
-$limit = 5;
+$limit = 12;
 // BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
 // tổng số trang
 $total_page = ceil($total_records / $limit);
@@ -126,11 +126,13 @@ echo $current_page;
             <ul class="pagi">
                 <?php
                     // require_once("./templates/pagination.php");
-                    for ($i = 1; $i <= $total_page; $i++) {
-                        if ($i == $current_page) {
-                            echo '<li class="pagi-item is-active"  data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
-                        } else {
-                            echo '<li class="pagi-item" data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
+                    if($total_page>1){
+                        for ($i = 1; $i <= $total_page; $i++) {
+                            if ($i == $current_page) {
+                                echo '<li class="pagi-item is-active"  data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
+                            } else {
+                                echo '<li class="pagi-item" data-limit=' . $limit . ' data-p=' . $i . ' data-maloai=' . $maLoai . '>' . $i . '</li>';
+                            }
                         }
                     }   
                 ?>
