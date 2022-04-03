@@ -12,7 +12,15 @@ if (isset($_POST['user-name'])) {
     if ($data->num_rows > 0) {
         $user = $data->fetch_assoc();
         $_SESSION['maKhachHang'] = $user['MaKhachHang'];
-        setcookie('maKhachHang',$user['MaKhachHang'] , time() + (86400 * 30), "/");
+        setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30*12, "/");
+        $idCart = $_COOKIE['idCart'];
+        $makh= $user['MaKhachHang'];
+        $sql="UPDATE tbl_giohang set MaKhachHang = '$makh'  WHERE id = '$idCart'";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
+            $delete = mysqli_query($conn, $sql);
+        }
         header('Location: ./../index.php');
     } else {
         $flag =1;

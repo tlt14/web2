@@ -1,0 +1,78 @@
+@media only screen 
+and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+{
+    .header{
+        height:50px;
+    }
+    .xtlab-ctmenu-item{
+        padding: 0px 10px;
+        font-size:12px;
+    }
+    .logo{
+        width:30%;
+        margin: 0px;
+    }
+    .menu_top a{
+        font-size:8px;
+        padding: 10px 5px;
+        white-space: nowrap;
+    }
+    .slider-wrapper{
+        height: 200px;
+    }
+    .slider-next, .slider-prev {
+        width: 35px;
+        height: 35px;
+    }
+    .slider-next{
+        right: -20px;
+    }
+    .slider-prev{
+        left: -20px;
+    }
+    .offer{
+        margin-top: 5px!important;
+    }
+    .col-offer-title,.offer-content{
+        padding:0px;
+    }
+    .button {
+        padding: 5px;
+        font-size:10px;
+        white-space: nowrap;
+    }
+    .img_reponsive{
+        max-width:100%;
+        height: auto!important;
+    }
+    .sale_title{
+        margin-top:0px;
+        font-size:20px;
+    }
+    .product__name,.giacu{
+        font-size:10px;
+    }
+    .sale__price{
+        height:auto;
+    }
+    .giagiam{
+        font-size:12px;
+    }
+    .product__name{
+        font-size:12px;
+        padding: 2px 0px;
+        height: auto;
+    }
+    .add_to_cart{
+        font-size:10px;
+        white-space: nowrap;
+    }
+    .sale__main{
+        grid-template-columns: auto;
+    }
+}
+@media screen {
+    
+}

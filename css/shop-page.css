@@ -132,10 +132,11 @@
 .product-left__item-name a{
     display: block;
     text-decoration: none;
-    color: #111;
     font-weight: normal;
     padding: 10px;
-    font-size: 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: rgb(153, 22, 22);
 
 }
 .product-left__item-name span{
@@ -143,4 +144,19 @@
     color: #111;
     font-weight: bold;
     padding: 10px;
+}
+.btn_sort_price{
+  padding: 5px 10px;
+  background-color: #dcdcdc;
+  color: #111;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+.btn_sort_price:hover{
+  background-color: rgb(49, 49, 49);
+  color: white;
 }

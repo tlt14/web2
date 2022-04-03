@@ -1,18 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web2";
-
-// tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
-// kiểm kết nối
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT *  FROM tbl_loaisanpham";
-$result = $conn->query($sql);
-$dropdown = $conn->query($sql);
+require_once (__DIR__ . '/./../classes/category.php');
+$category = new Category();
+$result = $category->getAll();
+$dropdown = $category->getAll();
 ?>
 <div class="menu_top">
     <ul class=" dropdown-menu">
@@ -26,7 +16,7 @@ $dropdown = $conn->query($sql);
                 $i++;
                 if ($i < 4) {
                     echo '  <li>
-                                <a href="?page=products&idLoai='. $row['maLoai'] .'">GIÀY ' . $row['tenLoai'] . '</a>
+                                <a href="?page=products&idLoai='. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
                             </li>';
                 }
             }
@@ -44,12 +34,11 @@ $dropdown = $conn->query($sql);
                                     $dem++;
                                     if ($dem >= 4) {
                                         echo '  <li>
-                                                    <a href="?page=products&idLoai='. $row['maLoai'] .'">GIÀY ' . $row['tenLoai'] . '</a>
+                                                    <a href="?page=products&idLoai='. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
                                                 </li>'; 
                                     }
                                 }
                             }
-                            $conn->close();
                         ?>
                         
                     </ul>

@@ -82,4 +82,7 @@ class Database
             return false;
         }
     }
+    public function last_id(){
+        return $this->link->insert_id;
+    }
 }

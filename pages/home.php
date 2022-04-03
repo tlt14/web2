@@ -1,10 +1,12 @@
 <?php
 require_once('./templates/slider.php');
 ?>
-<?php
-require_once('./templates/offer.php');
-?>
-<div class="content row">
+<div class="container">
+    <?php
+    require_once('./templates/offer.php');
+    ?>
+</div>
+<div class="content container">
     <div class="content__header">
         <div class="">
             <button class="button new_products">sản phẩm mới</button>
