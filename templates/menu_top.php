@@ -7,7 +7,7 @@ $dropdown = $category->getAll();
 <div class="menu_top">
     <ul class=" dropdown-menu">
         <li>
-            <a href="?page=home">TRANG CHỦ</a>
+            <a href="?page=home" >TRANG CHỦ</a>
         </li>
         <?php
         if ($result->num_rows > 0) {

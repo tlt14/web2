@@ -32,13 +32,16 @@ $cart = new Cart();
     </div>
     <div class="logo">
         <a href="#">
-            <img src="http://mauweb.monamedia.net/converse/wp-content/uploads/2019/05/logo-mona.png" alt="" />
+            <img src="./admin/public/uploads/logo-mona.png" alt="" />
         </a>
     </div>
     <div class="header_right">
         <div class="header_search">
-            <!-- <input type="search" name="123" id=""> -->
-            <i class="fas fa-search"></i>
+            <!-- <form action="" id="" class="form_search">
+                <input type="search" name="123" id="search">
+                <span class="close_search">x</span>
+            </form> -->
+            <i class="fas fa-search btn_search"></i>
         </div>
         <div class="cart">
             <a href="?page=cart&act=show">

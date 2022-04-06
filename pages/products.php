@@ -2,7 +2,8 @@
 require_once(__DIR__ . './../classes/product.php');
 $product = new product();
 $maLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] : $_POST['maloai'];
-$result = $product->get_products_by_loai($maLoai, 0, 8,"","","");
+$result = $product->get_products_by_category($maLoai);
+
 // $total_records = $result->num_rows;
 // $current_page = isset($_POST['p']) ? $_POST['p'] : 1;
 // $limit = 9;
@@ -68,15 +69,13 @@ $result = $product->get_products_by_loai($maLoai, 0, 8,"","","");
                 </div>
             </div>
         </div>
-        <div class="main-content">
-            <div class="shop-container">
+        <div class="main-content product-list">
                 <?php
                 require_once("./templates/product_items.php");
                 ?>
-            </div>
-            <ul class="pagi">
+            <!-- <ul class="pagi">
                 <?php
-                require_once("./templates/pagi.php");
+                // require_once("./templates/pagi.php");
                 // if ($total_page > 1) {
                 //     for ($i = 1; $i <= $total_page; $i++) {
                 //         if ($i == $current_page) {
@@ -87,7 +86,7 @@ $result = $product->get_products_by_loai($maLoai, 0, 8,"","","");
                 //     }
                 // }
                 ?>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </div>

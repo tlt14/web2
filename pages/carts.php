@@ -20,17 +20,17 @@ $cart_items  = $cart->getAll();
                 </ul>
             </div>
             <table class="table table-bordered" style="margin-top:15px">
-                <thead>
+                <thead class="table_cart-header">
                     <tr>
-                        <th>Product</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
+                        <th>Sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng phụ</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table_cart">
                     <?php
                         if(empty($cart_items)){
                             echo '<tr><td colspan="6"><p>Your cart is empty!</p></td></tr>';

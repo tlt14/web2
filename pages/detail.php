@@ -11,13 +11,8 @@
     ?>
     
 <main>
-    <div class = "container">
-        <div class="row">
-            <div class="image">
-                <img src="./admin/public/uploads/<?php echo $result["HinhAnhSanPham"]; ?>" alt="">
-            </div>
-            <div class="product_info">
-                <div class="breadcrumbs">
+        <div class = "container">
+    <div class="breadcrumbs">
                     <ul>
                         <li>
                             <a href="index.php">Trang chủ</a>
@@ -36,6 +31,12 @@
                         </li>
                     </ul>   
                 </div>
+        <div class="row">
+            <div class="image">
+                <img src="./admin/public/uploads/<?php echo $result["HinhAnhSanPham"]; ?>" alt="">
+            </div>
+            <div class="product_info">
+                
                 <div class="product_name">
                     <p><?php echo $result["TenSanPham"]; ?></p>
                 </div>

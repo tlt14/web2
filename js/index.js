@@ -178,7 +178,6 @@ $(document).ready(function () {
     }
   });
 
-  //add_to_cart
   $.each($(".add_to_cart"), function (i, item) {
     item.addEventListener("click", () => {
       $.ajax({
@@ -193,21 +192,9 @@ $(document).ready(function () {
       });
     });
   });
-  // $(window).scroll(function () {
-  //   if ($(this).scrollTop() > 100) {
-  //     $("header").addClass("header_fixed");
-  //   } else {
-  //     $("header").removeClass("header_fixed");
-  //   }
-  // });
   $.each($(".pagi-item"), function (i, item) {
     item.addEventListener("click", () => {
-      // item.classList.add("is-active");
-      // $.each($(".pagi-item"), function (j, item) {
-      //   if (i !== j) item.classList.remove("is-active");
-      // });
       data = {
-        limit: item.dataset.limit,
         p: item.dataset.p,
         idLoai: getUrlParameter("idLoai"),
         sort: $("#sort").val(),
@@ -221,7 +208,29 @@ $(document).ready(function () {
         data: data,
         success: function (response) {
           console.log(response);
-          $(".shop-container").html(response);
+          $(".product-list").html(response);
+          $.each($(".pagi-item"), function (i, item) {
+            item.addEventListener("click", () => {
+              data = {
+                p: item.dataset.p,
+                idLoai: getUrlParameter("idLoai"),
+                sort: $("#sort").val(),
+                page: getUrlParameter("page"),
+                price_from: $("#price_from").val(),
+                price_to: $("#price_to").val(),
+              };
+              $.ajax({
+                type: "GET",
+                url: "./templates/product_items.php",
+                data: data,
+                success: function (response) {
+                  console.log(response);
+                  $(".product-list").empty();
+                  $(".product-list").html(response);
+                },
+              });
+            });
+          });
         },
       });
     });
@@ -239,8 +248,28 @@ $(document).ready(function () {
       url: "./templates/product_items.php",
       data: data,
       success: function (response) {
-        console.log(response);
-        $(".shop-container").html(response);
+        $(".product-list").html(response);
+        $.each($(".pagi-item"), function (i, item) {
+          item.addEventListener("click", () => {
+            data = {
+              p: item.dataset.p,
+              idLoai: getUrlParameter("idLoai"),
+              sort: $("#sort").val(),
+              page: getUrlParameter("page"),
+              price_from: $("#price_from").val(),
+              price_to: $("#price_to").val(),
+            };
+            $.ajax({
+              type: "GET",
+              url: "./templates/product_items.php",
+              data: data,
+              success: function (response) {
+                $(".product-list").html(response);
+              },
+            });
+          });
+        });
+
       },
     });
   });
@@ -258,7 +287,27 @@ $(document).ready(function () {
       url: "./templates/product_items.php",
       data: data,
       success: function (response) {
-        $(".shop-container").html(response);
+        $(".product-list").html(response);
+        $.each($(".pagi-item"), function (i, item) {
+          item.addEventListener("click", () => {
+            data = {
+              p: item.dataset.p,
+              idLoai: getUrlParameter("idLoai"),
+              sort: $("#sort").val(),
+              page: getUrlParameter("page"),
+              price_from: $("#price_from").val(),
+              price_to: $("#price_to").val(),
+            };
+            $.ajax({
+              type: "GET",
+              url: "./templates/product_items.php",
+              data: data,
+              success: function (response) {
+                $(".product-list").html(response);
+              },
+            });
+          });
+        });
       },
     });
   });
@@ -499,12 +548,6 @@ $(document).ready(function () {
       })
     })
   });
-  // btn.click(function () {
-  //   console.log(btn.dataset);
-  //   modal.show();
-  //   modal.css('display', 'flex');
-  // });
-
   span.click(function () {
     modal.hide();
   });
@@ -513,7 +556,22 @@ $(document).ready(function () {
     if ($(e.target).is('.modal')) {
       modal.hide();
     }
+
   });
+  $('.btn_search').click(function () {
+    $('.box_search').css('animation', 'identifier 1s forwards');
+  })
+  $('.close_search').click(function () {
+    $('.box_search').css('animation', 'identifier_close 5s forwards');
+  })
+  $.each($(".button"), function (i, valueOfElement) {
+    valueOfElement.addEventListener("click", () => {
+      valueOfElement.classList.add("button_active");
+      $.each($(".button"), function (j, item) {
+          if (i !== j) item.classList.remove("button_active");
+      });
+    })
+  })
 });
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),

@@ -21,7 +21,7 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
     </div>
     <div class="row">
         <div class="order_detail">
-            <table class="table table-bordered" style="margin-top:15px">
+            <table class="table table-bordered table_order" style="margin-top:15px">
                 <thead>
                     <tr>
                         <th>Mã Đơn Hàng</th>
