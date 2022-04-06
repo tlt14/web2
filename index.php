@@ -50,10 +50,11 @@ if (!isset($_COOKIE['idCart'])) {
         </div>
     </div>
     <div class="box_search">
-        <form action="" id="form_search" class="form_search">
-        <span class="close_search">x</span>
-        <input type="search" name="search" id="search" placeholder="Enter search term" autocomplete="off">
-        </form>
+        <div id="form_search" class="form_search">
+            <span class="close_search">x</span>
+            <input type="search" name="search" id="search" placeholder="Enter search term">
+            <i class="fas fa-search icon_search_submit"></i>
+        </div>
     </div>
     <?php
     require_once('./templates/header.php');

@@ -114,6 +114,15 @@ class product
             return false;
         }
     }
+    public function get_products_by_search($key){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE %'$key'%";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
     public function get_featured_products()
     {
         $sql = "SELECT * FROM `tbl_sanpham`  ORDER by created_at DESC LIMIT 15";

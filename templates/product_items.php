@@ -9,6 +9,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'GET'){
     if(isset($_GET['price_from']) && $_GET['price_from'] != ''){
         $result =$product->get_count_filter($maLoai,$_GET['price_from'],$_GET['price_to']);
     }
+    if(isset($_GET['key']) && $_GET['key']!=""){
+        $result = $product->get_products_by_search($_GET['key']);
+    }
 }
 $total_records = $result->num_rows;
 // BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
@@ -27,6 +30,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'GET'){
         $products =$product->sort_products_by_category($maLoai, $start, $limit,$_GET['sort']);
     }else if(isset($_GET['price_from']) && $_GET['price_from'] != ''){
         $products =$product->filter_product_by_price($maLoai, $start, $limit,$_GET['price_from'],$_GET['price_to']);
+    }else
+    if(isset($_GET['key']) && $_GET['key']!=""){
+        $result = $product->get_products_by_search($_GET['key']);
     }
 }
 // $total_page = 0;

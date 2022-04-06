@@ -269,7 +269,6 @@ $(document).ready(function () {
             });
           });
         });
-
       },
     });
   });
@@ -435,7 +434,9 @@ $(document).ready(function () {
   });
   $.each($(".btn-update"), function (indexInArray, valueOfElement) {
     valueOfElement.addEventListener("click", () => {
-      $qty = valueOfElement.parentElement.parentElement.querySelector('.cartquantity_input');
+      $qty = valueOfElement.parentElement.parentElement.querySelector(
+        ".cartquantity_input"
+      );
       $.ajax({
         type: "POST",
         url: "./templates/delete_cart.php",
@@ -451,13 +452,13 @@ $(document).ready(function () {
       });
     });
   });
-  $('.alert-close').click(function () {
-    $('.alert').hide();
-  })
-  $('.btn-alert').click(function () {
-    $('.alert').hide();
-  })
-  $('.check_out').click(function () {
+  $(".alert-close").click(function () {
+    $(".alert").hide();
+  });
+  $(".btn-alert").click(function () {
+    $(".alert").hide();
+  });
+  $(".check_out").click(function () {
     $.ajax({
       type: "POST",
       url: "./templates/message.php",
@@ -468,39 +469,37 @@ $(document).ready(function () {
         console.log(response);
         if (response.trim() == "Đã đăng nhập") {
           window.location.href = "?page=checkout";
-        }else{
+        } else {
           $(".alert-body").html(response);
-          $('.alert').show();
-          $('.alert').css('display', 'flex');
+          $(".alert").show();
+          $(".alert").css("display", "flex");
         }
-      }
+      },
     });
-    
   });
-  $('.btn_continue').click(function () {
+  $(".btn_continue").click(function () {
     window.location.href = "?page=home";
-  })
-  const cod = $('#cod');
-  const bacs = $('#bacs');
+  });
+  const cod = $("#cod");
+  const bacs = $("#bacs");
   cod.click(function () {
-    console.log('cod');
-    $('.payment_method_cod_box').show();
-    $('.payment_method_bacs_box').hide();
-  })
+    console.log("cod");
+    $(".payment_method_cod_box").show();
+    $(".payment_method_bacs_box").hide();
+  });
   bacs.click(function () {
-    console.log('bacs');
-    $('.payment_method_cod_box').hide();
-    $('.payment_method_bacs_box').show() ;
-  })
+    console.log("bacs");
+    $(".payment_method_cod_box").hide();
+    $(".payment_method_bacs_box").show();
+  });
 
-
-  $('.btn_order').click(function(){
-    const name =      $('#name').val();
-    const address =   $('#address').val();
-    const email =     $('#email').val();
-    const note =      $('#note').val();
-    const city =      $('#city').val();
-    const phone =     $('#phone').val();
+  $(".btn_order").click(function () {
+    const name = $("#name").val();
+    const address = $("#address").val();
+    const email = $("#email").val();
+    const note = $("#note").val();
+    const city = $("#city").val();
+    const phone = $("#phone").val();
     // console.log(name,phone,address,email,note,city);
     $.ajax({
       type: "POST",
@@ -512,25 +511,25 @@ $(document).ready(function () {
         note: note,
         city: city,
         phone: phone,
-        act:'add_order' 
+        act: "add_order",
       },
       success: function (response) {
         console.log(response);
-        if(response.trim() == "Đặt hàng thành công"){
+        if (response.trim() == "Đặt hàng thành công") {
           $(".alert-body").html(response);
-          $('.alert').show();
-          $('.alert').css('display', 'flex');
+          $(".alert").show();
+          $(".alert").css("display", "flex");
           // window.location.href = "?page=home";
           // location.reload();
-        }else{
+        } else {
           console.log(response);
         }
-      }
-    })
-  })
-  var modal = $('.modal');
-  var btn = $('.btn_detail');
-  var span = $('.modal-close');
+      },
+    });
+  });
+  var modal = $(".modal");
+  var btn = $(".btn_detail");
+  var span = $(".modal-close");
   $.each(btn, function (indexInArray, valueOfElement) {
     valueOfElement.addEventListener("click", () => {
       $.ajax({
@@ -541,37 +540,72 @@ $(document).ready(function () {
         },
         success: function (response) {
           console.log(response);
-          $('.modal-body_main').html(response);
+          $(".modal-body_main").html(response);
           modal.show();
-          modal.css('display', 'flex');
-        }
-      })
-    })
+          modal.css("display", "flex");
+        },
+      });
+    });
   });
   span.click(function () {
     modal.hide();
   });
 
-  $(window).on('click', function (e) {
-    if ($(e.target).is('.modal')) {
+  $(window).on("click", function (e) {
+    if ($(e.target).is(".modal")) {
       modal.hide();
     }
-
   });
-  $('.btn_search').click(function () {
-    $('.box_search').css('animation', 'identifier 1s forwards');
-  })
-  $('.close_search').click(function () {
-    $('.box_search').css('animation', 'identifier_close 5s forwards');
-  })
+  $(".btn_search").click(function () {
+    $(".box_search").css("animation", "identifier 1s forwards");
+  });
+  $(".close_search").click(function () {
+    $(".box_search").css("animation", "identifier_close 5s forwards");
+  });
   $.each($(".button"), function (i, valueOfElement) {
     valueOfElement.addEventListener("click", () => {
       valueOfElement.classList.add("button_active");
       $.each($(".button"), function (j, item) {
-          if (i !== j) item.classList.remove("button_active");
+        if (i !== j) item.classList.remove("button_active");
       });
-    })
-  })
+    });
+  });
+  $(".icon_search_submit").click(function () {
+    const key = $("#search").val();
+    // console.log(key);
+    $.ajax({
+      type: "POST",
+      url: window.location.href,
+      data: {
+        key: key,
+        
+      },
+      success: function (response) {
+        
+        $(".product-list").html(response);
+        $.each($(".pagi-item"), function (i, item) {
+          item.addEventListener("click", () => {
+            data = {
+              p: item.dataset.p,
+              idLoai: getUrlParameter("idLoai"),
+              sort: $("#sort").val(),
+              page: getUrlParameter("page"),
+              price_from: $("#price_from").val(),
+              price_to: $("#price_to").val(),
+            };
+            $.ajax({
+              type: "GET",
+              url: "./templates/product_items.php",
+              data: data,
+              success: function (response) {
+                $(".product-list").html(response);
+              },
+            });
+          });
+        });
+      },
+    });
+  });
 });
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),

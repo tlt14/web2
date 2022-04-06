@@ -28,7 +28,34 @@ $(document).ready(function () {
             })
         )
         if(validate_register()===true){
-            document.forms[1].submit();
+            const name          = document.getElementById('new-user-name').value;
+            const email         = document.getElementById('new-user-email').value;
+            const address       = document.getElementById('new-user-address').value;
+            const password      = document.getElementById('new-user-password').value;
+            const confirmpass   = document.getElementById('confirm-user-password').value;
+            const sdt         = document.getElementById('new-phonenumber').value;
+
+            $.ajax({
+                type: "POST",
+                url: "./../templates/xuly.php",
+                data: {
+                    sdt,
+                    tendangnhap: name,
+                    email,
+                    address,
+                    matkhau: confirmpass,
+                    act:'signup'
+                },
+                success: function (response) {
+                    console.log(response.trim());
+                    if(response.trim()==='1'){
+                        location.reload();
+                        alert(response.trim()=='1'?"Đăng ký thành công":"Đăng ký thất bại");
+                    }else{
+                        alert("Tên đăng nhập bị trùng");
+                    }
+                }
+            }); 
         }
     })
     const register_input = document.forms[1].querySelectorAll('input');
@@ -39,11 +66,12 @@ $(document).ready(function () {
         const address       = document.getElementById('new-user-address').value;
         const password      = document.getElementById('new-user-password').value;
         const confirmpass   = document.getElementById('confirm-user-password').value;
+        const phone         = document.getElementById('new-phonenumber').value;
         isUsername(name)=== false 
             ?show_message('#new-user-name',"Tên tài khoản không hợp lệ"):
             show_message('#new-user-name',"");  
         isPassword(password)=== false?
-            show_message('#new-user-password',"Tối thiểu tám ký tự, ít nhất một chữ cái và một số."):
+            show_message('#new-user-password',"Mật khẩu >8 và cần 1 kí tự và số."):
             show_message('#new-user-password',"");
         isEmail(email)=== false?
             show_message('#new-user-email',"Nhập email có dạng abc@gmail.com"):
@@ -54,7 +82,15 @@ $(document).ready(function () {
         isRequired(address)=== false?
             show_message('#new-user-address',"Vui lòng nhập địa chỉ"):
             show_message('#new-user-address',"")
-        if(isUsername(name) && isPassword(password)&& isConfirmPassword(password,confirmpass) && isRequired(address) && isEmail(email)){
+        isPhone(phone) === false?
+            show_message('#new-phonenumber',"Số điện thoại không đúng"):
+            show_message('#new-phonenumber',"");
+        if(isUsername(name) 
+            && isPassword(password)
+            && isConfirmPassword(password,confirmpass) 
+            && isRequired(address) 
+            && isEmail(email) 
+            &&isPhone(phone)){
             return true;
         }else{
             return false;
@@ -82,4 +118,9 @@ const isRequired = (value) =>{
 }
 const isConfirmPassword = (value1,value2) =>{
     return value2 === ""|| value2 ===undefined || value2 ===null || value1 !== value2 ?false :true;
+}
+const isPhone = (value)=>{
+    //regex phone
+    const reg= /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+    return reg.test(value);
 }

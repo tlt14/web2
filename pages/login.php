@@ -4,12 +4,13 @@ $flag =-1;
 $conn = mysqli_connect('localhost', 'root', '', 'do_an');
 $username ="";
 $password ="";
-if (isset($_POST['user-name'])) {
-    $username = $conn->real_escape_string($_POST['user-name']);
-    $password = $conn->real_escape_string($_POST['user-password']);
-    $sql = "SELECT * FROM tbl_khachhang WHERE TenDangNhap='$username' AND MatKhau = '".md5($password)."'";
-    $data = $conn->query($sql);
-    if ($data->num_rows > 0) {
+require_once('./../classes/customer.php');
+$cs = new Customer();
+if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['user-name'];
+    $password = $_POST['user-password'];
+    $data = $cs->login($_POST['user-name'],$_POST['user-password']);
+    if ($data && $data->num_rows > 0) {
         $user = $data->fetch_assoc();
         $_SESSION['maKhachHang'] = $user['MaKhachHang'];
         setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30*12, "/");
@@ -93,32 +94,16 @@ if (isset($_POST['user-name'])) {
                 </form>
             </div>
 
-            <?php
-            // include 'config.php';
-            // if(isset($_POST['signup'])){
-            //     $username= $_POST['newusername'];
-            //     $userpassword= md5($_POST['newuserpassword']);
-            //     $useremail= $_POST['newuseremail'];
-            //     $useraddress= $_POST['newuseraddress'];
-            //     $confirmpassword= $_POST['confirmuserpassword'];
-            //     if(mysql_num_rows(mysql_query("SELECT username FROM tbl_account WHERE username='$username'")) > 0){
-            //         echo '<script language="javascript">alert("Bị trùng tên hoặc chưa nhập tên!"); window.location="index.php";</script>';
-            //     }
-            //     $sql ="INSERT INTO tbl_account(username,password,email,address) VALUES ('$username','$userpassword','$useremail','$useraddress')";
-            //     mysqli_query($conn,$sql);
-            //     if($sql)
-            //     echo"Đăng kí thành công";
-            //     else
-            //     echo"Đăng kí không thành công";
-            // }
-            ?>
-
             <div class="form signupForm">
                 <form action="" method="POST" id='form-register' >
                     <h3>Sign Up</h3>
                     <div class="form-group invalid">
                         <input name="newusername" id="new-user-name" type="text" placeholder="Username">
                         <span id="errolName" class="form-message"></span>
+                    </div>
+                    <div class="form-group invalid">
+                        <input name="newphonenumber" id="new-phonenumber" type="phone" placeholder="Phone Number">
+                        <span id="errolPhoneNumber" class="form-message"></span>
                     </div>
                     <div class="form-group invalid">
                         <input name="newuseremail" id="new-user-email" type="text" placeholder="Email">

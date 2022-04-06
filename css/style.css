@@ -1313,7 +1313,7 @@ tr th:nth-child(1){
   position: relative; 
 }
 #search{
-  width:98%;
+  width:94%;
   padding: 10px;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
@@ -1321,6 +1321,17 @@ tr th:nth-child(1){
   color: #6a5af9;
   background-color:#fff ;
 }
+.icon_search_submit{
+  position:absolute;
+  top:0px;
+  width:5%;
+  transform:translate(20%,50%);
+}
+.icon_search_submit:hover{
+  font-weight: bold;
+  color: #fff;
+}
+
 .close_search{
   position:absolute;
   right: 0;
