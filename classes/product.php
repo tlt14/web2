@@ -115,7 +115,16 @@ class product
         }
     }
     public function get_products_by_search($key){
-        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE %'$key'%";
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%'";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function get_products_by_search_pagination($key,$start,$limit){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' limit $start,$limit";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -136,7 +145,6 @@ class product
                 $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham IN(1,2,3) ORDER by RAND()  DESC LIMIT 15";
             }
         }
-        // echo ($sql);
         return $this->db->select($sql) ? $this->db->select($sql) : false;
     }
     public function get_products_by_id($id){
@@ -146,6 +154,41 @@ class product
     public function getProductByCategory($category){
         $sql = "SELECT * FROM tbl_sanpham where LoaiSanPham= $category";
         return $this->db->select($sql) ? $this->db->select($sql) : false;
+    }
+    public function sort_products_by_search($key,$start,$limit,$sort){
+        if ($sort == 'price_asc') { //Tang dan
+            $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' ORDER by GiaSanPham ASC limit $start,$limit";
+        } else if ($sort == 'price_desc') { //Giam
+            $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' ORDER by GiaSanPham DESC limit $start,$limit";
+        } else if ($sort == 'date_asc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' ORDER by created_at ASC limit $start,$limit";
+        } else if ($sort == 'date_desc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' ORDER by created_at DESC limit $start,$limit";
+        }
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function filter_product_by_search($key,$form,$to,$start,$limit){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND GiaSanPham between $form and $to limit $start,$limit";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function filter_product_by_search_count($key,$form,$to){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND GiaSanPham between $form and $to ";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
     }
 }
 

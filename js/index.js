@@ -192,49 +192,30 @@ $(document).ready(function () {
       });
     });
   });
-  $.each($(".pagi-item"), function (i, item) {
-    item.addEventListener("click", () => {
-      data = {
-        p: item.dataset.p,
-        idLoai: getUrlParameter("idLoai"),
-        sort: $("#sort").val(),
-        page: getUrlParameter("page"),
-        price_from: $("#price_from").val(),
-        price_to: $("#price_to").val(),
-      };
-      $.ajax({
-        type: "GET",
-        url: "./templates/product_items.php",
-        data: data,
-        success: function (response) {
-          console.log(response);
-          $(".product-list").html(response);
-          $.each($(".pagi-item"), function (i, item) {
-            item.addEventListener("click", () => {
-              data = {
-                p: item.dataset.p,
-                idLoai: getUrlParameter("idLoai"),
-                sort: $("#sort").val(),
-                page: getUrlParameter("page"),
-                price_from: $("#price_from").val(),
-                price_to: $("#price_to").val(),
-              };
-              $.ajax({
-                type: "GET",
-                url: "./templates/product_items.php",
-                data: data,
-                success: function (response) {
-                  console.log(response);
-                  $(".product-list").empty();
-                  $(".product-list").html(response);
-                },
-              });
-            });
-          });
-        },
-      });
-    });
-  });
+  // $.each($(".pagi-item"), function (i, item) {
+  //   item.addEventListener("click", () => {
+  //     data = {
+  //       p: item.dataset.p,
+  //       idLoai: getUrlParameter("idLoai"),
+  //       sort: $("#sort").val(),
+  //       page: getUrlParameter("page"),
+  //       price_from: $("#price_from").val(),
+  //       price_to: $("#price_to").val(),
+  //       key: getUrlParameter("key")!==undefined ? getUrlParameter("key") : "",
+  //     };
+  //     $.ajax({
+  //       type: "GET",
+  //       url: "./templates/product_items.php",
+  //       data: data,
+  //       success: function (response) {
+  //         console.log(response);
+  //         $(".product-list").html(response);
+  //         pagi();
+  //       },
+  //     });
+  //   });
+  // });
+  
   $("#sort").change(function () {
     data = {
       idLoai: getUrlParameter("idLoai"),
@@ -242,6 +223,7 @@ $(document).ready(function () {
       page: getUrlParameter("page"),
       price_from: $("#price_from").val(),
       price_to: $("#price_to").val(),
+      key: $("#search").val(),
     };
     $.ajax({
       type: "GET",
@@ -249,26 +231,6 @@ $(document).ready(function () {
       data: data,
       success: function (response) {
         $(".product-list").html(response);
-        $.each($(".pagi-item"), function (i, item) {
-          item.addEventListener("click", () => {
-            data = {
-              p: item.dataset.p,
-              idLoai: getUrlParameter("idLoai"),
-              sort: $("#sort").val(),
-              page: getUrlParameter("page"),
-              price_from: $("#price_from").val(),
-              price_to: $("#price_to").val(),
-            };
-            $.ajax({
-              type: "GET",
-              url: "./templates/product_items.php",
-              data: data,
-              success: function (response) {
-                $(".product-list").html(response);
-              },
-            });
-          });
-        });
       },
     });
   });
@@ -280,6 +242,7 @@ $(document).ready(function () {
       page: getUrlParameter("page"),
       price_from: $("#price_from").val(),
       price_to: $("#price_to").val(),
+      key: $("#search").val(),
     };
     $.ajax({
       type: "GET",
@@ -287,26 +250,6 @@ $(document).ready(function () {
       data: data,
       success: function (response) {
         $(".product-list").html(response);
-        $.each($(".pagi-item"), function (i, item) {
-          item.addEventListener("click", () => {
-            data = {
-              p: item.dataset.p,
-              idLoai: getUrlParameter("idLoai"),
-              sort: $("#sort").val(),
-              page: getUrlParameter("page"),
-              price_from: $("#price_from").val(),
-              price_to: $("#price_to").val(),
-            };
-            $.ajax({
-              type: "GET",
-              url: "./templates/product_items.php",
-              data: data,
-              success: function (response) {
-                $(".product-list").html(response);
-              },
-            });
-          });
-        });
       },
     });
   });
@@ -572,40 +515,10 @@ $(document).ready(function () {
   });
   $(".icon_search_submit").click(function () {
     const key = $("#search").val();
-    // console.log(key);
-    $.ajax({
-      type: "POST",
-      url: window.location.href,
-      data: {
-        key: key,
-        
-      },
-      success: function (response) {
-        
-        $(".product-list").html(response);
-        $.each($(".pagi-item"), function (i, item) {
-          item.addEventListener("click", () => {
-            data = {
-              p: item.dataset.p,
-              idLoai: getUrlParameter("idLoai"),
-              sort: $("#sort").val(),
-              page: getUrlParameter("page"),
-              price_from: $("#price_from").val(),
-              price_to: $("#price_to").val(),
-            };
-            $.ajax({
-              type: "GET",
-              url: "./templates/product_items.php",
-              data: data,
-              success: function (response) {
-                $(".product-list").html(response);
-              },
-            });
-          });
-        });
-      },
-    });
+    console.log(key);
+    window.location.href = "?page=search&key="+key;
   });
+  
 });
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
@@ -624,3 +537,29 @@ var getUrlParameter = function getUrlParameter(sParam) {
   }
   return false;
 };
+
+const pagi = ()=>{
+  $.each($(".pagi-item"), function (i, item) {
+    item.addEventListener("click", () => {
+      data = {
+        p: item.dataset.p,
+        idLoai: getUrlParameter("idLoai"),
+        sort: $("#sort").val(),
+        page: getUrlParameter("page"),
+        price_from: $("#price_from").val(),
+        price_to: $("#price_to").val(),
+        key: $("#search").val(),
+      };
+      $.ajax({
+        type: "GET",
+        url: "./templates/product_items.php",
+        data: data,
+        success: function (response) {
+          console.log(response);
+          $(".product-list").empty();
+          $(".product-list").html(response);
+        },
+      });
+    });
+  });
+}

@@ -2,6 +2,7 @@
 if (!isset($_COOKIE['idCart'])) {
     setcookie('idCart', uniqid(), time() + 60 * 60 * 24 * 30 * 12);
 }
+$key=isset($_GET['key'])?$_GET['key']:'';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ if (!isset($_COOKIE['idCart'])) {
     <div class="box_search">
         <div id="form_search" class="form_search">
             <span class="close_search">x</span>
-            <input type="search" name="search" id="search" placeholder="Enter search term">
+            <input type="search" name="search" value="<?=$key;?>" id="search" placeholder="Enter search term">
             <i class="fas fa-search icon_search_submit"></i>
         </div>
     </div>
@@ -85,6 +86,9 @@ if (!isset($_COOKIE['idCart'])) {
             break;
         case 'order':
             require_once('./pages/order.php');
+            break;
+        case 'search':
+            require_once('./pages/search.php');
             break;
         default:
             require_once('./pages/home.php');

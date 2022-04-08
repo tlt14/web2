@@ -10,28 +10,30 @@ if (isset($_POST['madh'])) {
             echo ('
             <div class="modal-body_item ">
                 <div class="order_form-content-item-info-name ">
-                    <a href="?page=detail&id='.$row['MaSanPham'].'">
-                        '.$row['TenSanPham'].' <span> x'.$row['SoLuongSP'].'</span>
+                    <a href="?page=detail&id=' . $row['MaSanPham'] . '">
+                        ' . $row['TenSanPham'] . ' <span> x' . $row['SoLuongSP'] . '</span>
                     </a>    
                 </div>
                 <div class="order_form-content-item-info-price">
-                    <span>'.number_format($row['SoLuongSP']*$row['GiaSanPham'],0, ',', ',').'đ</span>
+                    <span>' . number_format($row['SoLuongSP'] * $row['GiaSanPham'], 0, ',', ',') . 'đ</span>
                 </div>
             </div>
             ');
-            $total += $row['SoLuongSP']*$row['GiaSanPham'];
+            $total += $row['SoLuongSP'] * $row['GiaSanPham'];
         }
     }
 }
 ?>
-<div class="modal-body_bottom ">
-    <p class="order_form-content-item-info-name">
-        <span class="total_detail">Tổng cộng</span>
-    </p>
-    <div class="order_form-content-item-info-price">
-        <span><?=number_format($total,0, ',', ',')?>đ</span>
+    <div class="modal-bottom">
+        <div class="modal-body_bottom ">
+            <p class="order_form-content-item-info-name">
+                <span class="total_detail">Tổng cộng</span>
+            </p>
+            <div class="order_form-content-item-info-price">
+                <span><?= number_format($total, 0, ',', ',') ?>đ</span>
+            </div>
+        </div>
+        <div class="modal-body_bottom_payment ">
+            Phương thức thanh toán: thanh toán khi nhận hàng
+        </div>
     </div>
-</div>
-<div class="modal-body_bottom_payment ">
-    Phương thức thanh toán: thanh toán khi nhận hàng
-</div>

@@ -1014,7 +1014,7 @@ tr th:nth-child(1){
 }
 .alert-content,.modal-content{
   width: 40%;
-  height: 40%;
+  height: 60%;
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
@@ -1248,15 +1248,22 @@ tr th:nth-child(1){
 .modal-body_main{
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 100%;
   overflow: auto;
+  position: relative;
 }
 .modal-body_bottom{
   border-top: 1px solid #000;
+  /* position:absolute;
+  background-color: #111;
+  color: #fff!important;
+  bottom: 0;
+  z-index:5 */
 }
+
 .modal-body_bottom_payment{
   font-weight: normal;
-  color: #111111;
+  color: #ffffff;
   text-align: left;
 }
 .total_detail{

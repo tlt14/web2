@@ -22,7 +22,14 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
             $delete = mysqli_query($conn, $sql);
         }
-        header('Location: ./../index.php');
+        if($user['VaiTro'] == 1){
+            header('location: ./../admin/index.php');
+        }else if($user['VaiTro'] == 2){
+            header('Location: ./../index.php');
+        }else{
+            header('Location: ./../index.php');
+        }
+        
     } else {
         $flag =1;
     }
