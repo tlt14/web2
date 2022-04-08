@@ -23,44 +23,6 @@ class product
             return false;
         }
     }
-    // public function get_products_by_loai($maloai, $start, $limit, $sort, $price_from, $price_to)
-    // {
-    //     // echo $start;
-    //     $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $maloai ";
-    //     if ($price_from != "" && $price_to != "" && $sort=="") {
-    //         $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $maloai AND GiaSanPham between $price_from and $price_to LIMIT $start,$limit";
-    //     } else if($price_from == "" && $price_to == "" && $sort!=""){
-    //         if ($sort == 'price_asc') { //Tang dan
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai ORDER by GiaSanPham ASC limit $start,$limit";
-    //         } else if ($sort == 'price_desc') { //Giam
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai ORDER by GiaSanPham DESC limit $start,$limit";
-    //         } else if ($sort == 'date_asc') {
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai ORDER by created_at ASC limit $start,$limit";
-    //         } else if ($sort == 'date_desc') {
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai ORDER by created_at DESC limit $start,$limit";
-    //         }
-    //     }else if($price_from == "" && $price_to == "" && $sort=="" && $limit!=0){
-    //         $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $maloai limit $start,$limit";
-    //     }else{
-    //         if ($sort == 'price_asc') { //Tang dan
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai AND GiaSanPham between $price_from and $price_to ORDER by GiaSanPham ASC limit $start,$limit";
-    //         } else if ($sort == 'price_desc') { //Giam
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai AND GiaSanPham between $price_from and $price_to ORDER by GiaSanPham DESC limit $start,$limit";
-    //         } else if ($sort == 'date_asc') {
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai AND GiaSanPham between $price_from and $price_to ORDER by created_at ASC limit $start,$limit";
-    //         } else if ($sort == 'date_desc') {
-    //             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $maloai AND GiaSanPham between $price_from and $price_to ORDER by created_at DESC limit $start,$limit";
-    //         }
-    //     }
-    //     // echo($sql);
-    //     $result = $this->db->select($sql);
-    //     if ($result && $result->num_rows > 0) {
-    //         return $result;
-    //     } else {
-    //         return false;
-    //     }
-        
-    // }
     public function get_products_by_category($category){
         $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category";
         $result = $this->db->select($sql);
