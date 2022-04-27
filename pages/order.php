@@ -29,6 +29,7 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
                         <th>&nbsp</th>
+                        <th>&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,12 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
                         echo '<tr><td colspan="6"><p>Your cart is empty!</p></td></tr>';
                     } else
                         while ($item  = $order_items->fetch_assoc()) {
+                            $btn='&nbsp;';
+                            if($item['TrangThai']<2){
+                                $btn = '<button type="button" class="btn_cancel" data-madh=' . $item['MaDonHang'] . '>
+                                            Hủy đơn hàng
+                                        </button>';
+                            }
                             echo '
                                 <tr>
                                     <td>' . $item['MaDonHang'] . '</td>
@@ -47,6 +54,9 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
                                     <td>
                                         <button type="button" class="btn_detail" data-madh=' . $item['MaDonHang'] . '>
                                             Xem chi tiết</button>
+                                    </td>
+                                    <td>
+                                        '.$btn.'
                                     </td>
                                 </tr>
                                 ';

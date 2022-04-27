@@ -1,6 +1,9 @@
 <?php
     require_once __DIR__ .'./../classes/cart.php';
+    require_once __DIR__ .'./../classes/order.php';
+
     $cart = new Cart();
+    $order = new Order();
     $makh = $_COOKIE['maKhachHang'];
 
     
@@ -16,6 +19,11 @@
         if($cart->add_order($makh,$tongtien,$cart_items,$address,$name,$phone,$note,$email) ){
             echo('Đặt hàng thành công');
         }
+    }
+    if($_POST['act']=='cancel_order'){
+        $madh = $_POST['madh'];
+        $order->cancel_order($madh);
+        echo('Đã hủy đơn hàng');
     }
     // $result = $cart->getAll();
     // if($result!=null && $result->num_rows>0){

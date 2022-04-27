@@ -21,8 +21,8 @@ $result = $product->getAll();
     </div>
 </div>
 <div class="main">
-    <div class="category-page-row">
-        <div class="main-left">
+    <div class="category-page-row">    
+    <div class="main-left">
             <div>LỌC THEO GIÁ</div>
             <form action="" class="filter-box">
                 <input type="number" name="" id="price_from">

@@ -45,6 +45,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login</title>
     <link rel="stylesheet" href="./../css/style_login.css">
     <link rel="stylesheet" href="./../fonts/fontawesome-free-5.15.4-web/css/all.css">
+
 </head>
 
 <body class="">
@@ -73,7 +74,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span class="form-message">
                             <?php
                                 if($flag ==1){
-                                    echo('Sai tên đăng nhập hoặc mật khẩu');
+                                    echo('Sai tên đăng nhập hoặc mật khẩu hoặc đã bị khóa bởi Admin');
                                 }
                             ?>
                         </span>
@@ -201,7 +202,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }
     </script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -49,10 +49,26 @@ $(document).ready(function () {
                 success: function (response) {
                     console.log(response.trim());
                     if(response.trim()==='1'){
-                        location.reload();
-                        alert(response.trim()=='1'?"Đăng ký thành công":"Đăng ký thất bại");
+                        
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: response.trim()=='1'?"Đăng ký thành công":"Đăng ký thất bại",
+                            showConfirmButton: false,
+                            timer: 2000
+                          })
+                        // alert();
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
                     }else{
-                        alert("Tên đăng nhập bị trùng");
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Tên đăng nhập bị trùng",
+                            showConfirmButton: false,
+                            timer: 2000
+                          })
                     }
                 }
             }); 
@@ -109,10 +125,7 @@ const isPassword = (value) =>{
     const reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return reg.test(value);
 }
-const isEmail = (value) =>{
-    const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g ;
-    return reg.test(value);   
-}
+
 const isRequired = (value) =>{
     return value === ""|| value ===undefined || value ===null?false:true;
 }
@@ -123,4 +136,8 @@ const isPhone = (value)=>{
     //regex phone
     const reg= /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
     return reg.test(value);
+}
+const isEmail = (value) =>{
+    const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g ;
+    return reg.test(value);   
 }

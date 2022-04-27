@@ -47,7 +47,14 @@ $cart_items  = $cart->getAll();
                                     <button class="cart_quantity_plus">+</button>
                                 </div>
                             </td>
-                            <td><?php echo number_format($item['GiaSanPham'] * $item['SoLuong'], 0, ',', ','); ?> VNĐ</td>
+                            <td><?php 
+                                    if($item['GiamGia']!=0){
+                                        echo '<p>-'.$item["GiamGia"].'%</p>';
+                                        echo '<span class="price">'.number_format($item['GiaSanPham']*$item['SoLuong']*(100-$item['GiamGia'])/100, 0, ',', ',').' VNĐ</span>';
+                                    }else{
+                                        echo '<span class="price">'.number_format($item['GiaSanPham']*$item['SoLuong'], 0, ',', ',').' VNĐ</span>';
+                                    }
+                                ?></td>
                             <td>
                                 <button class="btn-update" data-idsp=<?= $item['MaSanPham']; ?>>
                                     <i class="fas fa-sync"></i>
@@ -77,7 +84,7 @@ $cart_items  = $cart->getAll();
         <p>
             <button class="btn_continue">
                 <i class="fas fa-arrow-left icon_left"></i>
-                Continue Shopping
+                Trở lại mua hàng
             </button>
         </p>
     </div>

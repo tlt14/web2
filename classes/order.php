@@ -24,4 +24,9 @@ class Order{
         $result = $this->db->select($sql);
         return $result?$result:false;
     }
+    public function cancel_order($id){
+        $sql = "UPDATE tbl_donhang SET TrangThai = '5' WHERE MaDonHang='$id'";
+        $this->db->update($sql);
+        return true;
+    }
 }

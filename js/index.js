@@ -186,36 +186,16 @@ $(document).ready(function () {
         data: item.dataset,
         success: function (response) {
           // console.log(item.dataset);
-          alert("sản phẩm đã được thêm vào giỏ hàng");
+          Toast.fire({
+            icon: 'success',
+            title: 'Sản phẩm đã được thêm vào giỏ hàng',
+          })
           $(".qty_cart").text(response);
         },
       });
     });
   });
-  // $.each($(".pagi-item"), function (i, item) {
-  //   item.addEventListener("click", () => {
-  //     data = {
-  //       p: item.dataset.p,
-  //       idLoai: getUrlParameter("idLoai"),
-  //       sort: $("#sort").val(),
-  //       page: getUrlParameter("page"),
-  //       price_from: $("#price_from").val(),
-  //       price_to: $("#price_to").val(),
-  //       key: getUrlParameter("key")!==undefined ? getUrlParameter("key") : "",
-  //     };
-  //     $.ajax({
-  //       type: "GET",
-  //       url: "./templates/product_items.php",
-  //       data: data,
-  //       success: function (response) {
-  //         console.log(response);
-  //         $(".product-list").html(response);
-  //         pagi();
-  //       },
-  //     });
-  //   });
-  // });
-  
+
   $("#sort").change(function () {
     data = {
       idLoai: getUrlParameter("idLoai"),
@@ -305,6 +285,8 @@ $(document).ready(function () {
   });
   $(".add_cart").click(function () {
     if (getUrlParameter("id") !== null) {
+      
+
       $.ajax({
         type: "POST",
         url: "./templates/add_cart.php",
@@ -313,7 +295,11 @@ $(document).ready(function () {
           quantity: quantity_input.val(),
         },
         success: function (response) {
-          alert("sản phẩm đã được thêm vào giỏ hàng");
+          // console.log(item.dataset);
+          Toast.fire({
+            icon: 'success',
+            title: 'Sản phẩm đã được thêm vào giỏ hàng',
+          })
           $(".qty_cart").text(response);
         },
       });
@@ -336,8 +322,57 @@ $(document).ready(function () {
           parseInt(valueOfElement.parentElement.childNodes[3].value) - 1;
       }
       if (input.value < 1) {
-        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?")) {
-          console.log(valueOfElement.dataset);
+        //===========xóa
+        Swal.fire({
+          title: 'Xóa?',
+          text: "Bạn có muốn xóa sản phẩm này? :((",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Xóa luôn!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type: "POST",
+              url: "./templates/delete_cart.php",
+              data: {
+                idsp: valueOfElement.dataset.idsp,
+                act: "delete",
+              },
+              success: function (response) {
+                Swal.fire(
+                  'Xóa sản phẩm!',
+                  'Sản phẩm đã được xóa khỏi giỏ hàng.',
+                  'success'
+                )
+                setTimeout(() => {
+                  location.reload();
+                }, 2000);
+              },
+            });
+          }else if(
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            input.value = 1;
+          }
+        })
+        
+      }
+    });
+  });
+  $.each($(".btn-remove"), function (indexInArray, valueOfElement) {
+    valueOfElement.addEventListener("click", () => {
+      Swal.fire({
+        title: 'Xóa?',
+        text: "Bạn có muốn xóa sản phẩm này? :((",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa luôn!'
+      }).then((result) => {
+        if (result.isConfirmed) {
           $.ajax({
             type: "POST",
             url: "./templates/delete_cart.php",
@@ -346,33 +381,19 @@ $(document).ready(function () {
               act: "delete",
             },
             success: function (response) {
-              // $(".qty_cart").text(response);
-              location.reload();
-              console.log(response);
+              Swal.fire(
+                'Xóa sản phẩm!',
+                'Sản phẩm đã được xóa khỏi giỏ hàng.',
+                'success'
+              )
+              setTimeout(() => {
+                location.reload();
+              }, 2000);
             },
           });
-        } else {
-          input.value = 1;
         }
-      }
-    });
-  });
-  $.each($(".btn-remove"), function (indexInArray, valueOfElement) {
-    valueOfElement.addEventListener("click", () => {
-      if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?")) {
-        $.ajax({
-          type: "POST",
-          url: "./templates/delete_cart.php",
-          data: {
-            idsp: valueOfElement.dataset.idsp,
-            act: "delete",
-          },
-          success: function (response) {
-            // $(".qty_cart").text(response);
-            location.reload();
-          },
-        });
-      }
+      })
+      
     });
   });
   $.each($(".btn-update"), function (indexInArray, valueOfElement) {
@@ -400,6 +421,7 @@ $(document).ready(function () {
   });
   $(".btn-alert").click(function () {
     $(".alert").hide();
+    location.reload();
   });
   $(".check_out").click(function () {
     $.ajax({
@@ -437,38 +459,50 @@ $(document).ready(function () {
   });
 
   $(".btn_order").click(function () {
-    const name = $("#name").val();
-    const address = $("#address").val();
-    const email = $("#email").val();
-    const note = $("#note").val();
-    const city = $("#city").val();
-    const phone = $("#phone").val();
-    // console.log(name,phone,address,email,note,city);
-    $.ajax({
-      type: "POST",
-      url: "./templates/order.php",
-      data: {
-        name: name,
-        address: address,
-        email: email,
-        note: note,
-        city: city,
-        phone: phone,
-        act: "add_order",
-      },
-      success: function (response) {
-        console.log(response);
-        if (response.trim() == "Đặt hàng thành công") {
-          $(".alert-body").html(response);
-          $(".alert").show();
-          $(".alert").css("display", "flex");
-          // window.location.href = "?page=home";
-          // location.reload();
-        } else {
-          console.log(response);
-        }
-      },
-    });
+    
+    if(validate_payment()){
+      const name = $("#name").val();
+      const address = $("#address").val();
+      const email = $("#email").val();
+      const note = $("#note").val();
+      const city = $("#city").val();
+      const phone = $("#phone").val();
+      $.ajax({
+          type: "POST",
+          url: "./templates/order.php",
+          data: {
+            name: name,
+            address: address,
+            email: email,
+            note: note,
+            city: city,
+            phone: phone,
+            act: "add_order",
+          },
+          success: function (response) {
+            if (response.trim() == "Đặt hàng thành công") {
+                Swal.fire({
+                  title: 'Đặt hàng thành công.',
+                  width: 600,
+                  padding: '2em',
+                  color: '#716add',
+                  backdrop: `
+                    rgba(0,0,123,0.4)
+                    url("./image/vui-unscreen.gif")
+                    left top
+                    no-repeat
+                  `,
+                  timer: 3000
+                })
+                setTimeout(() => {
+                  location.reload()
+                }, 3000);
+            } else {
+              console.log(response);
+            }
+          },
+        });
+    }
   });
   var modal = $(".modal");
   var btn = $(".btn_detail");
@@ -516,9 +550,47 @@ $(document).ready(function () {
   $(".icon_search_submit").click(function () {
     const key = $("#search").val();
     console.log(key);
-    window.location.href = "?page=search&key="+key;
+    window.location.href = "?page=search&key=" + key;
   });
-  
+  $.each($(".btn_cancel"), function (index, HtmlElement) {
+    HtmlElement.addEventListener("click", function () {
+      // console.log(HtmlElement.dataset.madh);
+      Swal.fire({
+        title: 'Bạn có muốn hủy đơn hàng?',
+        text: "Đơn hàng của bạn sẽ bị hủy:((",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hủy luôn!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "./templates/order.php",
+            data: {
+              madh: HtmlElement.dataset.madh,
+              act: "cancel_order",
+            },
+            success: function (response) {
+              console.log(response);
+              if (response.trim() == "Đã hủy đơn hàng") {
+                Swal.fire(
+                  'Hủy đơn hàng!',
+                  response,
+                  'success'
+                )
+              }
+              setTimeout(() => {
+                location.reload();
+              }, 2000);
+            },
+          });
+        }
+      })
+      
+    });
+  });
 });
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
@@ -538,7 +610,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
   return false;
 };
 
-const pagi = ()=>{
+const pagi = () => {
   $.each($(".pagi-item"), function (i, item) {
     item.addEventListener("click", () => {
       data = {
@@ -562,4 +634,62 @@ const pagi = ()=>{
       });
     });
   });
+};
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+const isRequired = (value) =>{
+  return value === ""|| value ===undefined || value ===null?false:true;
+}
+const isPhone = (value)=>{
+  //regex phone
+  const reg= /^(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+  return reg.test(value);
+}
+const isEmail = (value) =>{
+  const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g ;
+  return reg.test(value);   
+}
+
+const validate_payment = ()=>{
+  console.log("validate_payment");
+
+  let flag=true;
+  const name          = document.getElementById('name');
+  const email         = document.getElementById('email');
+  const address       = document.getElementById('address');
+  const city          = document.getElementById('city');
+  const phone         = document.getElementById('phone');
+  const items = document.querySelector('.form-payment').querySelectorAll('input');
+  
+  items.forEach(element => {
+    if(!isRequired(element.value)) {
+      flag = false;
+      element.parentElement.querySelector('small').innerText="Trường này không được để trống"
+    }else{
+      element.parentElement.querySelector('small').innerText=""
+    }
+  });
+  if(!isPhone(phone.value)){
+    flag = false;
+    phone.parentElement.querySelector('small').innerText="Số điện thoại không chính xác"
+  }else{
+    phone.parentElement.querySelector('small').innerText=""
+  }
+  if(!isEmail(email.value)){
+    flag = false;
+    email.parentElement.querySelector('small').innerText="Email không hợp lệ";
+  }else{
+    email.parentElement.querySelector('small').innerText="";
+  }
+  return flag;
 }

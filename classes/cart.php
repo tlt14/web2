@@ -70,12 +70,16 @@ class Cart
     public function get_total_price(){
         if(isset($_COOKIE['maKhachHang'])){
             $makh = $_COOKIE['maKhachHang'];
-            $sql = "SELECT SUM(tbl_sanpham.GiaSanPham*tbl_giohang.SoLuong) FROM tbl_giohang,tbl_sanpham WHERE tbl_giohang.MaSanPham = tbl_sanpham.MaSanPham AND MaKhachHang = '$makh'";
+            $sql = "SELECT SUM((tbl_sanpham.GiaSanPham*tbl_giohang.SoLuong)-(tbl_sanpham.GiaSanPham * (tbl_sanpham.GiamGia/100))) AS 'Total' 
+                    FROM tbl_giohang,tbl_sanpham 
+                    WHERE tbl_giohang.MaSanPham = tbl_sanpham.MaSanPham AND MaKhachHang = '$makh'";
         }else{
             $idCart=$_COOKIE['idCart'];
-            $sql="SELECT SUM(tbl_sanpham.GiaSanPham*tbl_giohang.SoLuong) FROM tbl_giohang,tbl_sanpham WHERE tbl_giohang.MaSanPham = tbl_sanpham.MaSanPham AND id='$idCart'";
+            $sql="SELECT SUM((tbl_sanpham.GiaSanPham*tbl_giohang.SoLuong)-(tbl_sanpham.GiaSanPham * (tbl_sanpham.GiamGia/100))) AS 'Total' 
+            FROM tbl_giohang,tbl_sanpham 
+            WHERE tbl_giohang.MaSanPham = tbl_sanpham.MaSanPham AND id='$idCart'";
         }
-        $result = $this->db->select($sql)->fetch_assoc()['SUM(tbl_sanpham.GiaSanPham*tbl_giohang.SoLuong)'];
+        $result = $this->db->select($sql)->fetch_assoc()['Total'];
         return $result?$result:0;
     }
     public function delete_product_cart($id){
@@ -113,4 +117,5 @@ class Cart
         $this->db->delete($sql);
         return true;
     }
+    
 }

@@ -25,16 +25,6 @@ if(!isset($_GET['key']) || $_GET['key'] == ''){
         }
         $start = ($current_page - 1) * $limit;
     }
-    // $total_records = $result->num_rows;
-    // $current_page = isset($_GET['p']) ? $_GET['p'] : 1;
-    // $total_page = ceil($total_records / $limit);
-    // if ($current_page > $total_page){
-    //     $current_page = $total_page;
-    // }
-    // else if ($current_page < 1){
-    //     $current_page = 1;
-    // }
-    // $start = ($current_page - 1) * $limit;
 }else{
     $result = $product->get_products_by_search($_GET['key']);
     if(isset($_GET['price_from']) && $_GET['price_from'] != ''){

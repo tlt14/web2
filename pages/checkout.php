@@ -12,27 +12,32 @@ $cart_items  = $cart->getAll();
             <form action="" class="form-payment">
                 <div class="text-field">
                     <label for="name">Họ tên khách hàng</label>
-                    <input autocomplete="off" type="text" id="name" placeholder="" />
+                    <input autocomplete="off" type="text" id="name" name="name" placeholder="" />
+                    <small style="color:red" id="error_name"></small>
                 </div>
                 <div class="text-field">
                     <label for="address">Địa Chỉ</label>
-                    <input autocomplete="off" type="text" id="address" placeholder="" />
+                    <input autocomplete="off" type="text" id="address" name="address" placeholder="" />
+                    <small style="color:red" id="error_address"></small>
                 </div>
                 <div class="text-field">
                     <label for="city">Tỉnh/ Thành phố</label>
-                    <input autocomplete="off" type="text" id="city" placeholder="" />
+                    <input autocomplete="off" type="text" id="city" placeholder="" name="city" />
+                    <small style="color:red" id="error_city"></small>
                 </div>
                 <div class="text-field">
                     <label for="phone">Số điện thoại</label>
-                    <input autocomplete="off" type="text" id="phone" placeholder="" />
+                    <input autocomplete="off" type="text" id="phone" placeholder=""  name="phone"/>
+                    <small style="color:red" id="error_phone"></small>
                 </div>
                 <div class="text-field">
                     <label for="email">Địa chỉ email</label>
-                    <input autocomplete="off" type="text" id="email" placeholder="" />
+                    <input autocomplete="off" type="text" id="email" placeholder="" name="email" />
+                    <small style="color:red" id="error_email"></small>
                 </div>
                 <div class="text-field">
                     <label for="note">Ghi chú đơn hàng</label>
-                    <textarea autocomplete="off" type="text" id="note" placeholder=""></textarea>
+                    <textarea autocomplete="off" type="text" id="note" placeholder="" name="note"></textarea>
                 </div>
             </form>
         </div>
@@ -66,22 +71,6 @@ $cart_items  = $cart->getAll();
                                     ';
                                 }    
                             ?>
-                            <!-- <div class="order_form-content-item-info">
-                                <div class="order_form-content-item-info-name">
-                                    Samsung Galaxy A50 <span> x6</span>
-                                </div>
-                                <div class="order_form-content-item-info-price">
-                                    <span>1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="order_form-content-item-info">
-                                <div class="order_form-content-item-info-name">
-                                    Samsung Galaxy A50 <span>x6</span>
-                                </div>
-                                <div class="order_form-content-item-info-price">
-                                    <span>1.000.000đ</span>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="order_form-content-item-info">
                             <div class="order_form-content-item-info-name">
