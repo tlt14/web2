@@ -103,13 +103,13 @@ class Cart
         return $this->db->update($sql)?true:false;
     }
     public function add_order($makh,$tongtien,$cart,$address,$name,$phone,$note,$email){
-        $sql = "INSERT INTO tbl_donhang (MaKhachHang,TongTien) VALUES('$makh','$tongtien')";
+        $sql = "INSERT INTO tbl_donhang (MaKhachHang,TongTien,TenNguoiNhan,SDTNguoiNhan,DiaChiNguoiNhan) VALUES('$makh','$tongtien','$name','$phone','$address')";
         $this->db->insert($sql);
         $last_id = $this->db->last_id();
         if($cart!=null){
             foreach($cart as $item){
-                $sql='INSERT INTO `tbl_chitietdonhang` ( `MaDonHang`, `TenNguoiNhan`, `SDTNguoiNhan`, `GhiChu`, `MaSanPham`, `SoLuongSP`, `DiaChiNguoiNhan`)
-                VALUES ('.$last_id.',"'.$name.'","'.$phone.'","'.$note.'",'.$item['MaSanPham'].','.$item['SoLuong'].',"'.$address.'")';
+                $sql='INSERT INTO `tbl_chitietdonhang` ( `MaDonHang`, `GhiChu`, `MaSanPham`, `SoLuongSP`)
+                VALUES ('.$last_id.',"'.$note.'",'.$item['MaSanPham'].','.$item['SoLuong'].')';
                 $this->db->insert($sql);
             }
         }

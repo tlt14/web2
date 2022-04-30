@@ -94,9 +94,9 @@ if($products){
             <ul class="pagi">';
             for ($i = 1; $i <= $total_page; $i++) {
                 if ($i == $current_page) {
-                    echo '<li class="pagi-item is-active" onclick="pagi();" data-p=' . $i .  '>' . $i . '</li>';
+                    echo '<li class="pagi-item is-active" onclick="pagi(' . $i .  ');" >' . $i . '</li>';
                 } else {
-                    echo '<li class="pagi-item" onclick="pagi();" data-p=' . $i .  '>' . $i . '</li>';
+                    echo '<li class="pagi-item" onclick="pagi(' . $i .  ');" >' . $i . '</li>';
                 }
             }
             echo '</ul></div>';

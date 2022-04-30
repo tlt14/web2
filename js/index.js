@@ -16,85 +16,10 @@ $(document).ready(function () {
       }
     }
   });
-  $(".products__main").slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: false,
-    draggable: false,
-    dots: false,
-    // autoplay: true,
-    arrows: true,
-    speed: 1000,
-    prevArrow: '<i class="fa fa-angle-left btn-prev"></i>',
-    nextArrow: '<i class="fa fa-angle-right btn-next"></i>',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
-  });
-  $(".slider-main").slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: false,
-    draggable: true,
-    dots: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-    mobileFirst: true,
-    prevArrow: '<i class="fa fa-angle-left slider-prev"></i>',
-    nextArrow: '<i class="fa fa-angle-right slider-next"></i>',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-        },
-      },
-    ],
-  });
+  add_to_cart();
+  add_cart_with_qty();
+  slider();
+  
   const offerItems = document.querySelectorAll(".col-offer");
   offerItems.forEach((item) =>
     item.addEventListener("mouseover", () => {
@@ -178,23 +103,6 @@ $(document).ready(function () {
     }
   });
 
-  $.each($(".add_to_cart"), function (i, item) {
-    item.addEventListener("click", () => {
-      $.ajax({
-        type: "POST",
-        url: "./templates/add_cart.php",
-        data: item.dataset,
-        success: function (response) {
-          // console.log(item.dataset);
-          Toast.fire({
-            icon: 'success',
-            title: 'Sản phẩm đã được thêm vào giỏ hàng',
-          })
-          $(".qty_cart").text(response);
-        },
-      });
-    });
-  });
 
   $("#sort").change(function () {
     data = {
@@ -283,30 +191,7 @@ $(document).ready(function () {
   quantity_add.click(function () {
     quantity_input.val(parseInt(quantity_input.val()) + 1);
   });
-  $(".add_cart").click(function () {
-    if (getUrlParameter("id") !== null) {
-      
-
-      $.ajax({
-        type: "POST",
-        url: "./templates/add_cart.php",
-        data: {
-          masanpham: getUrlParameter("id"),
-          quantity: quantity_input.val(),
-        },
-        success: function (response) {
-          // console.log(item.dataset);
-          Toast.fire({
-            icon: 'success',
-            title: 'Sản phẩm đã được thêm vào giỏ hàng',
-          })
-          $(".qty_cart").text(response);
-        },
-      });
-    } else {
-      alert("số lượng phải lớn hơn 0");
-    }
-  });
+  
   $.each($(".cart_quantity_plus"), function (indexInArray, valueOfElement) {
     valueOfElement.addEventListener("click", () => {
       var input = valueOfElement.parentElement.childNodes[3];
@@ -324,13 +209,13 @@ $(document).ready(function () {
       if (input.value < 1) {
         //===========xóa
         Swal.fire({
-          title: 'Xóa?',
+          title: "Xóa?",
           text: "Bạn có muốn xóa sản phẩm này? :((",
-          icon: 'warning',
+          icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Xóa luôn!'
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Xóa luôn!",
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
@@ -342,35 +227,32 @@ $(document).ready(function () {
               },
               success: function (response) {
                 Swal.fire(
-                  'Xóa sản phẩm!',
-                  'Sản phẩm đã được xóa khỏi giỏ hàng.',
-                  'success'
-                )
+                  "Xóa sản phẩm!",
+                  "Sản phẩm đã được xóa khỏi giỏ hàng.",
+                  "success"
+                );
                 setTimeout(() => {
                   location.reload();
                 }, 2000);
               },
             });
-          }else if(
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
             input.value = 1;
           }
-        })
-        
+        });
       }
     });
   });
   $.each($(".btn-remove"), function (indexInArray, valueOfElement) {
     valueOfElement.addEventListener("click", () => {
       Swal.fire({
-        title: 'Xóa?',
+        title: "Xóa?",
         text: "Bạn có muốn xóa sản phẩm này? :((",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Xóa luôn!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Xóa luôn!",
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
@@ -382,18 +264,17 @@ $(document).ready(function () {
             },
             success: function (response) {
               Swal.fire(
-                'Xóa sản phẩm!',
-                'Sản phẩm đã được xóa khỏi giỏ hàng.',
-                'success'
-              )
+                "Xóa sản phẩm!",
+                "Sản phẩm đã được xóa khỏi giỏ hàng.",
+                "success"
+              );
               setTimeout(() => {
                 location.reload();
               }, 2000);
             },
           });
         }
-      })
-      
+      });
     });
   });
   $.each($(".btn-update"), function (indexInArray, valueOfElement) {
@@ -459,8 +340,7 @@ $(document).ready(function () {
   });
 
   $(".btn_order").click(function () {
-    
-    if(validate_payment()){
+    if (validate_payment()) {
       const name = $("#name").val();
       const address = $("#address").val();
       const email = $("#email").val();
@@ -468,40 +348,40 @@ $(document).ready(function () {
       const city = $("#city").val();
       const phone = $("#phone").val();
       $.ajax({
-          type: "POST",
-          url: "./templates/order.php",
-          data: {
-            name: name,
-            address: address,
-            email: email,
-            note: note,
-            city: city,
-            phone: phone,
-            act: "add_order",
-          },
-          success: function (response) {
-            if (response.trim() == "Đặt hàng thành công") {
-                Swal.fire({
-                  title: 'Đặt hàng thành công.',
-                  width: 600,
-                  padding: '2em',
-                  color: '#716add',
-                  backdrop: `
+        type: "POST",
+        url: "./templates/order.php",
+        data: {
+          name: name,
+          address: address,
+          email: email,
+          note: note,
+          city: city,
+          phone: phone,
+          act: "add_order",
+        },
+        success: function (response) {
+          if (response.trim() == "Đặt hàng thành công") {
+            Swal.fire({
+              title: "Đặt hàng thành công.",
+              width: 600,
+              padding: "2em",
+              color: "#716add",
+              backdrop: `
                     rgba(0,0,123,0.4)
                     url("./image/vui-unscreen.gif")
                     left top
                     no-repeat
                   `,
-                  timer: 3000
-                })
-                setTimeout(() => {
-                  location.reload()
-                }, 3000);
-            } else {
-              console.log(response);
-            }
-          },
-        });
+              timer: 3000,
+            });
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+          } else {
+            console.log(response);
+          }
+        },
+      });
     }
   });
   var modal = $(".modal");
@@ -556,13 +436,13 @@ $(document).ready(function () {
     HtmlElement.addEventListener("click", function () {
       // console.log(HtmlElement.dataset.madh);
       Swal.fire({
-        title: 'Bạn có muốn hủy đơn hàng?',
+        title: "Bạn có muốn hủy đơn hàng?",
         text: "Đơn hàng của bạn sẽ bị hủy:((",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hủy luôn!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Hủy luôn!",
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
@@ -575,11 +455,7 @@ $(document).ready(function () {
             success: function (response) {
               console.log(response);
               if (response.trim() == "Đã hủy đơn hàng") {
-                Swal.fire(
-                  'Hủy đơn hàng!',
-                  response,
-                  'success'
-                )
+                Swal.fire("Hủy đơn hàng!", response, "success");
               }
               setTimeout(() => {
                 location.reload();
@@ -587,8 +463,7 @@ $(document).ready(function () {
             },
           });
         }
-      })
-      
+      });
     });
   });
 });
@@ -610,86 +485,212 @@ var getUrlParameter = function getUrlParameter(sParam) {
   return false;
 };
 
-const pagi = () => {
-  $.each($(".pagi-item"), function (i, item) {
+const pagi = (p) => {
+    data = {
+      p: p,
+      idLoai: getUrlParameter("idLoai"),
+      sort: $("#sort").val(),
+      page: getUrlParameter("page"),
+      price_from: $("#price_from").val(),
+      price_to: $("#price_to").val(),
+      key: $("#search").val(),
+    };
+    $.ajax({
+      type: "GET",
+      url: "./templates/product_items.php",
+      data: data,
+      success: function (response) {
+        $(".product-list").empty();
+        $(".product-list").html(response);
+        add_to_cart();
+      },
+    });
+};
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
+
+const isRequired = (value) => {
+  return value === "" || value === undefined || value === null ? false : true;
+};
+const isPhone = (value) => {
+  //regex phone
+  const reg = /^(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+  return reg.test(value);
+};
+const isEmail = (value) => {
+  const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  return reg.test(value);
+};
+
+const validate_payment = () => {
+  console.log("validate_payment");
+
+  let flag = true;
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const address = document.getElementById("address");
+  const city = document.getElementById("city");
+  const phone = document.getElementById("phone");
+  const items = document
+    .querySelector(".form-payment")
+    .querySelectorAll("input");
+
+  items.forEach((element) => {
+    if (!isRequired(element.value)) {
+      flag = false;
+      element.parentElement.querySelector("small").innerText =
+        "Trường này không được để trống";
+    } else {
+      element.parentElement.querySelector("small").innerText = "";
+    }
+  });
+  if (!isPhone(phone.value)) {
+    flag = false;
+    phone.parentElement.querySelector("small").innerText =
+      "Số điện thoại không chính xác";
+  } else {
+    phone.parentElement.querySelector("small").innerText = "";
+  }
+  if (!isEmail(email.value)) {
+    flag = false;
+    email.parentElement.querySelector("small").innerText = "Email không hợp lệ";
+  } else {
+    email.parentElement.querySelector("small").innerText = "";
+  }
+  return flag;
+};
+const add_to_cart = () => {
+  $.each($(".add_to_cart"), function (i, item) {
     item.addEventListener("click", () => {
-      data = {
-        p: item.dataset.p,
-        idLoai: getUrlParameter("idLoai"),
-        sort: $("#sort").val(),
-        page: getUrlParameter("page"),
-        price_from: $("#price_from").val(),
-        price_to: $("#price_to").val(),
-        key: $("#search").val(),
-      };
       $.ajax({
-        type: "GET",
-        url: "./templates/product_items.php",
-        data: data,
+        type: "POST",
+        url: "./templates/add_cart.php",
+        data: item.dataset,
         success: function (response) {
-          console.log(response);
-          $(".product-list").empty();
-          $(".product-list").html(response);
+          // console.log(item.dataset);
+          Toast.fire({
+            icon: "success",
+            title: "Sản phẩm đã được thêm vào giỏ hàng",
+          });
+          $(".qty_cart").text(response);
         },
       });
     });
   });
 };
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
-const isRequired = (value) =>{
-  return value === ""|| value ===undefined || value ===null?false:true;
-}
-const isPhone = (value)=>{
-  //regex phone
-  const reg= /^(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-  return reg.test(value);
-}
-const isEmail = (value) =>{
-  const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g ;
-  return reg.test(value);   
-}
-
-const validate_payment = ()=>{
-  console.log("validate_payment");
-
-  let flag=true;
-  const name          = document.getElementById('name');
-  const email         = document.getElementById('email');
-  const address       = document.getElementById('address');
-  const city          = document.getElementById('city');
-  const phone         = document.getElementById('phone');
-  const items = document.querySelector('.form-payment').querySelectorAll('input');
-  
-  items.forEach(element => {
-    if(!isRequired(element.value)) {
-      flag = false;
-      element.parentElement.querySelector('small').innerText="Trường này không được để trống"
-    }else{
-      element.parentElement.querySelector('small').innerText=""
+const add_cart_with_qty = () => {
+  $(".add_cart").click(function () {
+    if (getUrlParameter("id") !== null) {
+      $.ajax({
+        type: "POST",
+        url: "./templates/add_cart.php",
+        data: {
+          masanpham: getUrlParameter("id"),
+          quantity: quantity_input.val(),
+        },
+        success: function (response) {
+          Toast.fire({
+            icon: "success",
+            title: "Sản phẩm đã được thêm vào giỏ hàng",
+          });
+          $(".qty_cart").text(response);
+        },
+      });
+    } else {
+      alert("số lượng phải lớn hơn 0");
     }
   });
-  if(!isPhone(phone.value)){
-    flag = false;
-    phone.parentElement.querySelector('small').innerText="Số điện thoại không chính xác"
-  }else{
-    phone.parentElement.querySelector('small').innerText=""
-  }
-  if(!isEmail(email.value)){
-    flag = false;
-    email.parentElement.querySelector('small').innerText="Email không hợp lệ";
-  }else{
-    email.parentElement.querySelector('small').innerText="";
-  }
-  return flag;
+}
+
+
+
+const slider = () => {
+  $(".products__main").slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: false,
+    draggable: false,
+    dots: false,
+    // autoplay: true,
+    arrows: true,
+    speed: 1000,
+    prevArrow: '<i class="fa fa-angle-left btn-prev"></i>',
+    nextArrow: '<i class="fa fa-angle-right btn-next"></i>',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  });
+  $(".slider-main").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: false,
+    draggable: true,
+    dots: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    mobileFirst: true,
+    prevArrow: '<i class="fa fa-angle-left slider-prev"></i>',
+    nextArrow: '<i class="fa fa-angle-right slider-next"></i>',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
+  });
 }

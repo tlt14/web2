@@ -24,7 +24,7 @@ class product
         }
     }
     public function get_products_by_category($category){
-        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category AND TrangThaiSanPham = 1";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -33,7 +33,7 @@ class product
         }
     }
     public function get_products_by_category_pagination($category, $start, $limit){
-        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category LIMIT $start,$limit";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category AND TrangThaiSanPham = 1 LIMIT $start,$limit ";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -42,7 +42,7 @@ class product
         }
     }
     public function filter_product_by_price($category,$start, $limit,$price_from,$price_to){
-        $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to limit $start,$limit";
+        $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to AND TrangThaiSanPham = 1 limit $start,$limit";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
