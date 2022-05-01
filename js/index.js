@@ -444,7 +444,7 @@ $(document).ready(function () {
         cancelButtonColor: "#d33",
         confirmButtonText: "Hủy luôn!",
       }).then((result) => {
-        if (result.isConfirmed) {
+        if (result.isConfirmed) {   
           $.ajax({
             type: "POST",
             url: "./templates/order.php",

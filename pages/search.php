@@ -21,15 +21,37 @@ $result = $product->getAll();
     </div>
 </div>
 <div class="main">
-    <div class="category-page-row">    
-    <div class="main-left">
-            <div>LỌC THEO GIÁ</div>
-            <form action="" class="filter-box">
+    <div class="category-page-row">
+        <div class="main-left">
+            <h3>LỌC THEO GIÁ</h3>
+            <form action="" class="filter-box filter-box_search">
                 <input type="number" name="" id="price_from">
                 <i class="fas fa-arrow-right"></i>
                 <input type="number" name="" id="price_to">
+                <div class="check-box">
+                    <h3>Loại giày</h3>
+                    <!-- check box -->
+                    <div class="check-box">
+                        <input type="checkbox" name="checkbox" />
+                        <label for="">Giày nam</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="checkbox" name="checkbox" />
+                        <label for="">Giày nam</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="checkbox" name="checkbox" />
+                        <label for="">Giày nam</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="checkbox" name="checkbox" />
+                        <label for="">Giày nam</label>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn_sort_price">Lọc</button>
             </form>
+
             <div class="products-left">
                 <div class="product-left__tiltle">
                     SẢN PHẨM
@@ -59,7 +81,7 @@ $result = $product->getAll();
         </div>
         <div class="main-content product-list">
             <?php
-                require_once("./templates/product_items.php");
+            require_once("./templates/product_items.php");
             ?>
         </div>
     </div>

@@ -53,8 +53,12 @@
   margin: 0 auto;
   padding: 10px 0px;
 }
+.filter-box_search{
+  flex-direction:column;  
+  align-items:flex-start;
+}
 .filter-box input{
-    margin-right: 10px;
+  margin-right: 10px;
   width: 30%;
   padding: 5px;
   border: 1px solid #ccc;
@@ -62,6 +66,23 @@
 }
 .filter-box input:nth-child(3){
     margin-left: 10px;
+}
+.filter-box_search input{
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin:0px;
+}
+.filter-box_search input:nth-child(3){
+  margin-left: 0px;
+}
+.check-box{
+  width: 100%;
+  padding:5px 0px;
+}
+.check-box input{
+  width: 5%;
 }
 .shop-container {
   display: grid;
