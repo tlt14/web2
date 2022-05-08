@@ -25,6 +25,9 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
                 <thead>
                     <tr>
                         <th>Mã Đơn Hàng</th>
+                        <th>Tên Người nhận</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
                         <th>Ngày đặt</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
@@ -47,7 +50,11 @@ $order_items  = $order->get_order_by_id($_COOKIE['maKhachHang']);
                             }
                             echo '
                                 <tr>
-                                    <td>' . $item['MaDonHang'] . '</td>
+                                <td>' . $item['MaDonHang'] . '</td>
+                                <td>' . $item['TenNguoiNhan'] . '</td>
+                                <td>' . $item['SDTNguoiNhan'] . '</td>
+                                <td>' . $item['DiaChiNguoiNhan'] . '</td>
+
                                     <td>' . $item['NgayDat'] . '</td>
                                     <td>' . number_format($item['TongTien'], 0, ',', ',') . 'đ</td>
                                     <td>' . $item['TenTrangThai'] . '</td>

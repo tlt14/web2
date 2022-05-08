@@ -24,7 +24,7 @@ class product
         }
     }
     public function get_products_by_category($category){
-        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category AND TrangThaiSanPham = 1";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham IN ($category) AND TrangThaiSanPham = 1";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -33,7 +33,7 @@ class product
         }
     }
     public function get_products_by_category_pagination($category, $start, $limit){
-        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category AND TrangThaiSanPham = 1 LIMIT $start,$limit ";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham IN ($category) AND TrangThaiSanPham = 1 LIMIT $start,$limit ";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -53,6 +53,7 @@ class product
     public function get_count_filter($category,$price_from,$price_to){
         $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to ";
         $result = $this->db->select($sql);
+        // echo($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
         } else {
@@ -68,6 +69,23 @@ class product
             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category ORDER by created_at ASC limit $start,$limit";
         } else if ($sort == 'date_desc') {
             $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category ORDER by created_at DESC limit $start,$limit";
+        }
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function filter_product_by_price_and_sort($category, $start, $limit, $price_from, $price_to,$sort) {
+        if ($sort == 'price_asc') { //Tang dan
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to  ORDER by GiaSanPham ASC limit $start,$limit";
+        } else if ($sort == 'price_desc') { //Giam
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to ORDER by GiaSanPham DESC limit $start,$limit";
+        } else if ($sort == 'date_asc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to ORDER by created_at ASC limit $start,$limit";
+        } else if ($sort == 'date_desc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND GiaSanPham between $price_from and $price_to ORDER by created_at DESC limit $start,$limit";
         }
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
@@ -152,6 +170,55 @@ class product
             return false;
         }
     }
+
+    public function getCommentByProduct($id )
+    {
+        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function search_product_by_categories_pagination($key,$category,$start,$limit){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND LoaiSanPham IN ($category) limit $start,$limit";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function search_product_by_categories_count($key,$category){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND LoaiSanPham IN ($category)";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function filter_product_by_search_categories_count($key,$form,$to,$category){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND LoaiSanPham IN ($category) AND GiaSanPham between $form and $to";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function filter_product_by_search_categories_pagination($key,$form,$to,$category,$start,$limit){
+        $sql = "SELECT * FROM `tbl_sanpham` where TenSanPham LIKE '%$key%' AND LoaiSanPham IN ($category) AND GiaSanPham between $form and $to limit $start,$limit";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

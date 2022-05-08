@@ -1,47 +1,47 @@
 <?php
-    require_once (__DIR__.'./../classes/product.php');
-    $product = new Product();
-    $id='';
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-    }
-    $result = $product->get_products_by_id($id);
-    $result = $result->fetch_assoc();
-    // var_dump($result);
-    ?>
-    
+require_once(__DIR__ . './../classes/product.php');
+$product = new Product();
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$result = $product->get_products_by_id($id);
+$result = $result->fetch_assoc();
+// var_dump($result);
+?>
+
 <main>
-        <div class = "container">
-    <div class="breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="index.php">Trang chủ</a>
-                        </li>
-                        <span class="divider">/</span>
-                        <li>
-                            <a href="index.php?page=product&idLoai=<?php echo $result["LoaiSanPham"]; ?>">
-                                <?php echo $result["TenLoai"]; ?>
-                            </a>
-                        </li>
-                        <span class="divider">/</span>
-                        <li>
-                            <a href="index.php?page=detail&id=<?php echo $result["MaSanPham"]; ?>">
-                                <?php echo $result["TenSanPham"]; ?>
-                            </a>
-                        </li>
-                    </ul>   
-                </div>
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul>
+                <li>
+                    <a href="index.php">Trang chủ</a>
+                </li>
+                <span class="divider">/</span>
+                <li>
+                    <a href="index.php?page=product&idLoai=<?php echo $result["LoaiSanPham"]; ?>">
+                        <?php echo $result["TenLoai"]; ?>
+                    </a>
+                </li>
+                <span class="divider">/</span>
+                <li>
+                    <a href="index.php?page=detail&id=<?php echo $result["MaSanPham"]; ?>">
+                        <?php echo $result["TenSanPham"]; ?>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="row">
             <div class="image">
                 <img src="./admin/public/uploads/<?php echo $result["HinhAnhSanPham"]; ?>" alt="">
             </div>
             <div class="product_info">
-                
+
                 <div class="product_name">
                     <p><?php echo $result["TenSanPham"]; ?></p>
                 </div>
                 <div class="product_price">
-                    <p><?php echo number_format($result["GiaSanPham"],'0', ',', ','); ?> VNĐ</p>
+                    <p><?php echo number_format($result["GiaSanPham"], '0', ',', ','); ?> VNĐ</p>
                 </div>
                 <div class="product_quantity">
                     <button class="quantity_sub">-</button>
@@ -52,7 +52,7 @@
                     <button class="add_cart">
                         Thêm vào giỏ
                     </button>
-                </div> 
+                </div>
                 <div class="product_desc">
                     <p class="product_desc-title">
                         Mô tả:
@@ -62,15 +62,21 @@
                     </p>
                 </div>
             </div>
-           
+
         </div>
+
+        <!-- comment -->
+        <?php
+        require_once(__DIR__ . './../templates/comment.php');
+        ?>
+    </div>
         <hr />
         <div class="similar_product">
             <div class="similar_product-tiltle">
                 <p>Sản Phẩm Tương Tự</p>
             </div>
             <div class="similar_product-wrapper">
-            <?php
+                <?php
                 $result = $product->getProductByCategory($result["LoaiSanPham"]);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -84,8 +90,8 @@
                                 </div>';
                     }
                 }
-            ?>
+                ?>
             </div>
         </div>
-    </div>
+        
 </main>

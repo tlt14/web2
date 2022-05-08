@@ -50,18 +50,15 @@ $key=isset($_GET['key'])?$_GET['key']:'';
             </div>
         </div>
     </div>
-    <div class="box_search">
+    <!-- <div class="box_search">
         <div id="form_search" class="form_search">
             <span class="close_search">x</span>
             <input type="search" name="search" value="<?=$key;?>" id="search" placeholder="Enter search term">
             <i class="fas fa-search icon_search_submit"></i>
         </div>
-    </div>
+    </div> -->
     <?php
     require_once('./templates/header.php');
-    ?>
-    <?php
-    require_once('./templates/menu_top.php');
     ?>
     <?php
     $page = 'home';

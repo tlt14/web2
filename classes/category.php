@@ -23,5 +23,15 @@ class Category
         }
 
     }
+    public function fineName($id)
+    {
+        $sql = "SELECT * FROM `tbl_loaisanpham` WHERE MaLoai = $id";
+        $result = $this->db->select($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc()['TenLoai'];
+        } else {
+            return false;
+        }
+    }
 
 }

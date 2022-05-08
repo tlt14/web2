@@ -1,6 +1,8 @@
 <?php
 require_once(__DIR__ . './../classes/product.php');
+require_once(__DIR__ . './../classes/category.php');
 $product = new product();
+$category = new category();
 $maLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] : $_POST['maloai'];
 $result = $product->get_products_by_category($maLoai);
 
@@ -19,7 +21,9 @@ $result = $product->get_products_by_category($maLoai);
 <div class="shop-page-title">
     <div class="page-title-inner">
         <div>
-            <a href="#">TRANG CHỦ</a>/ NAM
+            <a href="#">TRANG CHỦ</a> / <?php
+                echo $category->fineName($maLoai);
+            ?>
         </div>
         <div>
             <select name="sort" id="sort">

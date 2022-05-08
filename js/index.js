@@ -1,4 +1,32 @@
 $(document).ready(function () {
+  const navToggler = document.querySelector(".nav-toggler");
+ navToggler.addEventListener("click", navToggle);
+
+ function navToggle() {
+    navToggler.classList.toggle("active");
+    const nav = document.querySelector(".nav");
+    nav.classList.toggle("open");
+    if(nav.classList.contains("open")){
+    	nav.style.maxHeight = nav.scrollHeight + "px";
+    }
+    else{
+    	nav.removeAttribute("style");
+    }
+ } 
+
+  // $('.search-box .input-box input').focus(
+  //   ()=>{
+  //     $('.search-box .input-box').addClass('search_active');
+
+  //   }
+  // )
+  // $('.search-box .input-box input').blur(
+  //   ()=>{
+  //     $('.search-box .input-box').removeClass('search_active');
+      
+  //   }
+  // )
+
   var containermenu = $(this);
   var itemmenu = containermenu.find(".xtlab-ctmenu-item");
   itemmenu.click(function () {
@@ -123,7 +151,7 @@ $(document).ready(function () {
     });
   });
   $(".filter-box").submit(function (e) {
-    e.preventDefault();
+    e.preventDefault(); 
     data = {
       idLoai: getUrlParameter("idLoai"),
       sort: $("#sort").val(),
@@ -131,6 +159,34 @@ $(document).ready(function () {
       price_from: $("#price_from").val(),
       price_to: $("#price_to").val(),
       key: $("#search").val(),
+    };
+    $.ajax({
+      type: "GET",
+      url: "./templates/product_items.php",
+      data: data,
+      success: function (response) {
+        $(".product-list").html(response);
+      },
+    });
+  });
+  $(".filter-box_search").submit(function (e) {
+    e.preventDefault(); 
+    const categoriesElement = document.getElementsByName('category');
+    var categories=[];
+    for (var i = 0; i < categoriesElement.length; i++) {
+      if (categoriesElement[i].checked) {
+        categories.push(categoriesElement[i].value);
+      }
+    }
+    categories = categories.join(",");
+    data = {
+      idLoai: categories,
+      sort: $("#sort").val(),
+      page: getUrlParameter("page"),
+      price_from: $("#price_from").val(),
+      price_to: $("#price_to").val(),
+      key: $("#search").val(),
+      categories:categories,
     };
     $.ajax({
       type: "GET",
@@ -434,7 +490,6 @@ $(document).ready(function () {
   });
   $.each($(".btn_cancel"), function (index, HtmlElement) {
     HtmlElement.addEventListener("click", function () {
-      // console.log(HtmlElement.dataset.madh);
       Swal.fire({
         title: "Bạn có muốn hủy đơn hàng?",
         text: "Đơn hàng của bạn sẽ bị hủy:((",
@@ -466,6 +521,21 @@ $(document).ready(function () {
       });
     });
   });
+  $('#add_comment').submit(function (e) { 
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "./templates/comment-list.php",
+      data: {
+        MaSanPham : getUrlParameter("id"),
+        NoiDung : $('#comment').val(),
+        maKhachHang: $('#maKhachHang').val() 
+      },
+      success: function (response) {
+        $('.comment-list').html(response);
+      }
+    });
+  });
 });
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
@@ -486,6 +556,17 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 const pagi = (p) => {
+    let categories=[];
+    if(getUrlParameter("page") == "search"){
+      const categoriesElement = document.getElementsByName('category');
+      
+      for (var i = 0; i < categoriesElement.length; i++) {
+        if (categoriesElement[i].checked) {
+          categories.push(categoriesElement[i].value);
+        }
+      }
+      categories = categories.join(",");
+    }
     data = {
       p: p,
       idLoai: getUrlParameter("idLoai"),
@@ -494,6 +575,7 @@ const pagi = (p) => {
       price_from: $("#price_from").val(),
       price_to: $("#price_to").val(),
       key: $("#search").val(),
+      categories: categories?categories:""
     };
     $.ajax({
       type: "GET",
@@ -595,7 +677,7 @@ const add_cart_with_qty = () => {
         url: "./templates/add_cart.php",
         data: {
           masanpham: getUrlParameter("id"),
-          quantity: quantity_input.val(),
+          quantity: $('.quantity_input').val(),
         },
         success: function (response) {
           Toast.fire({

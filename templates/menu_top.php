@@ -1,9 +1,9 @@
-<?php
-require_once (__DIR__ . '/./../classes/category.php');
-$category = new Category();
-$result = $category->getAll();
-$dropdown = $category->getAll();
-?>
+<!-- <?php
+        require_once(__DIR__ . '/./../classes/category.php');
+        $category = new Category();
+        $result = $category->getAll();
+        $dropdown = $category->getAll();
+        ?>
 <div class="menu_top">
     <ul class=" dropdown-menu">
         <li>
@@ -16,7 +16,7 @@ $dropdown = $category->getAll();
                 $i++;
                 if ($i < 4) {
                     echo '  <li>
-                                <a href="?page=products&idLoai='. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
+                                <a href="?page=products&idLoai=' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
                             </li>';
                 }
             }
@@ -28,17 +28,17 @@ $dropdown = $category->getAll();
                 <div class="mega-menu-list">
                     <ul>
                         <?php
-                            if ($dropdown->num_rows > 0) {
-                                $dem = 0;
-                                while ($row = $dropdown->fetch_assoc()) {
-                                    $dem++;
-                                    if ($dem >= 4) {
-                                        echo '  <li>
-                                                    <a href="?page=products&idLoai='. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
-                                                </li>'; 
-                                    }
+                        if ($dropdown->num_rows > 0) {
+                            $dem = 0;
+                            while ($row = $dropdown->fetch_assoc()) {
+                                $dem++;
+                                if ($dem >= 4) {
+                                    echo '  <li>
+                                                    <a href="?page=products&idLoai=' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
+                                                </li>';
                                 }
                             }
+                        }
                         ?>
                         
                     </ul>
@@ -46,4 +46,4 @@ $dropdown = $category->getAll();
             </div>
         </li>
     </ul>
-</div>
+</div> -->

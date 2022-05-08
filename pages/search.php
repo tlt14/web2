@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . './../classes/product.php');
 $product = new product();
+$category = new Category();
 $result = $product->getAll();
 
 ?>
@@ -9,7 +10,7 @@ $result = $product->getAll();
         <div>
             <a href="#">TRANG CHỦ</a>/ NAM
         </div>
-        <div>
+        <div style="display:none;">
             <select name="sort" id="sort">
                 <option value="">Sắp xếp</option>
                 <option value="date_asc">Mới nhất</option>
@@ -24,29 +25,27 @@ $result = $product->getAll();
     <div class="category-page-row">
         <div class="main-left">
             <h3>LỌC THEO GIÁ</h3>
-            <form action="" class="filter-box filter-box_search">
-                <input type="number" name="" id="price_from">
-                <i class="fas fa-arrow-right"></i>
-                <input type="number" name="" id="price_to">
+            <form action="" class=" filter-box_search">
+                <div class="price_filter">
+                    <input type="number" name="" id="price_from">
+                    <i class="fas fa-arrow-right"></i>
+                    <input type="number" name="" id="price_to">
+                </div>
                 <div class="check-box">
                     <h3>Loại giày</h3>
                     <!-- check box -->
-                    <div class="check-box">
-                        <input type="checkbox" name="checkbox" />
-                        <label for="">Giày nam</label>
-                    </div>
-                    <div class="check-box">
-                        <input type="checkbox" name="checkbox" />
-                        <label for="">Giày nam</label>
-                    </div>
-                    <div class="check-box">
-                        <input type="checkbox" name="checkbox" />
-                        <label for="">Giày nam</label>
-                    </div>
-                    <div class="check-box">
-                        <input type="checkbox" name="checkbox" />
-                        <label for="">Giày nam</label>
-                    </div>
+                    <?php
+                    $categories = $category->getAll();
+                    if ($categories) {
+                        while ($row = $categories->fetch_assoc()) {
+                            echo '<div class="check-box__item">
+                                    <input type="checkbox" name="category" id="' . $row['MaLoai'] . '" value="' . $row['MaLoai'] . '">
+                                    <label for="' . $row['MaLoai'] . '">' . $row['TenLoai'] . '</label>
+                                </div>';
+                        }
+                    }   
+                    ?>
+                    
                 </div>
 
                 <button type="submit" class="btn_sort_price">Lọc</button>
