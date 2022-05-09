@@ -7,7 +7,7 @@
     $makh = $_COOKIE['maKhachHang'];
 
     
-    if($_POST['act']=='add_order'){
+    if($_POST['act']=="add_order"){
         $name = $_POST['name'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];

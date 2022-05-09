@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 01, 2022 lúc 07:06 AM
+-- Thời gian đã tạo: Th5 09, 2022 lúc 05:05 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -31,6 +31,35 @@ CREATE TABLE `sanphambanchay` (
 `soluong` bigint(21)
 ,`MaSanPham` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_binhluan`
+--
+
+CREATE TABLE `tbl_binhluan` (
+  `id` int(20) NOT NULL,
+  `MaSanPham` int(11) NOT NULL,
+  `TenKhachHang` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `BinhLuan` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_binhluan`
+--
+
+INSERT INTO `tbl_binhluan` (`id`, `MaSanPham`, `TenKhachHang`, `BinhLuan`, `created_at`) VALUES
+(1, 3, 'thailamtruong', 'quá là đẹp', '2022-05-08 09:10:30'),
+(4, 3, 'lamtruonghh', 'a', '2022-05-08 09:42:11'),
+(5, 3, 'lamtruonghh', 'đỉnh', '2022-05-08 09:43:40'),
+(6, 8, 'lamtruonghh', 'đỉnh', '2022-05-08 10:04:58'),
+(7, 33, 'lamtruonghh', 'a', '2022-05-08 10:05:20'),
+(8, 33, 'lamtruonghh', 'giày này quá xấu đi mất', '2022-05-08 10:07:38'),
+(9, 4, 'lamtruonghh', 'giày quá xấu', '2022-05-08 16:25:35'),
+(10, 23, 'lamtruonghh', 'giày quá xấu', '2022-05-08 16:59:23'),
+(11, 3, 'lamtruonghh', 'Quá là đẹp', '2022-05-09 09:24:52');
 
 -- --------------------------------------------------------
 
@@ -81,18 +110,11 @@ INSERT INTO `tbl_chitietdonhang` (`MaCTDH`, `MaDonHang`, `GhiChu`, `MaSanPham`, 
 (74, 68, '', 3, 3, NULL),
 (75, 68, '', 4, 1, NULL),
 (76, 68, '', 5, 14, NULL),
-(77, 69, '', 3, 2, NULL),
-(78, 69, '', 27, 3, NULL),
-(79, 70, '', 27, 6, NULL),
-(80, 70, '', 43, 6, NULL),
-(81, 71, '', 28, 3, NULL),
-(82, 71, '', 38, 3, NULL),
-(83, 71, '', 11, 1, NULL),
-(84, 71, '', 37, 1, NULL),
-(85, 71, '', 5, 2, NULL),
-(86, 71, '', 44, 1, NULL),
-(87, 71, '', 47, 1, NULL),
-(88, 71, '', 3, 1, NULL);
+(96, 74, '', 4, 3, NULL),
+(97, 75, '', 3, 3, NULL),
+(98, 75, '', 5, 3, NULL),
+(99, 75, '', 45, 1, NULL),
+(107, 83, '', 3, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,11 +146,18 @@ INSERT INTO `tbl_donhang` (`MaDonHang`, `MaKhachHang`, `NgayDat`, `TongTien`, `T
 (64, 1, '2022-04-20', 15995000, 1, NULL, NULL, NULL),
 (65, 1, '2022-04-20', 3645000, 1, NULL, NULL, NULL),
 (66, 1, '2022-04-20', 3645000, 1, NULL, NULL, NULL),
-(67, 37, '2022-04-22', 10300000, 2, NULL, NULL, NULL),
+(67, 37, '2022-04-22', 10300000, 5, NULL, NULL, NULL),
 (68, 38, '2022-04-27', 28625000, 2, NULL, NULL, NULL),
-(69, 40, '2022-04-30', 10122000, 5, NULL, NULL, NULL),
-(70, 40, '2022-04-30', 20400000, 5, 'truong thai', '0905040861', 'nguyễn thời trung'),
-(71, 40, '2022-05-01', 27881000, 1, 'Truong Thai', '0905040861', '111 abc');
+(74, 40, '2022-05-03', 5439000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(75, 37, '2022-05-05', 9796000, 2, 'Truong Thai', '0905040861', '111 abc'),
+(76, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(77, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(78, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(79, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(80, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(81, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(82, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(83, 37, '2022-05-09', 1832000, 1, 'Truong Thai', '0905040861', '111 abc');
 
 -- --------------------------------------------------------
 
@@ -155,7 +184,8 @@ INSERT INTO `tbl_giohang` (`id`, `MaKhachHang`, `MaSanPham`, `SoLuong`, `MaGioHa
 (NULL, 36, 4, 3, 174, '2022-04-20'),
 (NULL, 36, 3, 3, 175, '2022-04-20'),
 (NULL, 36, 5, 1, 176, '2022-04-20'),
-(NULL, 38, 28, 5, 185, '2022-04-30');
+(NULL, 38, 28, 5, 185, '2022-04-30'),
+('6271417e7bff6', NULL, 29, 3, 213, '2022-05-03');
 
 -- --------------------------------------------------------
 
@@ -181,7 +211,7 @@ CREATE TABLE `tbl_khachhang` (
 --
 
 INSERT INTO `tbl_khachhang` (`MaKhachHang`, `TenKhachHang`, `SDT`, `DiaChi`, `TenDangNhap`, `MatKhau`, `NgaySinh`, `Email`, `TrangThai`, `VaiTro`) VALUES
-(1, 'Thai Lam Truong13', '0905040861', 'ạdfhfkkdlk', 'lamtruong14', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', '2022-03-02', 'thailamtruong@gmail.com', 'Lock', 1),
+(1, 'Thai Lam Truong13', '0905040861', 'ạdfhfkkdlk', 'lamtruong14', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', '2022-03-02', 'thailamtruong@gmail.com', 'Active', 1),
 (33, 'Hihi', '0905040861', '111 abc', 'lamtruong', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', NULL, 'thailamtruong2001@gmail.com', 'Lock', 3),
 (34, NULL, '0905040861', '111 abc', 'lamtruong05', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', NULL, 'thailamtruong2001@gmail.com', 'Active', 3),
 (35, 'abc', '0905040861', '111 abc', 'lamtruong08', '049a931ab8b3e006b50b7a75029f0d46', NULL, 'thailamtruong2001@gmail.com', 'Active', 3),
@@ -200,25 +230,26 @@ INSERT INTO `tbl_khachhang` (`MaKhachHang`, `TenKhachHang`, `SDT`, `DiaChi`, `Te
 CREATE TABLE `tbl_loaisanpham` (
   `MaLoai` int(11) NOT NULL,
   `TenLoai` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `HinhAnh` text COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
+  `HinhAnh` text COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_loaisanpham`
 --
 
-INSERT INTO `tbl_loaisanpham` (`MaLoai`, `TenLoai`, `HinhAnh`) VALUES
-(1, 'ADIDAS', NULL),
-(2, 'NIKE', NULL),
-(3, 'CONVERSE', NULL),
-(4, 'VANS', NULL),
-(6, 'ASICS', NULL),
-(7, 'BITIS', NULL),
-(8, 'PUMA', NULL),
-(10, 'ANANAS', NULL),
-(11, 'NEW BALANCE', NULL),
-(13, 'FILA', NULL),
-(14, 'REEBOK1', NULL);
+INSERT INTO `tbl_loaisanpham` (`MaLoai`, `TenLoai`, `HinhAnh`, `TrangThai`) VALUES
+(1, 'ADIDAS', NULL, 1),
+(2, 'NIKE', NULL, 1),
+(3, 'CONVERSE', NULL, 1),
+(4, 'VANS', NULL, 1),
+(6, 'ASICS', NULL, 1),
+(7, 'BITIS', NULL, 1),
+(8, 'PUMA', NULL, 1),
+(10, 'ANANAS', NULL, 1),
+(11, 'NEW BALANCE', NULL, 1),
+(13, 'FILA', NULL, 1),
+(14, 'REEBOK1', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -319,7 +350,6 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `HinhAnhSanPham`, `SoLuong
 (59, 'Asics Gel-Quantum Lyte Running FW19', '1588457076.jpg', 10, 'Công nghệ REARFOOT GEL TECHNOLOGY hỗ trợ tác động trợ lực, giúp nâng niu bàn chân trên mọi điều kiện địa hình.', 2554000, '1', 0, '2022-03-22', '2022-03-22', 6, NULL),
 (60, 'Asics Gel-Pulse 11 Running FW19', '1588457125.jpg', 9, 'Được tạo ra bởi việc kết hợp các thành phần tiên tiến với thiết kế mới nổi bật nhằm tôn vinh di sản của Tokyo. Sản phẩm này cho phép bạn giải quyết khoảng cách ở các chặng đường xa một cách thoải mái,', 3144000, '1', 0, '2022-03-22', '2022-03-22', 6, NULL),
 (61, 'Asics Gel-Quantum Infinity Jin Running', '1588457171.jpg', 10, 'Được tạo ra bởi việc kết hợp các thành phần tiên tiến với thiết kế mới nổi bật nhằm tôn vinh di sản của Tokyo.', 4044000, '1', 0, '2022-03-22', '2022-03-22', 6, NULL),
-(62, 'BASAS BUMPER GUM - LOW TOP - OFFWHITE', 'ananas1.jpg', 4, 'Vẫn là màu trắng cổ điển của dòng giày Basas, nhưng phần mũi của những sản phẩm thuộc Basas \"Bumper Gum\" lại sở hữu một diện mạo hoàn toàn khác biệt nhờ miếng cao su thô màu nâu đầy sáng tạo, phá cách. \"Bumper Gum\" là đôi giày dành cho những ai tìm kiếm sự mới mẻ từ những điều quen thuộc, truyền thống.', 450000, '1', 0, '2022-03-22', '2022-03-22', 10, NULL),
 (63, 'Giày Fila Disruptor 2 Trắng ', 'fila1.jpg', 10, 'Fila Disruptor 2 Trắng  sở hữu thiết kế khá ấn tượng, mang đậm phong cách sporty. Mẫu giày mang đến cho người mang sự trẻ trung, năng động, thoải mái, sắc trắng bao phủ hầu hết thân giày,  vừa là điểm nhấn, vừa mang đến sự tinh tế.', 1300000, '0', 0, '2022-03-22', '2022-03-22', 13, NULL);
 
 -- --------------------------------------------------------
@@ -376,6 +406,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `tbl_binhluan`
+--
+ALTER TABLE `tbl_binhluan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `tbl_chitietdonhang`
@@ -443,22 +479,28 @@ ALTER TABLE `tbl_vaitro`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `tbl_binhluan`
+--
+ALTER TABLE `tbl_binhluan`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
-  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_giohang`
 --
 ALTER TABLE `tbl_giohang`
-  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_khachhang`
@@ -482,7 +524,7 @@ ALTER TABLE `tbl_quantri`
 -- AUTO_INCREMENT cho bảng `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
-  MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_vaitro`
