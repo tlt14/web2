@@ -6,7 +6,7 @@ $limit = 8;
 $start = 0;
 $total_page = 0;
 if (!isset($_GET['key']) || $_GET['key'] == '') {
-    $maLoai = $_GET['idLoai'];
+    $maLoai = isset($_GET['maLoai']) ? $_GET['maLoai'] : "";
     $result = $product->get_products_by_category($maLoai);
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['price_from']) && $_GET['price_from'] != '') {

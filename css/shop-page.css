@@ -141,6 +141,8 @@
     flex-direction: column;
     border: 1px solid #ccc;
     border-bottom: none;
+    border-radius:5px;
+    box-shadow: 1px 1px 0px 0px #dcdcdc;
 }
 .product-left__item{
     width: 100%;

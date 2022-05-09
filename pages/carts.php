@@ -41,7 +41,7 @@ $cart_items  = $cart->getAll();
                             <td><img src="./admin/public/uploads/<?php echo $item['HinhAnhSanPham']; ?>" alt="<?php echo $item['TenSanPham']; ?>"></td>
                             <td><?php echo number_format($item['GiaSanPham'], 0, ',', ','); ?> VNĐ</td>
                             <td>
-                                <div class="product_quantity">
+                                <div class="product_quantity qty_cart">
                                     <button class="cart_quantity_sub" data-idsp=<?php echo $item['MaSanPham']; ?>>-</button>
                                     <input type="number" name="quantity" class="cartquantity_input" value="<?php echo $item['SoLuong']; ?>" min="0" max="100">
                                     <button class="cart_quantity_plus">+</button>
