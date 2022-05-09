@@ -40,7 +40,7 @@ $cart = new Cart();
         <div class="row_header align-items-center justify-content-between">
             <div class="logo">
                 <a href="#">
-                    <img src="./admin/public/uploads/logo-mona.png" alt="" class="logo_image" />
+                    <img src="./admin/uploads/logo-mona.png" alt="" class="logo_image" />
                 </a>
             </div>
             <button type="button" class="nav-toggler">

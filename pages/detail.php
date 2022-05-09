@@ -33,7 +33,7 @@ $result = $result->fetch_assoc();
         </div>
         <div class="row">
             <div class="image">
-                <img src="./admin/public/uploads/<?php echo $result["HinhAnhSanPham"]; ?>" alt="">
+                <img src="./admin/uploads/<?php echo $result["HinhAnhSanPham"]; ?>" alt="">
             </div>
             <div class="product_info">
 
@@ -82,7 +82,7 @@ $result = $result->fetch_assoc();
                     while ($row = $result->fetch_assoc()) {
                         echo '  <div class="product__item">
                                     <a href="?page=detail&id=' . $row['MaSanPham'] . '">
-                                        <img src="admin/public/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
+                                        <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
                                         <div class="product__name">' . $row['TenSanPham'] . '</div>
                                         <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>
                                     </a>

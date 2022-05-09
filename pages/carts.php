@@ -38,7 +38,7 @@ $cart_items  = $cart->getAll();
                         foreach ($cart_items as $item) : ?>
                         <tr>
                             <td><?php echo $item['TenSanPham']; ?></td>
-                            <td><img src="./admin/public/uploads/<?php echo $item['HinhAnhSanPham']; ?>" alt="<?php echo $item['TenSanPham']; ?>"></td>
+                            <td><img src="./admin/uploads/<?php echo $item['HinhAnhSanPham']; ?>" alt="<?php echo $item['TenSanPham']; ?>"></td>
                             <td><?php echo number_format($item['GiaSanPham'], 0, ',', ','); ?> VNĐ</td>
                             <td>
                                 <div class="product_quantity qty_cart">

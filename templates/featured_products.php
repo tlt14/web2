@@ -9,7 +9,7 @@ $result = $product->get_featured_products();
         while ($row = $result->fetch_assoc()) {
             echo '  <div class="product__item">
                         <a href="?page=detail&id=' . $row['MaSanPham'] . '">
-                            <img src="admin/public/uploads/' . $row['HinhAnhSanPham'] . '" alt="" class="img_reponsive"/>
+                            <img src="admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" class="img_reponsive"/>
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
                             <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>
                         </a>

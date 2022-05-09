@@ -4,10 +4,10 @@
             <img src="./image/banner-3.png" alt="" />
         </div>
         <div class="slider-item">
-            <img src="./admin/public/uploads/slide-1.jpg" alt="" />
+            <img src="./admin/uploads/slide-1.jpg" alt="" />
         </div>
         <div class="slider-item">
-            <img src="./admin/public/uploads/slide-2.jpg" alt="" />
+            <img src="./admin/uploads/slide-2.jpg" alt="" />
         </div>
         <div class="slider-item">
             <img src="./image/slider-4.png" alt="" />

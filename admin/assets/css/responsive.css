@@ -1,0 +1,366 @@
+@media (max-width:739px)
+{
+    .search-wrapper{
+        display: none;
+    }
+
+    .header__main{
+        display: none;
+    }
+    .header__cart{
+        display: none;
+    }
+
+    .header__logo-img{
+        width: 65%;
+    }
+    .header__btn{
+        margin-left: -70px;
+    }
+    .header__bars{
+        display: block;
+    }
+    .modal__bars-content{
+        position: fixed;
+        background-color: white;
+        width: 50%;
+        height: 100%;
+        z-index: 10;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        display: none;
+        transition: linear 0.3s;
+    }
+   
+}
+@media (min-width: 740px) and (max-width: 1024px)
+{
+    .header__btn{
+        margin-left: -50px;
+    }
+    .header__main{
+        display: none;
+    }
+    .header__cart{
+        display: none;
+    }
+    .modal__content{
+        top: 15%;
+        left: 30%;
+        width: 40%;
+        padding-top: 8px;
+        padding-bottom: 16px;
+        background-color: white;
+        z-index: 11;
+        position: absolute;    
+        border-radius: 5px;
+        animation: .5s ease-in transitionY;
+        position: fixed;
+    }
+    .hide-on-tablet{
+        display: none;
+    }
+    .header__bars{
+        display: block;
+        margin-left: 20px;
+    }
+
+    .header__form{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: -50px;
+    }
+    .modal__bars{
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+  
+
+    .header__icon-item{
+        margin-right: -12px ;
+    }
+    .header__admin__login {
+        margin-right: -12px ;
+    }
+    .header__setting-noti-text{
+        font-size: 16px;
+    }
+    .app__content-title-type{
+        padding-left: 40px;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 739px)
+{
+    .header__logo-img{
+        width: 65%;
+    }
+    .header__setting{
+        display: none;
+    }
+}
+
+/* 
+<div class="app__container">
+            <div class="app__category">
+
+                <div class="app__category-header">
+                    <a class="app__category-heading">
+                        <img src="./assets/img/main.jpg" alt="">
+                        <div class="app__category-text">
+                            <p class="app__category-text--big">Nam Hải</p>
+                            <p class="app__category-text--small">Project Manager</p>
+                        </div>
+                        <i class="app__category-heading--icon ti-check-box"></i>
+                    </a>
+                </div>
+
+                <ul class="app__category-list">
+                    <a href="">
+                        <li class="app__category-list-item" id="managerProduct" style="text-align: left;"><i
+                                class="fab fa-product-hunt"></i> <span id="quanlysp" style="display: inline;">Quản lý
+                                sản phẩm</span></li>
+                    </a>
+                    <a href="">
+                        <li class="app__category-list-item" id="managerUser" style="text-align: left;"><i
+                                class="fas fa-users"></i> <span id="quanlynd" style="display: inline;">Quản lý người
+                                dùng</span></li>
+                    </a>
+                    <a href="">
+                        <li class="app__category-list-item" id="managerCart" style="text-align: left;"><i
+                                class="fas fa-cart-arrow-down"></i> <span id="xulydonhang" style="display: inline;">Xử
+                                lý đơn hàng</span></li>
+                    </a>
+                    <a href="">
+                        <li class="app__category-list-item" id="managerStatistic" style="text-align: left;"><i
+                                class="fas fa-chart-bar"></i> <span id="thongkedoanhthu" style="display: inline;">Thống
+                                kê doanh thu</span></li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="app__content" onclick="hideAdminBar();">
+
+                <div class="app__content-header">
+                    <div class="app__content-heading">
+                        <p class="app__content-heading-content">Danh sách</p>
+                    </div>
+
+                    <div class="app__content-add-product"> <button onclick="addAdminProduct();"><i
+                                class="fas fa-cart-plus"></i> Thêm mới</button></div>
+                </div>
+
+                <div class="app__content-container">
+
+                    <div class="app__content-container-title hide-on-mobile">
+                        <div class="app__content-title">
+                            <div class="app__content-title-id">
+                                <p>ID</p>
+                            </div>
+
+                            <div class="app__content-title-user">
+                                <p>Người bán</p>
+                            </div>
+
+                            <div class="app__content-title-name">
+                                <p>Tên sản phẩm</p>
+                            </div>
+
+                            <div class="app__content-title-quantity">
+                                <p>Số lượng</p>
+                            </div>
+
+                            <div class="app__content-title-type">
+                                <p>Loại</p>
+                            </div>
+
+                            <div class="app__content-title-description">
+                                <p>Mô Tả</p>
+                            </div>
+
+                            <div class="app__content-title-img">
+                                <p>Ảnh sản phẩm</p>
+                            </div>
+
+                            <div class="app__content-title-prices">
+                                <p>Giá bán</p>
+                            </div>
+
+                            <div class="app__content-title-tools">
+                                <p>Công cụ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app__content-container-show hide-on-mobile-admin">
+
+                        <?php
+        $product = "SELECT * from tbl_sanpham INNER JOIN tbl_loaisanpham on tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai";
+        $result = mysqli_query($conn,$product);  
+            
+         
+            while($row = mysqli_fetch_assoc($result)){
+                ?>
+                        <div class="app__content-view">
+                            <div class="app__content-view-id">
+                                <p>
+                                    <?php echo $row['MaSanPham']; ?>
+                                </p>
+                            </div>
+                            <div class="app__content-view-user">
+                                <p>ADMIN</p>
+                            </div>
+                            <div class="app__content-view-name">
+                                <p title=' <?php echo $row['TenSanPham']; ?>'>
+                                <?php echo $row['TenSanPham']; ?></p>
+                            </div>
+
+                            <div class="app__content-view-quantity">
+                                <p>
+                                    <?php echo $row['SoLuongSanPham']; ?>
+                                </p>
+                            </div>
+
+                            <div class="app__content-view-type">
+                                <p>
+                                    <?php echo $row['TenLoai']; ?>
+                                </p>
+                            </div>
+
+                            <div class="app__content-view-description">
+                                <p title=' <?php echo $row['MieuTaSanPham']; ?>'>
+                                    <?php echo $row['MieuTaSanPham']; ?>
+                                </p>
+                            </div>
+
+                            <div class="app__content-view-img">
+                                <img class='overflow-hidden object-cover aspect-video' src="./uploads/<?php echo $row['HinhAnhSanPham']; ?>" alt="">
+                            </div>
+
+                            <div class="app__content-view-prices">
+                                <p>
+                                    <?php echo $row['GiaSanPham']; ?>
+                                </p>
+                            </div>
+                            <div class="app__content-view-tools">
+                                <div class="app__content-view-tools-update">
+                                    <i class="fas fa-pen"></i>
+                                </div>
+
+                                <div class="app__content-view-tools-delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <?php  }  ?>
+
+                    </div>
+
+                    <div class="app__content-mobile hide-on-pc display-on-mobile">
+                        <?php
+        $product = "SELECT * from tbl_sanpham INNER JOIN tbl_loaisanpham on tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai";
+        $result = mysqli_query($conn,$product);  
+            
+         
+            while($row = mysqli_fetch_assoc($result)){
+                ?>
+                        <div class="app__content-mobile-view">
+                            <div class="app__content-mobile-view-id">
+                                <p><i class="fas fa-radiation-alt"></i> ID: <span>
+                                        <?php echo $row['MaSanPham']; ?>
+                                    </span></p>
+                            </div>
+
+                            <div class="app__content-mobile-view-user">
+                                <p><i class="fas fa-user"></i> Người bán: <span>ADMIN</span> </p>
+                            </div>
+
+                            <div class="app__content-mobile-view-name">
+                                <p><i class="fab fa-product-hunt"></i> Tên sản phẩm: <span>
+                                        <?php echo $row['TenSanPham']; ?>
+                                    </span></p>
+                            </div>
+
+                            <div class="app__content-mobile-view-quantity">
+                                <p><i class="ti-pie-chart"></i> Số Lượng: <span>
+                                        <?php echo $row['SoLuongSanPham']; ?>
+                                    </span></p>
+                            </div>
+
+                            <div class="app__content-mobile-view-type">
+                                <p><i class="ti-info-alt"></i> Loại: <span>
+                                        <?php echo $row['TenLoai']; ?>
+                                    </span></p>
+                            </div>
+
+                            <div class="app__content-mobile-view-description">
+                                <p><i class="ti-info-alt"></i> Mô tả: <span>
+                                        <?php echo $row['MieuTaSanPham']; ?>
+                                    </span></p>
+                            </div>
+
+                     
+
+                            <div class="app__content-mobile-view-img">
+                                <div class="app__content-mobile-view-img-content">
+                                    <p><i class="far fa-image"></i> Ảnh: </p>
+                                </div>
+
+                                <div class="app__content-mobile-view-img-img">
+                                    <img src="./uploads/<?php echo $row['HinhAnhSanPham']; ?>" alt="">
+                                </div>
+                            </div>
+
+                            <div class="app__content-mobile-view-prices">
+                                <p><i class="fas fa-dollar-sign"></i> Giá: <span>
+                                        <?php echo $row['GiaSanPham']; ?>
+                                    </span></p>
+                            </div>
+
+                            <div class="app__content-mobile-view-tools">
+                                <div class="app__content-mobile-view-tools-update">
+                                    <i class="fas fa-pen"></i>
+                                </div>
+
+                                <div class="app__content-mobile-view-tools-delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <?php  }  ?>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination__list">
+                            <a href="admin.html" class="pagination__list-link">
+                                <div class="pagination__list-item">Home</div>
+                            </a>
+                            <a href="admin.html?manager=product&amp;page=1#" id="prePage" class="pagination__list-link">
+                                <div class="pagination__list-item">Prev</div>
+                            </a>
+                            <a href="admin.html?manager=product&amp;page=1" class="pagination__list-link" id="page1">
+                                <div class="pagination__list-item">1</div>
+                            </a>
+                            <a href="admin.html?manager=product&amp;page=2" class="pagination__list-link" id="page2">
+                                <div class="pagination__list-item">2</div>
+                            </a>
+                            <a href="admin.html?manager=product&amp;page=3" class="pagination__list-link" id="page3">
+                                <div class="pagination__list-item">3</div>
+                            </a>
+                            <a href="admin.html?manager=product&amp;page=2" id="nextPage" class="pagination__list-link">
+                                <div class="pagination__list-item">Next</div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> */
+
+

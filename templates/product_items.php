@@ -6,7 +6,7 @@ $limit = 8;
 $start = 0;
 $total_page = 0;
 if (!isset($_GET['key']) || $_GET['key'] == '') {
-    $maLoai = isset($_GET['maLoai']) ? $_GET['maLoai'] : "";
+    $maLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] : "";
     $result = $product->get_products_by_category($maLoai);
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['price_from']) && $_GET['price_from'] != '') {
@@ -84,7 +84,7 @@ if ($products) {
         while ($row = $products->fetch_assoc()) {
             echo '<div class="product__item">
                         <a href="?page=detail&id=' . $row['MaSanPham'] . '">
-                            <img src="admin/public/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
+                            <img src="admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
                             <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>
                         </a>

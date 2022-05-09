@@ -18,7 +18,7 @@
                             echo '<div class="sale__item">
                             <div class="onsale">'.$row['GiamGia'].'%</div>
                             <a href="?page=detail&id=' . $row['MaSanPham'] . '">
-                                <img src="admin/public/uploads/'.$row['HinhAnhSanPham'].'" alt="" />
+                                <img src="admin/uploads/'.$row['HinhAnhSanPham'].'" alt="" />
                                 <div class="product__name">'.$row['TenSanPham'].'</div>
                                 <div class="sale__price">
                                     <span class="amount giacu">'.number_format($row['GiaSanPham'],'0',',','.').'đ</span>

@@ -64,7 +64,7 @@ $result = $product->getAll();
                             if ($i++ < 6) {
                                 echo '  <div class="product-left__item">
                                             <div class="product-left__item-img">
-                                                <img src="./admin/public/uploads/' . $row['HinhAnhSanPham'] . '" alt="">
+                                                <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="">
                                             </div>
                                             <div class="product-left__item-name">
                                                 <a href="?page=detail&id=' . $row['MaSanPham'] . '">' . $row['TenSanPham'] . '</a>
