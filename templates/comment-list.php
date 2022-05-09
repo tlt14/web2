@@ -35,7 +35,7 @@ if($commentList && $commentList->num_rows > 0 ){
     while($row = $commentList->fetch_assoc()){
         echo '<div class="comment-item-content">
                 <div class="comment-item-content-title">
-                    <span>'.$row['TenKhachHang'].'</span> <span>'.$row['created_at'].'</span>
+                    <span>'.$row['TenKhachHang'].'</span> commented at <span>'.$row['created_at'].'</span>
                 </div>
                 <div class="comment-item-content-content">
                     <p>'.$row['BinhLuan'].'</p>
