@@ -370,7 +370,7 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         if (response.trim() == "Đã đăng nhập") {
-          window.location.href = "?page=checkout";
+          window.location.href = "Check-out.html";
         } else {
           $(".alert-body").html(response);
           $(".alert").show();

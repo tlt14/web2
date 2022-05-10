@@ -67,7 +67,7 @@ $cart = new Cart();
                         </div>
                     </li>
                     <li>
-                        <a href="?page=home">TRANG CHỦ</a>
+                        <a href="Home.html">TRANG CHỦ</a>
                     </li>
                     <?php
                     if ($result->num_rows > 0) {
@@ -76,14 +76,14 @@ $cart = new Cart();
                             $i++;
                             if ($i < 3) {
                                 echo '  <li>
-                                <a href="?page=products&idLoai=' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
+                                <a href="Danh-sach-san-pham/' . $row['MaLoai'] . '.html">GIÀY ' . $row['TenLoai'] . '</a>
                             </li>';
                             }
                         }
                     }
                     ?>
                     <li class="dropdown">
-                        <a href="#">KHÁC</a>
+                        <a href="#" onclick="return false;">KHÁC</a>
                         <div class="drodown-mega-menu">
                             <div class="mega-menu-list">
                                 <ul>
@@ -94,7 +94,7 @@ $cart = new Cart();
                                             $dem++;
                                             if ($dem >= 3) {
                                                 echo '  <li>
-                                                    <a href="?page=products&idLoai=' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
+                                                    <a href="Danh-sach-san-pham/' . $row['MaLoai'] . '.html">GIÀY ' . $row['TenLoai'] . '</a>
                                                 </li>';
                                             }
                                         }
@@ -108,7 +108,7 @@ $cart = new Cart();
                     <li>
 
                     <div class="cart">
-                        <a href="?page=cart&act=show">
+                        <a href="Cart.html">
                             <i class="fas fa-shopping-bag icon_cart"></i>
                             <span class="qty_cart">
                                 <?php
