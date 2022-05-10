@@ -29,20 +29,13 @@ $(document).ready(function () {
         )
         if(validate_register()===true){
             const name          = document.getElementById('new-user-name').value;
-            const email         = document.getElementById('new-user-email').value;
-            const address       = document.getElementById('new-user-address').value;
-            const password      = document.getElementById('new-user-password').value;
             const confirmpass   = document.getElementById('confirm-user-password').value;
-            const sdt         = document.getElementById('new-phonenumber').value;
 
             $.ajax({
                 type: "POST",
                 url: "./../templates/xuly.php",
                 data: {
-                    sdt,
                     tendangnhap: name,
-                    email,
-                    address,
                     matkhau: confirmpass,
                     act:'signup'
                 },
@@ -78,35 +71,36 @@ $(document).ready(function () {
     
     const validate_register = ()=>{
         const name          = document.getElementById('new-user-name').value;
-        const email         = document.getElementById('new-user-email').value;
-        const address       = document.getElementById('new-user-address').value;
+        // const email         = document.getElementById('new-user-email').value;
+        // const address       = document.getElementById('new-user-address').value;
         const password      = document.getElementById('new-user-password').value;
         const confirmpass   = document.getElementById('confirm-user-password').value;
-        const phone         = document.getElementById('new-phonenumber').value;
+        // const phone         = document.getElementById('new-phonenumber').value;
         isUsername(name)=== false 
             ?show_message('#new-user-name',"Tên tài khoản không hợp lệ"):
             show_message('#new-user-name',"");  
         isPassword(password)=== false?
             show_message('#new-user-password',"Mật khẩu >8 và cần 1 kí tự và số."):
             show_message('#new-user-password',"");
-        isEmail(email)=== false?
-            show_message('#new-user-email',"Nhập email có dạng abc@gmail.com"):
-            show_message('#new-user-email',"")
+        // isEmail(email)=== false?
+        //     show_message('#new-user-email',"Nhập email có dạng abc@gmail.com"):
+        //     show_message('#new-user-email',"")
         isConfirmPassword(password,confirmpass)===false?
             show_message('#confirm-user-password',"Hai mật khẩu không trùng nhau"):
             show_message('#confirm-user-password',"");
-        isRequired(address)=== false?
-            show_message('#new-user-address',"Vui lòng nhập địa chỉ"):
-            show_message('#new-user-address',"")
-        isPhone(phone) === false?
-            show_message('#new-phonenumber',"Số điện thoại không đúng"):
-            show_message('#new-phonenumber',"");
+        // isRequired(address)=== false?
+        //     show_message('#new-user-address',"Vui lòng nhập địa chỉ"):
+        //     show_message('#new-user-address',"")
+        // isPhone(phone) === false?
+        //     show_message('#new-phonenumber',"Số điện thoại không đúng"):
+        //     show_message('#new-phonenumber',"");
         if(isUsername(name) 
             && isPassword(password)
             && isConfirmPassword(password,confirmpass) 
-            && isRequired(address) 
-            && isEmail(email) 
-            &&isPhone(phone)){
+            // && isRequired(address) 
+            // && isEmail(email) 
+            // &&isPhone(phone)
+            ){
             return true;
         }else{
             return false;

@@ -33,7 +33,7 @@ class product
         }
     }
     public function get_products_by_category_pagination($category, $start, $limit){
-        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham IN ($category) AND TrangThaiSanPham = 1 LIMIT $start,$limit ";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE LoaiSanPham = ($category) AND TrangThaiSanPham = 1 LIMIT $start,$limit ";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;

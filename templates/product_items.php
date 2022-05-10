@@ -5,13 +5,11 @@ $product = new product();
 $limit = 8;
 $start = 0;
 $total_page = 0;
-$maLoai = "";
-if (!isset($_GET['key'])) {
-    $maLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] : "";
-    $result = $product->get_products_by_category($maLoai);
+if (!isset($_GET['key']) || $_GET['page'] != "search" ) {
+    $result = $product->get_products_by_category($_GET['idLoai']);
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['price_from']) && $_GET['price_from'] != '') {
-            $result = $product->get_count_filter($maLoai, $_GET['price_from'], $_GET['price_to']);
+            $result = $product->get_count_filter($_GET['idLoai'], $_GET['price_from'], $_GET['price_to']);
         }
     }
     if ($result) {
@@ -53,7 +51,7 @@ if (!isset($_GET['key'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['key'])) {
+    if (isset($_GET['key']) && $_GET['page']=="search" ) {
         if (isset($_GET['sort']) && $_GET['sort'] != '') {
             $products = $product->sort_products_by_search($_GET['key'], $start, $limit, $_GET['sort']);
         } else if (isset($_GET['price_from']) && $_GET['price_from'] != '') {
@@ -66,17 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['categories']) && $_GET['categories'] != '' && isset($_GET['price_from']) && $_GET['price_from'] != ''){
             $products = $product->filter_product_by_search_categories_pagination($_GET['key'], $_GET['price_from'], $_GET['price_to'], $_GET['categories'], $start, $limit);
         }
+
     } else {
+        $products = $product->get_products_by_category_pagination($_GET['idLoai'], $start, $limit);
         if (isset($_GET['sort']) && $_GET['sort'] != '') {
-            $products = $product->sort_products_by_category($maLoai, $start, $limit, $_GET['sort']);
+            $products = $product->sort_products_by_category($_GET['idLoai'], $start, $limit, $_GET['sort']);
         } else if (isset($_GET['price_from']) && $_GET['price_from'] != '') {
-            $products = $product->filter_product_by_price($maLoai, $start, $limit, $_GET['price_from'], $_GET['price_to']);
-        }
-        else{
-            $products = $product->get_products_by_category_pagination($maLoai, $start, $limit);
+            $products = $product->filter_product_by_price($_GET['idLoai'], $start, $limit, $_GET['price_from'], $_GET['price_to']);
         }
         if(isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['sort']) && $_GET['sort'] != ''){
-            $products = $product->filter_product_by_price_and_sort($maLoai, $start, $limit, $_GET['price_from'], $_GET['price_to'], $_GET['sort']);
+            $products = $product->filter_product_by_price_and_sort($_GET['idLoai'], $start, $limit, $_GET['price_from'], $_GET['price_to'], $_GET['sort']);
         }
     }
 }

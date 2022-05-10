@@ -107,18 +107,18 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input name="newusername" id="new-user-name" type="text" placeholder="Username">
                         <span id="errolName" class="form-message"></span>
                     </div>
-                    <div class="form-group invalid">
+                    <!-- <div class="form-group invalid">
                         <input name="newphonenumber" id="new-phonenumber" type="phone" placeholder="Phone Number">
                         <span id="errolPhoneNumber" class="form-message"></span>
-                    </div>
-                    <div class="form-group invalid">
+                    </div> -->
+                    <!-- <div class="form-group invalid">
                         <input name="newuseremail" id="new-user-email" type="text" placeholder="Email">
                         <span id="errolEmail" class="form-message"></span>
-                    </div>
-                    <div class="form-group invalid">
+                    </div> -->
+                    <!-- <div class="form-group invalid">
                         <input name="newuseraddress" id="new-user-address" type="text" placeholder="Address">
                         <span id="errolAddress" class="form-message"></span>
-                    </div>
+                    </div> -->
                     <div class="form-group invalid">
                         <input name="newuserpassword" id="new-user-password" type="password" placeholder="Password" aria-autocomplete="list">
                         <span id="errolPassword" class="form-message"></span>
