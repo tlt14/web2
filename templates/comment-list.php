@@ -30,15 +30,15 @@ $product = new Product();
 $id = isset($_GET['id']) ? $_GET['id'] :$_POST['MaSanPham'];
 $commentList = $product->getCommentByProduct($id);
 if($commentList && $commentList->num_rows > 0 ){
-    echo('<h3>Lịch sử</h3>
+    echo('
     <div class="comment-item">');
     while($row = $commentList->fetch_assoc()){
         echo '<div class="comment-item-content">
                 <div class="comment-item-content-title">
-                    <span>'.$row['TenKhachHang'].'</span> commented at <span>'.$row['created_at'].'</span>
+                    <span style="font-size:20px; font-weight:bold">'.$row['TenKhachHang'].'</span> đã bình luận lúc <span>'.$row['created_at'].'</span>
                 </div>
                 <div class="comment-item-content-content">
-                    <p>'.$row['BinhLuan'].'</p>
+                    <p>Nội dung: '.$row['BinhLuan'].'</p>
                 </div>
             </div>';
     }

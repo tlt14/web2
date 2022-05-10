@@ -19,15 +19,15 @@ $result = $result->fetch_assoc();
                 </li>
                 <span class="divider">/</span>
                 <li>
-                    <a href="index.php?page=product&idLoai=<?php echo $result["LoaiSanPham"]; ?>">
+                    <a href="index.php?page=products&idLoai=<?php echo $result["LoaiSanPham"]; ?>">
                         <?php echo $result["TenLoai"]; ?>
                     </a>
                 </li>
                 <span class="divider">/</span>
                 <li>
-                    <a href="index.php?page=detail&id=<?php echo $result["MaSanPham"]; ?>">
+                    <!-- <a href="index.php?page=detail&id=<?php echo $result["MaSanPham"]; ?>"> -->
                         <?php echo $result["TenSanPham"]; ?>
-                    </a>
+                    <!-- </a> -->
                 </li>
             </ul>
         </div>

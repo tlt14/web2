@@ -50,19 +50,12 @@ $cart = new Cart();
             <nav class="nav">
 
                 <ul>
-                    <!-- <li><a href="#" class="active">home</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><a href="#">services</a></li>
-                  <li><a href="#">portfolio</a></li>
-                  <li><a href="#">testimonials</a></li> -->
                     <?php
                     require_once(__DIR__ . '/./../classes/category.php');
                     $category = new Category();
                     $result = $category->getAll();
                     $dropdown = $category->getAll();
                     ?>
-                    <!-- <div class="menu_top"> -->
-                    <!-- <ul class=" dropdown-menu"> -->
                     <li>
                         <div class="search-box">
                             <div class="input-box">

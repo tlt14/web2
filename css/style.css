@@ -613,7 +613,9 @@ footer a:hover{
   flex-direction: column;
 }
 .mega-menu-list ul li{
-  margin-left:0px!important;
+  margin-left:5px!important;
+  /* white-space: nowrap; */
+  
 }
 .mega-menu-list a{
   font-size:16px;
@@ -1655,6 +1657,9 @@ a{
     text-transform: uppercase;
     box-shadow: 1px 1px 2px rgb(69 62 197);
 }
+.btn_comment:disabled{
+  background: gray;
+}
 #comment{
   padding: 10px 20px;
   border-radius: 5px;
@@ -1676,4 +1681,9 @@ a{
   font-size: 20px;
   font-weight: bold;
   padding:10px;
+}
+.footer{
+  width: 80%;
+  margin: auto;
+  padding: 0px;
 }

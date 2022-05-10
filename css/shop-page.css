@@ -92,6 +92,7 @@
 .shop-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(auto, 1fr));
+  min-height: 700px;
 }
 .pagi {
   display: flex;

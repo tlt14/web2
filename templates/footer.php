@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-footer">
-            <div class="title-footer">Địa chỉ</div>
+            <div class="title-footer">Tag</div>
             <div class="menu-footer">
                 <a href="">Trang chu</a>
                 <a href="">Gioi thieu</a>
