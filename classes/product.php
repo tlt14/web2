@@ -15,7 +15,7 @@ class product
     }
     public function getAll()
     {
-        $sql = "SELECT * FROM `tbl_sanpham WHERE TrangThaiSanPham = 1";
+        $sql = "SELECT * FROM `tbl_sanpham` WHERE TrangThaiSanPham = 1";
         $result = $this->db->select($sql);
         if ($result->num_rows > 0) {
             return $result;

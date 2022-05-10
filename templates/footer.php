@@ -22,8 +22,8 @@
         <div class="col-footer">
             <div class="title-footer">Tag</div>
             <div class="menu-footer">
-                <a href="">Trang chu</a>
-                <a href="">Gioi thieu</a>
+                <a href="">Trang chủ</a>
+                <a href="">Giới thiệu</a>
                 <a href="">Cửa hàng</a>
                 <a href="">Tin tức</a>
                 <a href="">Liên Hệ</a>
