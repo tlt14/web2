@@ -1,4 +1,5 @@
 RewriteEngine On
+
 RewriteRule "index.html" "index.php"
 RewriteRule "^Home.html$" "index.php?page=home"
 RewriteRule "^Danh-sach-san-pham/([0-9]+).html$" "index.php?page=products&idLoai=$1"

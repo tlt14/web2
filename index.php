@@ -8,7 +8,8 @@ $key=isset($_GET['key'])?$_GET['key']:'';
 <html lang="en">
 
 <head>
-    <base href="http://localhost:8888/do_an/" />
+    <base href="/do_an/" />
+    
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,7 +21,7 @@ $key=isset($_GET['key'])?$_GET['key']:'';
     <link rel="stylesheet" href="./fonts/fontawesome-free-5.15.4-web/css/all.css">
     <link rel="stylesheet" href="./css/shop-page.css">
     <link rel="stylesheet" href="./css/style_reponsive.css">
-
+    
 </head>
 
 <body>
