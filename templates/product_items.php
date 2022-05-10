@@ -72,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         else{
             $products = $product->get_products_by_category_pagination($_GET['idLoai'], $start, $limit);
         }
-        if(isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['sort']) && $_GET['sort'] != ''){
-            $products = $product->filter_product_by_price_and_sort($maLoai, $start, $limit, $_GET['price_from'], $_GET['price_to'], $_GET['sort']);
+        if(isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['categories']) && $_GET['categories'] != ''){
+            $products = $product->filter_product_by_price_and_categories($key, $start, $limit, $_GET['price_from'], $_GET['price_to'], $_GET['categories']);
         }
     }
 }

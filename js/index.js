@@ -180,7 +180,7 @@ $(document).ready(function () {
     }
     categories = categories.join(",");
     data = {
-      idLoai: categories,
+      idLoai: "",
       sort: $("#sort").val(),
       page: getUrlParameter("page"),
       price_from: $("#price_from").val(),
