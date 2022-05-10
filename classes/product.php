@@ -77,17 +77,16 @@ class product
             return false;
         }
     }
-    public function filter_product_by_price_and_categories($key, $start, $limit, $price_from, $price_to,$category) {
-        // if ($sort == 'price_asc') { //Tang dan
-        //     $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to  ORDER by GiaSanPham ASC limit $start,$limit";
-        // } else if ($sort == 'price_desc') { //Giam
-        //     $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by GiaSanPham DESC limit $start,$limit";
-        // } else if ($sort == 'date_asc') {
-        //     $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by created_at ASC limit $start,$limit";
-        // } else if ($sort == 'date_desc') {
-        //     $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by created_at DESC limit $start,$limit";
-        // }
-        $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to AND TenSanPham LIKE '%$key%' limit $start,$limit";
+    public function filter_product_by_price_and_sort($category, $start, $limit, $price_from, $price_to,$sort) {
+        if ($sort == 'price_asc') { //Tang dan
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to  ORDER by GiaSanPham ASC limit $start,$limit";
+        } else if ($sort == 'price_desc') { //Giam
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by GiaSanPham DESC limit $start,$limit";
+        } else if ($sort == 'date_asc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by created_at ASC limit $start,$limit";
+        } else if ($sort == 'date_desc') {
+            $sql = "SELECT * FROM `tbl_sanpham` where LoaiSanPham = $category AND TrangThaiSanPham = 1 AND GiaSanPham between $price_from and $price_to ORDER by created_at DESC limit $start,$limit";
+        }
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
