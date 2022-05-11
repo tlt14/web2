@@ -130,7 +130,7 @@
                     <li class="admin__login-item" id="admin"><a href="">Admin</a></li>
                     <li class="admin__login-item"><a href="">Giỏ hàng</a></li>
                     <li class="admin__login-item"><a href="">Đơn đặt hàng</a></li>
-                    <li class="admin__login-item"><a href="./../pages/logout.php" id="logout" >Đăng xuất</a></li>
+                    <li class="admin__login-item"><a href="logout.php" id="logout" >Đăng xuất</a></li>
                 </ul>
             </div>
 

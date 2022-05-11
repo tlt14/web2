@@ -35,9 +35,6 @@ include_once('dataProvider.php');
     
     if(isset($_GET['act'])){
     if ($_GET['act'] == 'add') {
-        echo $sorts;
-        echo $namesort;
-        echo $searchtenkh;
         $tenkh = $_GET['tenkh'];
         $sdt = $_GET['sdt'];
         $diachi = $_GET['diachi'];
@@ -188,7 +185,7 @@ include_once('dataProvider.php');
                     if($trang>1){
                     echo'</div><div class="trang">';
                     for($i=1;$i<=$trang;$i++){
-                    echo'<div class="trang_inner" onclick="phantrang('.$i.','."'".''.$sorts.''."'".','."'".''.$namesort.''."'".')">'.$i.'</div>';
+                    echo'<div id="trang_inner" class="activetrang'.$i.'" onclick="phantrang('.$i.','."'".''.$sorts.''."'".','."'".''.$namesort.''."'".')">'.$i.'</div>';
                     }
                     echo' </div>';
                 }

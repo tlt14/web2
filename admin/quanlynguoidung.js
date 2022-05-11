@@ -249,6 +249,7 @@ function phantrang(idtrang,sorts,namesort){
                         },
                         success: function(data) {
                             document.getElementById("table_panel").innerHTML=data;
+                            document.querySelector(".activetrang"+idtrang).style.backgroundColor="#2980b9";
                         }
                     }) 
 }

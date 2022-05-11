@@ -18,6 +18,7 @@ function themloaisp(){
             type: 'GET',
             url: 'xulyloaisp.php',
             data:{
+                tenloaisp:tenloaisp.toUpperCase(),
                 act:'checktenloaisp'
             },
             success: function(data) {
@@ -28,7 +29,7 @@ function themloaisp(){
                         type: 'GET',
                         url: 'xulyloaisp.php',
                         data:{
-                            tenloaisp,
+                            tenloaisp:tenloaisp.toUpperCase(),
                             act:"themloaisp"
                         },
                         success: function(data) {

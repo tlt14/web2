@@ -59,7 +59,7 @@ $cart = new Cart();
                     <li>
                         <div class="search-box">
                             <div class="input-box">
-                                <input type="search" id="search" value="<?=isset($_GET['key'])?$_GET['key']:''?>"placeholder="Search" />
+                                <input type="text" id="search" value="<?=isset($_GET['key'])?$_GET['key']:''?>"placeholder="Search" />
                             </div>
                             <div class="search-button">
                                 <i class="fas fa-search icon_search_submit"></i>
@@ -67,7 +67,7 @@ $cart = new Cart();
                         </div>
                     </li>
                     <li>
-                        <a href="Home.html">TRANG CHỦ</a>
+                        <a href="Home">TRANG CHỦ</a>
                     </li>
                     <?php
                     if ($result->num_rows > 0) {
@@ -108,7 +108,7 @@ $cart = new Cart();
                     <li>
 
                     <div class="cart">
-                        <a href="Cart.html">
+                        <a href="Cart">
                             <i class="fas fa-shopping-bag icon_cart"></i>
                             <span class="qty_cart">
                                 <?php

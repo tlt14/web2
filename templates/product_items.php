@@ -116,7 +116,17 @@ if ($products) {
         }
     }
 } else {
-    echo ('Không có sp nào:)))))))');
+    echo ('
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    <img class="no_result" src="https://raw.githubusercontent.com/Ren0503/zenzen-js-share-video/master/client/src/assets/noresults.png">
+    
+    ');
 }
 
 

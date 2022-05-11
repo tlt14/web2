@@ -7,16 +7,18 @@ include_once('dataProvider.php');
             dataProvider::executeQuery("INSERT INTO `tbl_loaisanpham`( `TenLoai`) VALUES ('$tenloaisp')");
             loadata();
         }else if($_GET['act']=='checktenloaisp'){
+            $check="";
             $tenloaisp=$_GET['tenloaisp'];
-            $sql=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai FROM `tbl_loaisanpham`");
+            $sql=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai FROM `tbl_loaisanpham` ");
             while($row =mysqli_fetch_array($sql))
             {
                 if($tenloaisp==$row['TenLoai']){
-                    echo 'trung';
+                    $check='trung';
                 }else{
-                    echo 'khongtrung';
+                    $check='khongtrung';
                 }
             }
+            echo $check;
         }else if($_GET['act']=='innerbangsua'){
             bangsua();
         }else if($_GET['act']=='xacnhansua'){

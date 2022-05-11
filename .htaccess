@@ -1,10 +1,11 @@
 RewriteEngine On
 
 RewriteRule "index.html" "index.php"
-RewriteRule "^Home.html$" "index.php?page=home"
+RewriteRule "^Home$" "index.php?page=home"
 RewriteRule "^Products/([0-9]+)$" "index.php?page=products&idLoai=$1"
-RewriteRule "^Cart.html$" "index.php?page=cart&act=show"
-RewriteRule "^Check-out.html$" "index.php?page=checkout"
+RewriteRule "^Cart$" "index.php?page=cart&act=show"
+RewriteRule "^Order$" "index.php?page=order"
+RewriteRule "^Check-out$" "index.php?page=checkout"
 
 
 

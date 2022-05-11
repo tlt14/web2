@@ -159,6 +159,7 @@
     text-align: center;
 }
 #bangsuakh input{
+    width: 80%;
     margin: 5px 0;
     padding: 11px;
 }

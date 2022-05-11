@@ -215,7 +215,7 @@ include'config.php';
                                 class="fab fa-product-hunt"></i> <span id="quanlysp" style="display: inline;">Quản lý
                                 sản phẩm</span></li>
                     </a>
-                    <a href="quanlynguoidung.php">
+                    <a href="">
                         <li class="app__category-list-item" id="managerUser" style="text-align: left;"><i
                                 class="fas fa-users"></i> <span id="quanlynd" style="display: inline;">Quản lý người
                                 dùng</span></li>
@@ -225,11 +225,7 @@ include'config.php';
                                 class="fas fa-cart-arrow-down"></i> <span id="xulydonhang" style="display: inline;">Xử
                                 lý đơn hàng</span></li>
                     </a>
-                    <a href="loaisp.php">
-                        <li class="app__category-list-item" id="iconloaisp" style="text-align: left;"><i
-                                class="fab fa-product-hunt"></i> <span id="loaisp" style="display: inline;">Loại sản phẩm</span></li>
-                    </a>
-                    <a href="thongke.php">
+                    <a href="">
                         <li class="app__category-list-item" id="managerStatistic" style="text-align: left;"><i
                                 class="fas fa-chart-bar"></i> <span id="thongkedoanhthu" style="display: inline;">Thống
                                 kê doanh thu</span></li>

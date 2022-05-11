@@ -173,7 +173,7 @@ class product
 
     public function getCommentByProduct($id )
     {
-        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id";
+        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id limit 3";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;

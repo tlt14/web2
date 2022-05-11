@@ -353,7 +353,7 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         if (response.trim() == "Đã đăng nhập") {
-          window.location.href = "Check-out.html";
+          window.location.href = "Check-out";
         } else {
           $(".alert-body").html(response);
           $(".alert").show();
@@ -363,7 +363,7 @@ $(document).ready(function () {
     });
   });
   $(".btn_continue").click(function () {
-    window.location.href = "?page=home";
+    window.location.href = "Home";
   });
   const cod = $("#cod");
   const bacs = $("#bacs");
