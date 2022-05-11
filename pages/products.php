@@ -26,7 +26,7 @@ $result = $product->get_products_by_category($maLoai);
             ?>
         </div>
         <div>
-            <select name="sort" id="sort">
+            <select name="sort" id="sort" onchange="sort(<?=$_GET['idLoai']?>)">
                 <option value="">Sắp xếp</option>
                 <option value="date_asc">Mới nhất</option>
                 <option value="date_desc">Cũ nhất</option>
@@ -41,6 +41,7 @@ $result = $product->get_products_by_category($maLoai);
         <div class="main-left">
             <div>LỌC THEO GIÁ</div>
             <form action="" class="filter-box">
+                <input type="hidden" name="" value="<?=$_GET['idLoai']?>" id="idLoai"/>
                 <input type="number" name="" id="price_from">
                 <i class="fas fa-arrow-right"></i>
                 <input type="number" name="" id="price_to">

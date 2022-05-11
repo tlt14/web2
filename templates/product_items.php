@@ -5,6 +5,7 @@ $product = new product();
 $limit = 8;
 $start = 0;
 $total_page = 0;
+$idLoai = isset($_GET['idLoai']) ? $_GET['idLoai'] :"";
 if (!isset($_GET['key']) || $_GET['page'] != "search" ) {
     $result = $product->get_products_by_category($_GET['idLoai']);
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -101,9 +102,9 @@ if ($products) {
             }
             for ($i = 1; $i <= $total_page; $i++) {
                 if ($i == $current_page) {
-                    echo '<li class="pagi-item is-active" onclick="pagi(' . $i .  ');" >' . $i . '</li>';
+                    echo '<li class="pagi-item is-active" onclick="pagi(' . $i .  ','.$idLoai.');" >' . $i . '</li>';
                 } else {
-                    echo '<li class="pagi-item" onclick="pagi(' . $i .  ');" >' . $i . '</li>';
+                    echo '<li class="pagi-item" onclick="pagi(' . $i .  ','.$idLoai.');" >' . $i . '</li>';
                 }
             }
             if ($current_page < $total_page && $total_page > 1) {

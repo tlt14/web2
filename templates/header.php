@@ -76,7 +76,7 @@ $cart = new Cart();
                             $i++;
                             if ($i < 3) {
                                 echo '  <li>
-                                <a href="Danh-sach-san-pham/' . $row['MaLoai'] . '.html">GIÀY ' . $row['TenLoai'] . '</a>
+                                <a href="Products/'. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
                             </li>';
                             }
                         }
@@ -94,7 +94,7 @@ $cart = new Cart();
                                             $dem++;
                                             if ($dem >= 3) {
                                                 echo '  <li>
-                                                    <a href="Danh-sach-san-pham/' . $row['MaLoai'] . '.html">GIÀY ' . $row['TenLoai'] . '</a>
+                                                    <a href="Products/'. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
                                                 </li>';
                                             }
                                         }

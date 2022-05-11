@@ -132,28 +132,11 @@ $(document).ready(function () {
   });
 
 
-  $("#sort").change(function () {
-    data = {
-      idLoai: getUrlParameter("idLoai"),
-      sort: $("#sort").val(),
-      page: getUrlParameter("page"),
-      price_from: $("#price_from").val(),
-      price_to: $("#price_to").val(),
-      key: $("#search").val(),
-    };
-    $.ajax({
-      type: "GET",
-      url: "./templates/product_items.php",
-      data: data,
-      success: function (response) {
-        $(".product-list").html(response);
-      },
-    });
-  });
+  
   $(".filter-box").submit(function (e) {
     e.preventDefault(); 
     data = {
-      idLoai: getUrlParameter("idLoai"),
+      idLoai: $('#idLoai').val(),
       sort: $("#sort").val(),
       page: getUrlParameter("page"),
       price_from: $("#price_from").val(),
@@ -555,7 +538,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
   return false;
 };
 
-const pagi = (p) => {
+const pagi = (p,idLoai) => {
     let categories=[];
     if(getUrlParameter("page") == "search"){
       const categoriesElement = document.getElementsByName('category');
@@ -569,7 +552,7 @@ const pagi = (p) => {
     }
     data = {
       p: p,
-      idLoai: getUrlParameter("idLoai"),
+      idLoai,
       sort: $("#sort").val(),
       page: getUrlParameter("page"),
       price_from: $("#price_from").val(),
@@ -775,4 +758,25 @@ const slider = () => {
       },
     ],
   });
+}
+
+const sort = idLoai =>{
+  // $("#sort").change(function () {
+    data = {
+      idLoai,
+      sort: $("#sort").val(),
+      page: getUrlParameter("page"),
+      price_from: $("#price_from").val(),
+      price_to: $("#price_to").val(),
+      key: $("#search").val(),
+    };
+    $.ajax({
+      type: "GET",
+      url: "./templates/product_items.php",
+      data: data,
+      success: function (response) {
+        $(".product-list").html(response);
+      },
+    });
+  // });
 }
