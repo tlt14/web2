@@ -25,9 +25,10 @@
                                     <span class="amount giagiam">'.number_format($row['GiaSanPham']-($row['GiaSanPham']*$row['GiamGia']/100),'0',',','.').'đ</span>
                                 </div>
                             </a>
-                            <button class="add_to_cart" data-maSanPham=' . $row['MaSanPham'] . '>Thêm vào giỏ</button>
                         </div>';
-                        }}
+                        // <button class="add_to_cart" data-maSanPham=' . $row['MaSanPham'] . '>Thêm vào giỏ</button>
+
+                    }}
                 ?>
             </div>
         </div>

@@ -1162,10 +1162,15 @@ tr th:nth-child(1){
 .order_form-content-item-info-name{
   font-size: 16px;
   font-weight: normal;
+  width: 50%;
+  text-align: left;
 }
 .order_form-content-item-info-name span{
   font-size: 14px;
   font-weight: bold;
+}
+.order_size{
+  
 }
 .order_form-content-item-info-price{
   font-size: 18px;
@@ -1689,4 +1694,20 @@ a{
 }
 .no_result{
   
+}
+.product_size{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:10px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+#size{
+  width: auto;
+  padding: 10px 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 1px 1px 2px rgb(69 62 197);
+  text-align: center;
 }

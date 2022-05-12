@@ -6,35 +6,6 @@ $db = new Database();
 $cart = new Cart();
 
 ?>
-<!-- <header class="header">
-    <div class="header_left"> -->
-
-<!-- </div>
-    <div class="logo">
-        <a href="#">
-            <img src="./admin/public/uploads/logo-mona.png" alt="" />
-        </a>
-    </div>
-    <div class="header_right">
-        <div class="header_search"> -->
-<!-- <form action="" id="" class="form_search">
-                <input type="search" name="123" id="search">
-                <span class="close_search">x</span>
-            </form> -->
-<!-- <i class="fas fa-search btn_search"></i>
-        </div>
-        <div class="cart">
-            <a href="?page=cart&act=show">
-                <i class="fas fa-shopping-bag icon_cart"></i>
-                <span class="qty_cart"> -->
-<?php
-// echo($cart->get_quantity_product_cart()); 
-?>
-<!-- </span>
-            </a>
-        </div>
-    </div>
-</header> -->
 <header class="header">
     <div class="container_header">
         <div class="row_header align-items-center justify-content-between">
@@ -59,7 +30,7 @@ $cart = new Cart();
                     <li>
                         <div class="search-box">
                             <div class="input-box">
-                                <input type="text" id="search" value="<?=isset($_GET['key'])?$_GET['key']:''?>"placeholder="Search" />
+                                <input type="text" id="search" value="<?= isset($_GET['key']) ? $_GET['key'] : '' ?>" placeholder="Search" />
                             </div>
                             <div class="search-button">
                                 <i class="fas fa-search icon_search_submit"></i>
@@ -76,7 +47,7 @@ $cart = new Cart();
                             $i++;
                             if ($i < 3) {
                                 echo '  <li>
-                                <a href="Products/'. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
+                                <a href="Products/' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
                             </li>';
                             }
                         }
@@ -94,7 +65,7 @@ $cart = new Cart();
                                             $dem++;
                                             if ($dem >= 3) {
                                                 echo '  <li>
-                                                    <a href="Products/'. $row['MaLoai'] .'">GIÀY ' . $row['TenLoai'] . '</a>
+                                                    <a href="Products/' . $row['MaLoai'] . '">GIÀY ' . $row['TenLoai'] . '</a>
                                                 </li>';
                                             }
                                         }
@@ -107,17 +78,17 @@ $cart = new Cart();
                     </li>
                     <li>
 
-                    <div class="cart">
-                        <a href="Cart">
-                            <i class="fas fa-shopping-bag icon_cart"></i>
-                            <span class="qty_cart">
-                                <?php
-                                echo ($cart->get_quantity_product_cart());
-                                ?>
-                            </span>
-                        </a>
-                    </div>
-                </li>
+                        <div class="cart">
+                            <a href="Cart">
+                                <i class="fas fa-shopping-bag icon_cart"></i>
+                                <span class="qty_cart" id="qty_cart">
+                                    <?php
+                                    require_once(__DIR__ . './../templates/quantityCart.php');
+                                    ?>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
                     <li>
                         <?php
                         if (isset($_COOKIE["maKhachHang"])) {
@@ -141,9 +112,9 @@ $cart = new Cart();
                         }
                         ?>
                     </li>
-                    
+
                 </ul>
-                
+
             </nav>
         </div>
     </div>

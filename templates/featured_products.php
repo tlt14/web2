@@ -13,9 +13,10 @@ $result = $product->get_featured_products();
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
                             <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>
                         </a>
-                        <button class="add_to_cart" data-maSanPham=' . $row['MaSanPham'] . '>Thêm vào giỏ</button>
                     </div>';
-        }
+                    // <button class="add_to_cart" data-maSanPham=' . $row['MaSanPham'] . '>Thêm vào giỏ</button>
+
+                }
     }
     ?>
 </div>

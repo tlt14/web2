@@ -21,6 +21,7 @@ if (isset($_POST['madh'])) {
                             ' . $row['TenSanPham'] . ' <span>  x' . $row['SoLuongSP'] ."   ".$giamgia. '   </span>
                         </a>    
                     </div>
+                    <div class="order_size">size: ' . $row['SizeSanPham'] . '</div>
                     <div class="order_form-content-item-info-price">
                         <span>' . number_format($row['SoLuongSP'] * $row['GiaSanPham'], 0, ',', ',') . 'đ</span>
                     </div>

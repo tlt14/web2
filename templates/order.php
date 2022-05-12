@@ -4,6 +4,7 @@
 
     $cart = new Cart();
     $order = new Order();
+    $db = new Database();
     $makh = $_COOKIE['maKhachHang'];
 
     
@@ -16,7 +17,8 @@
         $email = $_POST['email'];
         $tongtien = $cart->get_total_price();
         $cart_items = $cart->getAll();
-        if($cart->add_order($makh,$tongtien,$cart_items,$address,$name,$phone,$note,$email) ){
+        $result = $cart->add_order($makh,$tongtien,$cart_items,$address,$name,$phone,$note,$email);
+        if($result){
             echo('Đặt hàng thành công');
         }
     }

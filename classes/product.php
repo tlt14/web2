@@ -114,7 +114,7 @@ class product
     }
     public function get_featured_products()
     {
-        $sql = "SELECT * FROM `tbl_sanpham`  ORDER by created_at DESC LIMIT 15";
+        $sql = "SELECT * FROM `tbl_sanpham` where TrangThaiSanPham = 1  ORDER by created_at DESC LIMIT 15";
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             if (($_POST['dataPost'] == 'selling_products')) {
                 //Tạo view
@@ -129,6 +129,7 @@ class product
     }
     public function get_products_by_id($id){
         $sql = "SELECT * FROM tbl_sanpham,tbl_loaisanpham where MaLoai=LoaiSanPham AND TrangThaiSanPham = 1 AND MaSanPham =".$id;
+        // echo($sql);
         return $this->db->select($sql) ? $this->db->select($sql) : false;
     }
     public function getProductByCategory($category){
@@ -173,7 +174,7 @@ class product
 
     public function getCommentByProduct($id )
     {
-        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id limit 3";
+        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id order by created_at DESC";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
@@ -214,6 +215,24 @@ class product
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+    public function getSize($id){
+        $sql = "SELECT * FROM tbl_size where MaSanPham = $id";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    public function getQuantity($id,$size){
+        $sql = "SELECT * FROM tbl_sanpham,tbl_size where tbl_size.MaSanPham = $id AND tbl_sanpham.MaSanPham = tbl_size.MaSanPham AND tbl_size.Size = $size";
+        $result = $this->db->select($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc()['SLSP'];
         } else {
             return false;
         }

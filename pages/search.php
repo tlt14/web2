@@ -61,7 +61,7 @@ $result = $product->getAll();
                     if ($result->num_rows > 0) {
                         $i = 0;
                         while ($row = $result->fetch_assoc()) {
-                            if ($i++ < 6) {
+                            if ($i++ < 3) {
                                 echo '  <div class="product-left__item">
                                             <div class="product-left__item-img">
                                                 <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="">
@@ -74,6 +74,14 @@ $result = $product->getAll();
                             }
                         }
                     }
+                    // for($i=11;$i<=61;$i++){
+                    //     echo("
+                    //         (NULL, '$i', '39', '40'), 
+                    //         (NULL, '$i', '40', '2'), 
+                    //         (NULL, '$i', '41', '20'),
+                    //         (NULL, '$i', '42', '15'),
+                    //     ");
+                    // }
                     ?>
                 </div>
             </div>
