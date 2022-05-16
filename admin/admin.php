@@ -1,5 +1,9 @@
 <?php
-include'config.php';
+session_start();
+include 'config.php';
+if(!isset($_SESSION['maKhachHang'])){
+    header('location:./../pages/login.php');
+}
 
 
 ?>

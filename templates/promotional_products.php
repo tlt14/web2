@@ -1,5 +1,5 @@
 <?php
-    require_once('./classes/database.php');
+    require_once(__DIR__.'./../classes/database.php');
     $db = new Database();
     $sql = "SELECT * FROM `tbl_sanpham` WHERE GiamGia <> 0 limit 8";
     $result = $db->select($sql);
@@ -17,7 +17,7 @@
                         while($row = $result->fetch_assoc()) {
                             echo '<div class="sale__item">
                             <div class="onsale">'.$row['GiamGia'].'%</div>
-                            <a href="?page=detail&id=' . $row['MaSanPham'] . '">
+                            <a href="Detail/' . $row['MaSanPham'] . '">
                                 <img src="admin/uploads/'.$row['HinhAnhSanPham'].'" alt="" />
                                 <div class="product__name">'.$row['TenSanPham'].'</div>
                                 <div class="sale__price">

@@ -8,7 +8,7 @@ $result = $product->get_featured_products();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '  <div class="product__item">
-                        <a href="?page=detail&id=' . $row['MaSanPham'] . '">
+                        <a href="Detail/' . $row['MaSanPham'] . '">
                             <img src="admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" class="img_reponsive"/>
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
                             <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>

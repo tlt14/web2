@@ -174,7 +174,7 @@ class product
 
     public function getCommentByProduct($id )
     {
-        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id order by created_at DESC";
+        $sql = "SELECT * FROM tbl_binhluan where MaSanPham = $id order by created_at DESC limit 3";
         $result = $this->db->select($sql);
         if ($result && $result->num_rows > 0) {
             return $result;

@@ -84,7 +84,7 @@ if ($products) {
     if ($products->num_rows > 0) {
         while ($row = $products->fetch_assoc()) {
             echo '<div class="product__item">
-                        <a href="?page=detail&id=' . $row['MaSanPham'] . '">
+                        <a href="Detail/' . $row['MaSanPham'] . '">
                             <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
                             <div class="product__price">' . number_format($row['GiaSanPham'], '0', ',', '.') . ' đ</div>

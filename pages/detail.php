@@ -66,7 +66,7 @@ $result = $result->fetch_assoc();
                     </select>
                 </div>
                 <div class="product_add_cart">
-                    <button class="add_cart">
+                    <button class="add_cart" onclick="add_cart_with_qty(<?=$result['MaSanPham']?>)">
                         Thêm vào giỏ
                     </button>
                 </div>

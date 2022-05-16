@@ -6,6 +6,7 @@ RewriteRule "^Products/([0-9]+)$" "index.php?page=products&idLoai=$1"
 RewriteRule "^Cart$" "index.php?page=cart&act=show"
 RewriteRule "^Order$" "index.php?page=order"
 RewriteRule "^Check-out$" "index.php?page=checkout"
+RewriteRule "^Detail/([0-9]+)$" "index.php?page=detail&id=$1"
 
 
 

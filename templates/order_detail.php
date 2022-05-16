@@ -17,7 +17,7 @@ if (isset($_POST['madh'])) {
             echo ('
                 <div class="modal-body_item ">
                     <div class="order_form-content-item-info-name ">
-                        <a href="?page=detail&id=' . $row['MaSanPham'] . '">
+                        <a href="Detail/' . $row['MaSanPham'] . '">
                             ' . $row['TenSanPham'] . ' <span>  x' . $row['SoLuongSP'] ."   ".$giamgia. '   </span>
                         </a>    
                     </div>

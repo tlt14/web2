@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 require_once(__DIR__ . './../classes/database.php');
 require_once(__DIR__ . './../classes/cart.php');
 $db = new Database();
@@ -91,9 +91,9 @@ $cart = new Cart();
                     </li>
                     <li>
                         <?php
-                        if (isset($_COOKIE["maKhachHang"])) {
-                            $maKhachHang = $_COOKIE["maKhachHang"];
-                            $sql = "SELECT * FROM tbl_khachhang WHERE maKhachHang =" . $maKhachHang;
+                        if (isset($_COOKIE['maKhachHang'])) {
+                            $maKhachHang = $_COOKIE['maKhachHang'];
+                            $sql = "SELECT * FROM tbl_khachhang WHERE MaKhachHang =" . $maKhachHang;
                             $result = $db->select($sql);
                             $result = $result->fetch_assoc();
                             echo ('

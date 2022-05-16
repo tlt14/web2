@@ -32,13 +32,13 @@ class Cart
             $quantity = $this->db->select("SELECT SUM(SoLuong) FROM tbl_giohang WHERE MaKhachHang = '$makh'")->fetch_assoc()['SUM(SoLuong)'];
         }else{
             $idCart=$_COOKIE['idCart'];
-            $sql="SELECT * FROM tbl_giohang WHERE id='$idCart' AND MaSanPham = '$id'";
+            $sql="SELECT * FROM tbl_giohang WHERE id='$idCart' AND MaSanPham = '$id' AND SizeSP = '$size'";
             $result = $this->db->select($sql);
             if($result!=null && $result->num_rows>0){
-                $sql="UPDATE tbl_giohang SET SoLuong=SoLuong+'$qty' WHERE MaSanPham='$id' AND id='$idCart'";
+                $sql="UPDATE tbl_giohang SET SoLuong=SoLuong+'$qty' WHERE MaSanPham='$id' AND id='$idCart' AND SizeSP = '$size'";
                 $this->db->update($sql);
             }else{
-                $sql = "INSERT INTO tbl_giohang (id,MaSanPham,SoLuong) VALUES('$idCart','$id','$qty')";
+                $sql = "INSERT INTO tbl_giohang (id,MaSanPham,SoLuong,SizeSP) VALUES('$idCart','$id','$qty','$size')";
                 $this->db->insert($sql);
             }
             $quantity = $this->db->select("SELECT SUM(SoLuong) FROM tbl_giohang WHERE id = '$idCart'")->fetch_assoc()['SUM(SoLuong)'];
@@ -106,7 +106,7 @@ class Cart
         $check="";
         if($cart!=null){
             foreach($cart as $item){
-                $sql = 'SELECT * FROM tbl_sanpham,tbl_size WHERE tbl_sanpham.MaSanPham = tbl_size.MaSanPham AND tbl_sanpham.MaSanPham = '.$item['MaSanPham'].'';
+                $sql = 'SELECT * FROM tbl_sanpham,tbl_size WHERE tbl_sanpham.MaSanPham = tbl_size.MaSanPham AND tbl_sanpham.MaSanPham = '.$item['MaSanPham'].' AND tbl_size.Size = '.$item['SizeSP'].'  AND tbl_sanpham.MaSanPham = '.$item['MaSanPham'].'';
                 $result = $this->db->select($sql);
                 $row = $result->fetch_assoc();
                 if($row['SLSP']==0){

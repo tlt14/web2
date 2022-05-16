@@ -1,9 +1,9 @@
 <?php
-require_once('./templates/slider.php');
+require_once(__DIR__.'./../templates/slider.php');
 ?>
 <div class="container">
     <?php
-    require_once('./templates/offer.php');
+    require_once(__DIR__.'./../templates/offer.php');
     ?>
 </div>
 <div class="content container">
@@ -21,7 +21,7 @@ require_once('./templates/slider.php');
     <div class="products row">
         <div class="product__wrapper">
             <?php
-            require_once('./templates/featured_products.php');
+            require_once(__DIR__.'./../templates/featured_products.php');
             ?>
         </div>
     </div>
@@ -29,5 +29,5 @@ require_once('./templates/slider.php');
 </div>
 
 <?php
-require_once('./templates/promotional_products.php');
+require_once(__DIR__.'./../templates/promotional_products.php');
 ?>

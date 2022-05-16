@@ -17,8 +17,8 @@ class Customer
     public function signup($data){
         // $sdt = $this->db->link->real_escape_string($data['sdt']);
         // $address = $this->db->link->real_escape_string($data['address']);
-        $tendangnhap = $data['tendangnhap'];
-        $matkhau = md5($data['matkhau']);
+        $tendangnhap = $data['user-name'];
+        $matkhau = md5($data['user-password']);
         // $email = $data['email'];
         $sql= "SELECT * FROM tbl_khachhang WHERE TenDangNhap = '$tendangnhap'";
         $result = $this->db->select($sql);

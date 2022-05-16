@@ -62,7 +62,7 @@ $cart_items  = $cart->getAll();
                                     echo '
                                     <div class="order_form-content-item-info">
                                         <div class="order_form-content-item-info-name">
-                                        '.$item['TenSanPham'].' <span> x'.$item['SoLuong'].'</span>
+                                        '.$item['TenSanPham'].' <span> x'.$item['SoLuong'].' -- SIZE: '.$item['SizeSP'].'</span>
                                         </div>
                                         <div class="order_form-content-item-info-price">
                                             <span>'.number_format($item['GiaSanPham'] * $item['SoLuong'], 0, ',', ',').'đ</span>

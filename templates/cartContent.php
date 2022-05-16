@@ -12,13 +12,7 @@ $product = new Product();
             echo("Xóa sản phẩm thất bại");
         }
     }
-    // if(isset($_POST['idsp']) && $_POST['act']=='update'){
-    //     if($cart->update_product_cart($_POST['idsp'],$_POST['quantity'])){
-    //         echo($cart->get_total_price());
-    //     }else{
-    //         echo("Cập nhật sản phẩm thất bại");
-    //     }
-    // }
+   
 ?>
 
 

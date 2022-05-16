@@ -1,30 +1,38 @@
 <?php
 session_start();
+
 $flag =-1;
 $conn = mysqli_connect('localhost', 'root', '', 'do_an');
 $username ="";
 $password ="";
 require_once('./../classes/customer.php');
+require_once('./../classes/database.php');
 $cs = new Customer();
+$db= new Database();
+
+
 if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['user-name'];
-    $password = $_POST['user-password'];
+    $username = addslashes($_POST['user-name']);
+    $password = addslashes($_POST['user-password']);
     $data = $cs->login($_POST['user-name'],$_POST['user-password']);
     if ($data && $data->num_rows > 0) {
         $user = $data->fetch_assoc();
-        $_SESSION['maKhachHang'] = $user['MaKhachHang'];
-        setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30*12, "/");
-        $idCart = $_COOKIE['idCart'];
-        $makh= $user['MaKhachHang'];
-        $sql="UPDATE tbl_giohang set MaKhachHang = '$makh'  WHERE id = '$idCart'";
-        $result = mysqli_query($conn, $sql);
-        if($result){
-            $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
-            $delete = mysqli_query($conn, $sql);
-        }
         if($user['VaiTro'] == 1 || $user['VaiTro'] == 2){
-            header('location: ./../admin/admin.php');
+            $_SESSION['maKhachHang'] = $user['MaKhachHang'];
+            // setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30, "/");
+            header('Location: ./../admin/admin.php');
+
         }else{
+            $_SESSION['maKhachHang'] = $user['MaKhachHang'];
+            setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30, "/");
+            $idCart = $_COOKIE['idCart'];
+            $makh= $user['MaKhachHang'];
+            $sql="UPDATE tbl_giohang set MaKhachHang = '$makh'  WHERE id = '$idCart'";
+            $result = mysqli_query($conn, $sql);
+            if($result){
+                $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
+                $delete = mysqli_query($conn, $sql);
+            }
             header('Location: ./../index.php');
         }
         
@@ -32,7 +40,113 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $flag =1;
     }
 }
+
+// var_dump($_COOKIE);
+
+// if(empty($_SESSION['username'])){
+ 
+//     if(isset($cookie_name)){
+
+//         if(isset($_COOKIE[$cookie_name])){
+
+//             parse_str($_COOKIE[$cookie_name], $result);
+
+//             $usr = $result['usr'];
+//             $hash = $result['hash'];  
+
+//             $sql2="select * from tbl_khachhang where TenDangNhap='$usr' and MatKhau='$hash'";
+
+//             $result2=$db->select($sql2);
+
+//             if($result2){
+//             }
+
+//         }
+
+//     }
+
+// }
+
+// else{
+
+//     // header('location: ./../Home');
+
+//     exit;
+
+// }   
+
+
+// if(isset($_POST['user-name'])){
+
+//     $username=$_POST['user-name'];
+
+//     $password=md5($_POST['user-password']);
+
+//     $a_check=1;
+
+//     if($username=="" || $password==""){
+//         $flag = 1;
+//     }
+
+//     else{
+//         // $password = md5($password);
+//         $sql="select * from tbl_khachhang where TenDangNhap='$username' and MatKhau='$password'";
+
+//         // echo $sql;
+
+//         $result= $db->select($sql);
+
+//         if(!$result){
+//             $flag = 1;
+//             $a_check=0;
+
+//         }
+
+//         $user=$result->fetch_assoc();
+
+//         $f_user=$user['TenDangNhap'];
+
+//         $f_pass=$user['MatKhau'];
+
+//         if($f_user==$username && $f_pass==$password){
+
+//             $_SESSION['username']=$f_user;
+
+//             $_SESSION['password']=$f_pass;
+
+//             if($a_check==1){
+
+//                 setcookie ($cookie_name, 'usr='.$f_user.'&hash='.$f_pass, time() + $cookie_time,"/");
+
+//                 setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30*12, "/");
+//                 $idCart = $_COOKIE['idCart'];
+//                 $makh= $user['MaKhachHang'];
+//                 $sql="UPDATE tbl_giohang set MaKhachHang = '$makh'  WHERE id = '$idCart'";
+//                 $result = mysqli_query($conn, $sql);
+//                 if($result){
+//                     $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
+//                     $delete = mysqli_query($conn, $sql);
+//                 }
+//                 echo(0);
+               
+//             }
+//             if($user['VaiTro'] == 1 || $user['VaiTro'] == 2){
+//                 header('location: ./../admin/admin.php');
+//             }else{
+//                 header('Location: ./../Home');
+//             }
+//             exit;
+
+
+//         }
+
+//     }
+
+// }
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,18 +221,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input name="newusername" id="new-user-name" type="text" placeholder="Username">
                         <span id="errolName" class="form-message"></span>
                     </div>
-                    <!-- <div class="form-group invalid">
-                        <input name="newphonenumber" id="new-phonenumber" type="phone" placeholder="Phone Number">
-                        <span id="errolPhoneNumber" class="form-message"></span>
-                    </div> -->
-                    <!-- <div class="form-group invalid">
-                        <input name="newuseremail" id="new-user-email" type="text" placeholder="Email">
-                        <span id="errolEmail" class="form-message"></span>
-                    </div> -->
-                    <!-- <div class="form-group invalid">
-                        <input name="newuseraddress" id="new-user-address" type="text" placeholder="Address">
-                        <span id="errolAddress" class="form-message"></span>
-                    </div> -->
+                    
                     <div class="form-group invalid">
                         <input name="newuserpassword" id="new-user-password" type="password" placeholder="Password" aria-autocomplete="list">
                         <span id="errolPassword" class="form-message"></span>
