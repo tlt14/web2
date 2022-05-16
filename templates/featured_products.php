@@ -7,7 +7,9 @@ $result = $product->get_featured_products();
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $row['GiamGia']!=0?$giamgia='<div class="onsale">'.$row['GiamGia'].'%</div>':$giamgia='';
             echo '  <div class="product__item">
+                        '.$giamgia.'
                         <a href="Detail/' . $row['MaSanPham'] . '">
                             <img src="admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" class="img_reponsive"/>
                             <div class="product__name">' . $row['TenSanPham'] . '</div>

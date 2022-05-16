@@ -19,6 +19,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $data->fetch_assoc();
         if($user['VaiTro'] == 1 || $user['VaiTro'] == 2){
             $_SESSION['maKhachHang'] = $user['MaKhachHang'];
+            $_SESSION['quyen'] = $user['VaiTro'];
             // setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30, "/");
             header('Location: ./../admin/admin.php');
 

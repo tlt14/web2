@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +92,9 @@
                              <p class="header__setting-noti-text">Quản lý sản phẩm</p>
                         </a>
                     </li>
-
+                    <?php
+                    if(isset($_SESSION['quyen']) && $_SESSION['quyen']==1){
+                    ?>
                     <li class="header__setting-noti-item">
                         <a href="quanlynguoidung.php" class="header__setting-noti-link">
                         <i class="fas fa-users"></i>
@@ -97,7 +102,7 @@
                                 dùng</p>
                         </a>
                     </li>
-
+                        <?php } ?>
                     <li class="header__setting-noti-item">
                         <a href="xulydonhang.php" class="header__setting-noti-link">
                         <i class="fas fa-cart-arrow-down"></i>
@@ -130,7 +135,7 @@
                     <li class="admin__login-item" id="admin"><a href="">Admin</a></li>
                     <li class="admin__login-item"><a href="">Giỏ hàng</a></li>
                     <li class="admin__login-item"><a href="">Đơn đặt hàng</a></li>
-                    <li class="admin__login-item"><a href="logout.php" id="logout" >Đăng xuất</a></li>
+                    <li class="admin__login-item"><a href="./../pages/logout.php" id="logout" >Đăng xuất</a></li>
                 </ul>
             </div>
 

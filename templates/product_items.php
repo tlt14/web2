@@ -83,7 +83,10 @@ echo ('<div class="shop-container">');
 if ($products) {
     if ($products->num_rows > 0) {
         while ($row = $products->fetch_assoc()) {
+            $row['GiamGia']!=0?$giamgia='<div class="onsale">'.$row['GiamGia'].'%</div>':$giamgia='';
+            
             echo '<div class="product__item">
+                        '.$giamgia.'
                         <a href="Detail/' . $row['MaSanPham'] . '">
                             <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="" />
                             <div class="product__name">' . $row['TenSanPham'] . '</div>
