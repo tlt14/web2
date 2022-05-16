@@ -42,9 +42,9 @@ $result = $product->get_products_by_category($maLoai);
             <div>LỌC THEO GIÁ</div>
             <form action="" class="filter-box">
                 <input type="hidden" name="" value="<?=$_GET['idLoai']?>" id="idLoai"/>
-                <input type="number" name="" id="price_from">
+                <input type="text" name="" id="price_from">
                 <i class="fas fa-arrow-right"></i>
-                <input type="number" name="" id="price_to">
+                <input type="text" name="" id="price_to">
                 <button type="submit" class="btn_sort_price">Lọc</button>
             </form>
             <div class="products-left">

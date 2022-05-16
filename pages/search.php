@@ -27,9 +27,9 @@ $result = $product->getAll();
             <h3>LỌC THEO GIÁ</h3>
             <form action="" class=" filter-box_search">
                 <div class="price_filter">
-                    <input type="number" name="" id="price_from">
+                    <input type="text" name="" id="price_from">
                     <i class="fas fa-arrow-right"></i>
-                    <input type="number" name="" id="price_to">
+                    <input type="text" name="" id="price_to">
                 </div>
                 <div class="check-box">
                     <h3>Loại giày</h3>

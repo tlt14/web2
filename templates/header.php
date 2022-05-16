@@ -100,7 +100,7 @@ $cart = new Cart();
                                 <div class="xt-ct-menu">
                                     <div class="xtlab-ctmenu-item">' . $result['TenDangNhap'] . '</div>
                                     <div class="xtlab-ctmenu-sub">
-                                        <a href="?page=order">Đơn hàng</a>
+                                        <a href="Order">Đơn hàng</a>
                                         <a href="./pages/logout.php">Logout</a>
                                         </div>
                                 </div>
