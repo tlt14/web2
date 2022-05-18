@@ -12,7 +12,7 @@
     {
         $check=$_GET['change'];
     }else{
-        $check=1;
+        $check=0;
     }
 
     if(isset($_GET['idtrang']))
@@ -50,6 +50,13 @@
                 $tongtien+=$row['tongtien'];
             }
             echo '<div class="txt_tien">Tổng thu nhập: '.$tongtien.' VND</div>';
+        } else if($_GET['act'] == 'loaddataloai'){
+            $query="SELECT * FROM `tbl_loaisanpham`";
+            $result=dataProvider::executeQuery($query);
+            while($row=mysqli_fetch_array($result)){
+                echo '<option value="'.$row['MaLoai'].'">'.$row['TenLoai'].'</option>';
+            }
+            // echo'<div class="txt_tien">Tổng thu nhập: '.number_format($tongtien,'0',',',',').' VND</div>';
         }
 
     }else{
@@ -66,18 +73,23 @@
     function loadata($check,$ngaybatdau,$ngayketthuc,$trangbatdau,$sltungtrang){
         $d=0;
         $countProduct=0;
-        if($ngaybatdau==""&&$ngayketthuc==""&&$check==1){
+        if($ngaybatdau==""&&$ngayketthuc==""&&$check==0){
             $sql=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai, SUM(temp2.tongsl) AS soluongtungloai,SUM(temp2.tongtien) AS tongtientungloai FROM `tbl_loaisanpham`,(SELECT tbl_sanpham.LoaiSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,temp1.tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham) AS temp2 WHERE temp2.LoaiSanPham=tbl_loaisanpham.MaLoai AND tbl_loaisanpham.MaLoai GROUP BY tbl_loaisanpham.MaLoai LIMIT $trangbatdau,$sltungtrang");
             $sqlphantrang=dataProvider::executeQuery("SELECT tbl_loaisanpham.MaLoai, SUM(temp2.tongsl) AS soluongtungloai,SUM(temp2.tongtien) AS tongtientungloai FROM `tbl_loaisanpham`,(SELECT tbl_sanpham.LoaiSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,temp1.tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham) AS temp2 WHERE temp2.LoaiSanPham=tbl_loaisanpham.MaLoai GROUP BY tbl_loaisanpham.MaLoai");
-        }else if($ngaybatdau!=""&&$ngayketthuc!=""&&$check==1){
+        }else if($ngaybatdau!=""&&$ngayketthuc!=""&&$check==0){
             $sql=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai, SUM(temp2.tongsl) AS soluongtungloai,SUM(temp2.tongtien) AS tongtientungloai FROM `tbl_loaisanpham`,(SELECT tbl_sanpham.LoaiSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,temp1.tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.NgayDat BETWEEN '$ngaybatdau' AND '$ngayketthuc' AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham) AS temp2 WHERE temp2.LoaiSanPham=tbl_loaisanpham.MaLoai AND tbl_loaisanpham.MaLoai GROUP BY tbl_loaisanpham.MaLoai LIMIT  $trangbatdau,$sltungtrang");
             $sqlphantrang=dataProvider::executeQuery("SELECT tbl_loaisanpham.MaLoai, SUM(temp2.tongsl) AS soluongtungloai,SUM(temp2.tongtien) AS tongtientungloai FROM `tbl_loaisanpham`,(SELECT tbl_sanpham.LoaiSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,temp1.tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.NgayDat BETWEEN '$ngaybatdau' AND '$ngayketthuc' AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham) AS temp2 WHERE temp2.LoaiSanPham=tbl_loaisanpham.MaLoai GROUP BY tbl_loaisanpham.MaLoai");
-        }else if($ngaybatdau==""&&$ngayketthuc==""&&$check==2){
+        }else if($ngaybatdau==""&&$ngayketthuc==""&&$check=='sp'){
             $sql=dataProvider::executeQuery("SELECT tbl_sanpham.TenSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,(temp1.tongsl) tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham GROUP BY tbl_sanpham.MaSanPham ORDER BY tongsl DESC LIMIT 6");
-        }else if($ngaybatdau!=""&&$ngayketthuc!=""&&$check==2){
+        }else if($ngaybatdau!=""&&$ngayketthuc!=""&&$check=='sp'){
             $sql=dataProvider::executeQuery("SELECT tbl_sanpham.TenSanPham,(temp1.tongsl*tbl_sanpham.GiaSanPham) AS tongtien,(temp1.tongsl) tongsl FROM `tbl_sanpham`,(SELECT tbl_chitietdonhang.MaSanPham,SUM(tbl_chitietdonhang.SoLuongSP) as tongsl FROM `tbl_donhang`,`tbl_chitietdonhang` WHERE tbl_chitietdonhang.MaDonHang=tbl_donhang.MaDonHang AND tbl_donhang.NgayDat BETWEEN '$ngaybatdau'AND '$ngayketthuc' AND tbl_donhang.TrangThai=4 GROUP by tbl_chitietdonhang.MaSanPham) AS temp1 WHERE temp1.MaSanPham=tbl_sanpham.MaSanPham GROUP BY tbl_sanpham.MaSanPham ORDER BY tongsl DESC LIMIT 6");
+        }else{
+            $sql=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai,SUM(temp2.sl) as SoLuong,SUM(temp2.tongtien) as TongTien FROM tbl_loaisanpham,
+            (SELECT tbl_loaisanpham.MaLoai,(SUM(tbl_chitietdonhang.SoLuongSP)) AS sl,(SUM(tbl_chitietdonhang.SoLuongSP)*tbl_sanpham.GiaSanPham) AS tongtien FROM `tbl_donhang`,`tbl_chitietdonhang`,`tbl_sanpham`,`tbl_loaisanpham` WHERE tbl_donhang.MaDonHang=tbl_chitietdonhang.MaDonHang AND tbl_donhang.TrangThai=4 AND tbl_sanpham.MaSanPham=tbl_chitietdonhang.MaSanPham AND tbl_loaisanpham.MaLoai=tbl_sanpham.LoaiSanPham AND tbl_loaisanpham.MaLoai=$check GROUP BY tbl_chitietdonhang.MaSanPham ) as temp2  WHERE tbl_loaisanpham.MaLoai=temp2.MaLoai GROUP BY temp2.MaLoai");
+            $sqlphantrang=dataProvider::executeQuery("SELECT tbl_loaisanpham.TenLoai,SUM(temp2.sl) as SoLuong,SUM(temp2.tongtien) as TongTien FROM tbl_loaisanpham,
+            (SELECT tbl_loaisanpham.MaLoai,(SUM(tbl_chitietdonhang.SoLuongSP)) AS sl,(SUM(tbl_chitietdonhang.SoLuongSP)*tbl_sanpham.GiaSanPham) AS tongtien FROM `tbl_donhang`,`tbl_chitietdonhang`,`tbl_sanpham`,`tbl_loaisanpham` WHERE tbl_donhang.MaDonHang=tbl_chitietdonhang.MaDonHang AND tbl_donhang.TrangThai=4 AND tbl_sanpham.MaSanPham=tbl_chitietdonhang.MaSanPham AND tbl_loaisanpham.MaLoai=tbl_sanpham.LoaiSanPham AND tbl_loaisanpham.MaLoai=$check GROUP BY tbl_chitietdonhang.MaSanPham ) as temp2  WHERE tbl_loaisanpham.MaLoai=temp2.MaLoai GROUP BY temp2.MaLoai");
         }
-        if($check==1){
+        if($check==0){
             while($row=mysqli_fetch_array($sql)){
                 echo'<div id="panel_loai">
                     <div id="panel_tungloai">
@@ -100,7 +112,7 @@
                 }
                 echo'</div>';
             }
-        }else{
+        }else if($check=='sp'){
             while($row=mysqli_fetch_array($sql)){
                 echo'<div id="panel_loai">
                     <div id="panel_tungloai">
@@ -109,6 +121,29 @@
                     <div id="tongtientuwngloai">Tổng thu nhập của sản phẩm: '.number_format($row['tongtien'],'0',',',',').' VND</div>
                     </div>
                 </div>';
+            }
+        }else{
+            while($row=mysqli_fetch_array($sql)){
+                echo'<div id="panel_loai">
+                    <div id="panel_tungloai">
+                        <div id="tenloai">Tên loại: '.$row['TenLoai'].'</div>
+                        <div id="sltungloai">Số lượng: '.$row['SoLuong'].'</div>
+                        <div id="tongtientuwngloai">Tổng thu nhập của loại: '.number_format($row['TongTien'],'0',',',',').' VND</div>
+                    </div>
+                </div>';
+                }
+                $countProduct=mysqli_num_rows($sql);
+                if($countProduct==0){
+                    echo '<div id="thongbao">Không có sản phẩm nào trong khoảng thời gian này !!!</div>';
+                }
+                $d=mysqli_num_rows($sqlphantrang);
+                $sltrang=ceil($d/6);
+                if($sltrang>1){
+                    echo'<div class="trang">';
+                for($i=1;$i<=$sltrang;$i++){
+                    echo'<div class="trang_inner" onclick="phantrang('.$i.');">'.$i.'</div>';
+                }
+                echo'</div>';
             }
         }
     }

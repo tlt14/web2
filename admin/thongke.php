@@ -65,8 +65,8 @@
             <input type="date" name="" id="ngayketthuc">
             <div id="changeloc"><div id="btn_loctime" onclick="locngaythang();">Lọc</div></div>
             <select name="" id="loc_loaisp" onchange="loc();">
-                <option value="1">Loại</option>
-                <option value="2">Sản Phẩm</option>
+                <!-- <option value="1">Loại</option>
+                <option value="2">Sản Phẩm</option> -->
             </select>
         </div>
         <div id="tongdoanhthu"></div>

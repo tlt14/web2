@@ -17,8 +17,8 @@ class Customer
     public function signup($data){
         // $sdt = $this->db->link->real_escape_string($data['sdt']);
         // $address = $this->db->link->real_escape_string($data['address']);
-        $tendangnhap = $data['user-name'];
-        $matkhau = md5($data['user-password']);
+        $tendangnhap = $data['tendangnhap'];
+        $matkhau = md5($data['matkhau']);
         // $email = $data['email'];
         $sql= "SELECT * FROM tbl_khachhang WHERE TenDangNhap = '$tendangnhap'";
         $result = $this->db->select($sql);
@@ -26,7 +26,7 @@ class Customer
             return false;
         }else{
             $sql = "INSERT INTO tbl_khachhang (TenDangNhap,MatKhau) VALUES ('$tendangnhap','$matkhau')";
-            return $this->db->insert($sql)?true:false;     
+            return $this->db->insert($sql);     
         }
         
     }

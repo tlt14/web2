@@ -20,9 +20,7 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         if($user['VaiTro'] == 1 || $user['VaiTro'] == 2){
             $_SESSION['maKhachHang'] = $user['MaKhachHang'];
             $_SESSION['quyen'] = $user['VaiTro'];
-            // setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30, "/");
             header('Location: ./../admin/admin.php');
-
         }else{
             $_SESSION['maKhachHang'] = $user['MaKhachHang'];
             setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30, "/");
@@ -41,109 +39,6 @@ if (isset($_POST['user-name']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $flag =1;
     }
 }
-
-// var_dump($_COOKIE);
-
-// if(empty($_SESSION['username'])){
- 
-//     if(isset($cookie_name)){
-
-//         if(isset($_COOKIE[$cookie_name])){
-
-//             parse_str($_COOKIE[$cookie_name], $result);
-
-//             $usr = $result['usr'];
-//             $hash = $result['hash'];  
-
-//             $sql2="select * from tbl_khachhang where TenDangNhap='$usr' and MatKhau='$hash'";
-
-//             $result2=$db->select($sql2);
-
-//             if($result2){
-//             }
-
-//         }
-
-//     }
-
-// }
-
-// else{
-
-//     // header('location: ./../Home');
-
-//     exit;
-
-// }   
-
-
-// if(isset($_POST['user-name'])){
-
-//     $username=$_POST['user-name'];
-
-//     $password=md5($_POST['user-password']);
-
-//     $a_check=1;
-
-//     if($username=="" || $password==""){
-//         $flag = 1;
-//     }
-
-//     else{
-//         // $password = md5($password);
-//         $sql="select * from tbl_khachhang where TenDangNhap='$username' and MatKhau='$password'";
-
-//         // echo $sql;
-
-//         $result= $db->select($sql);
-
-//         if(!$result){
-//             $flag = 1;
-//             $a_check=0;
-
-//         }
-
-//         $user=$result->fetch_assoc();
-
-//         $f_user=$user['TenDangNhap'];
-
-//         $f_pass=$user['MatKhau'];
-
-//         if($f_user==$username && $f_pass==$password){
-
-//             $_SESSION['username']=$f_user;
-
-//             $_SESSION['password']=$f_pass;
-
-//             if($a_check==1){
-
-//                 setcookie ($cookie_name, 'usr='.$f_user.'&hash='.$f_pass, time() + $cookie_time,"/");
-
-//                 setcookie('maKhachHang',$user['MaKhachHang'] , time()+60*60*24*30*12, "/");
-//                 $idCart = $_COOKIE['idCart'];
-//                 $makh= $user['MaKhachHang'];
-//                 $sql="UPDATE tbl_giohang set MaKhachHang = '$makh'  WHERE id = '$idCart'";
-//                 $result = mysqli_query($conn, $sql);
-//                 if($result){
-//                     $sql = "UPDATE tbl_giohang set id = NULL WHERE MaKhachHang = '$makh'";
-//                     $delete = mysqli_query($conn, $sql);
-//                 }
-//                 echo(0);
-               
-//             }
-//             if($user['VaiTro'] == 1 || $user['VaiTro'] == 2){
-//                 header('location: ./../admin/admin.php');
-//             }else{
-//                 header('Location: ./../Home');
-//             }
-//             exit;
-
-
-//         }
-
-//     }
-
-// }
 
 
 ?>

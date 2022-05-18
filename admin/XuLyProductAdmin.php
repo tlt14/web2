@@ -35,8 +35,8 @@
                 loadProduct($conn,$sql,$product,$product_pagi,$result,$result1,$start_from,$product_per_page);
             } if($_GET['act']== 'phantrangsanphamSize'){ 
                 if($sizeP == "macdinh"){  
-                $product = "SELECT * from tbl_sanpham,tbl_loaisanpham where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1  ORDER BY tbl_sanpham.MaSanPham DESC LIMIT $start_from,10";
-                $product_pagi = "SELECT * from tbl_sanpham,tbl_loaisanpham where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1 ORDER BY tbl_sanpham.MaSanPham DESC ";
+                $product = "SELECT * from tbl_sanpham,tbl_loaisanpham where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1 and tbl_sanpham.TenSanPham like'%$txtP%  ORDER BY tbl_sanpham.MaSanPham DESC LIMIT $start_from,10";
+                $product_pagi = "SELECT * from tbl_sanpham,tbl_loaisanpham where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1 and tbl_sanpham.TenSanPham like'%$txtP%  ORDER BY tbl_sanpham.MaSanPham DESC ";
                 $result = mysqli_query($conn,$product); 
                 $result1 = mysqli_query($conn,$product);
                 $sql ="SELECT * from tbl_sanpham,tbl_loaisanpham where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai ORDER by MaSanPham";
@@ -51,6 +51,7 @@
             }
                 
             }else if($_GET['act']== 'searchProduct'){ 
+                
                 $product = "SELECT * from tbl_sanpham,tbl_loaisanpham,tbl_size where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1 and tbl_sanpham.TenSanPham like'%$txtP%' AND tbl_sanpham.MaSanPham = tbl_size.MaSanPham  and tbl_size.Size = '$sizeP' ORDER BY tbl_sanpham.MaSanPham DESC LIMIT $start_from,10";
                 $product_pagi = "SELECT * from tbl_sanpham,tbl_loaisanpham,tbl_size where tbl_sanpham.LoaiSanPham = tbl_loaisanpham.MaLoai AND tbl_sanpham.TrangThaiSanPham = 1 and tbl_sanpham.TenSanPham like'%$txtP%' AND tbl_sanpham.MaSanPham = tbl_size.MaSanPham  and tbl_size.Size = '$sizeP' ORDER BY tbl_sanpham.MaSanPham DESC";
                 $result = mysqli_query($conn,$product); 
