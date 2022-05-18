@@ -67,21 +67,13 @@ $result = $product->getAll();
                                                 <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="">
                                             </div>
                                             <div class="product-left__item-name">
-                                                <a href="?page=detail&id=' . $row['MaSanPham'] . '">' . $row['TenSanPham'] . '</a>
+                                                <a href="Detail/' . $row['MaSanPham'] . '">' . $row['TenSanPham'] . '</a>
                                                 <span>' . number_format($row['GiaSanPham'], 0, '.', ',') . ' đ</span>
                                             </div>
                                         </div>';
                             }
                         }
                     }
-                    // for($i=11;$i<=61;$i++){
-                    //     echo("
-                    //         (NULL, '$i', '39', '40'), 
-                    //         (NULL, '$i', '40', '2'), 
-                    //         (NULL, '$i', '41', '20'),
-                    //         (NULL, '$i', '42', '15'),
-                    //     ");
-                    // }
                     ?>
                 </div>
             </div>

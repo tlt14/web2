@@ -393,12 +393,13 @@ $(document).ready(function() {
             type: "POST",
             url: "./templates/comment-list.php",
             data: {
-                MaSanPham: getUrlParameter("id"),
+                MaSanPham: $("#maSanPham").val(),
                 NoiDung: $("#comment").val(),
                 maKhachHang: $("#maKhachHang").val(),
             },
             success: function(response) {
                 $(".comment-list").html(response);
+                $("#comment").val("")
             },
         });
     });

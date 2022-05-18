@@ -25,7 +25,7 @@ include 'config.php';
 
 <body>
     <div class="app">
-        <?php
+    <?php
         require_once('header.php');
         if (!isset($_SESSION['maKhachHang'])) {
             header('location:./../pages/login.php');
@@ -227,7 +227,7 @@ include 'config.php';
                         <li class="app__category-list-item" id="managerProduct" style="text-align: left;"><i class="fab fa-product-hunt"></i> <span id="quanlysp" style="display: inline;">Quản lý
                                 sản phẩm</span></li>
                     </a>
-                    <a href="">
+                    <a href="quanlynguoidung.php">
                         <li class="app__category-list-item" id="managerUser" style="text-align: left;"><i class="fas fa-users"></i> <span id="quanlynd" style="display: inline;">Quản lý người
                                 dùng</span></li>
                     </a>
@@ -235,7 +235,10 @@ include 'config.php';
                         <li class="app__category-list-item" id="managerCart" style="text-align: left;"><i class="fas fa-cart-arrow-down"></i> <span id="xulydonhang" style="display: inline;">Xử
                                 lý đơn hàng</span></li>
                     </a>
-                    <a href="">
+                    <a href="loaisp.php">
+                        <li class="app__category-list-item" id="iconloaisp" style="text-align: left;"><i class="fab fa-product-hunt"></i> <span id="loaisp" style="display: inline;">Loại sản phẩm</span></li>
+                    </a>
+                    <a href="thongke.php">
                         <li class="app__category-list-item" id="managerStatistic" style="text-align: left;"><i class="fas fa-chart-bar"></i> <span id="thongkedoanhthu" style="display: inline;">Thống
                                 kê doanh thu</span></li>
                     </a>
@@ -252,7 +255,16 @@ include 'config.php';
 
 
                     <div class="app__content-add-product">
-
+                        <select name="" id="check_size" onchange="phantrangsanphamSize()">
+                            <option value="macdinh">SIZE</option>
+                            <?php
+                            $sql = "SELECT tbl_size.Size FROM `tbl_size` GROUP BY tbl_size.Size;";
+                            $size = mysqli_query($conn, $sql);
+                            while ($row_Size = mysqli_fetch_assoc($size)) {
+                            ?>
+                                <option value="<?php echo $row_Size['Size']; ?>"><?php echo $row_Size['Size']; ?></option>
+                            <?php  }  ?>
+                        </select>
                         <button onclick="addAdminProduct();">
                             <iclass="fas fa-cart-plus"></i> Thêm mới
                         </button>

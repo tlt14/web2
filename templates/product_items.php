@@ -101,7 +101,7 @@ if ($products) {
             echo '</div>
             <ul class="pagi">';
             if ($current_page > 1 && $total_page > 1) {
-                echo '<li class="pagi-item " onclick="pagi(' . $current_page - 1 .  ');">
+                echo '<li class="pagi-item " onclick="pagi(' . $current_page - 1 .  ','.$idLoai.');">
                 <i class="fas fa-angle-double-left"></i>
                 </li>';
             }
@@ -113,7 +113,7 @@ if ($products) {
                 }
             }
             if ($current_page < $total_page && $total_page > 1) {
-                echo '<li class="pagi-item " onclick="pagi(' . $current_page + 1 .  ');">
+                echo '<li class="pagi-item " onclick="pagi(' . $current_page + 1 .  ','.$idLoai.');">
                 <i class="fas fa-angle-double-right"></i>
                 </li>';
             }

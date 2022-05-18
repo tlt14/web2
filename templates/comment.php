@@ -23,6 +23,7 @@
                     <form action="" method="POST" id="add_comment">
                         <!-- aria comment -->
                         <input type="hidden" name="maKhachHang" id="maKhachHang" value="<?php echo isset($_COOKIE['maKhachHang'])?$_COOKIE['maKhachHang']:""; ?>"/>
+                        <input type="hidden" name="maSanPham" id="maSanPham" value="<?=$_GET['id']?>"/>
                         <input type="text" name="comment" id="comment" placeholder="Nhập bình luận" required/>
                         <button type="submit" name="submit" class="btn_comment" <?=isset($_COOKIE['maKhachHang'])?"":"disabled "?>>Gửi</button>
                     </form>

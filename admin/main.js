@@ -1,27 +1,27 @@
-
-
-
 const searchbtn = document.querySelector('.search-icon');
 const formSearch = document.querySelector('.search-wrapper');
 const searchInput = document.querySelector('.search-input');
 const Inputholder = document.querySelector('.input-holder');
 const closebtn = document.querySelector('.close-search');
-searchbtn.onclick = function () {
+searchbtn.onclick = function() {
     formSearch.classList.add('active')
 }
-closebtn.onclick = function () {
+closebtn.onclick = function() {
     formSearch.classList.remove('active')
 }
+
 function showFunction() {
     document.getElementById('showFunction').style.display = "none";
     document.getElementById('header__setting').style.display = "flex";
     document.getElementById('hideFunction').style.display = "block";
 }
+
 function hideFunction() {
     document.getElementById('showFunction').style.display = "block";
-    document.getElementById('header__setting').style.display= "none";
+    document.getElementById('header__setting').style.display = "none";
     document.getElementById('hideFunction').style.display = "none";
 }
+
 function displayModalBars() {
     document.getElementById('barsOverlay').style.display = "block";
     document.getElementById('barsContent').style.display = "block";
@@ -50,6 +50,7 @@ function hideAdminBar() {
     document.getElementById('hideAdmin').style.display = "none";
     document.getElementById('displayAdmin').style.display = "block";
 }
+
 function displayAdminBar() {
     document.querySelector('.app__category-heading').style.display = "flex";
     document.querySelector('.app__category').style.width = "253px";
@@ -67,6 +68,7 @@ function displayAdminBar() {
     document.getElementById('hideAdmin').style.display = "block";
     document.getElementById('displayAdmin').style.display = "none";
 }
+
 function addAdminProduct() {
     displayModalAdd();
 }
@@ -74,41 +76,46 @@ function addAdminProduct() {
 function displayModalAdd() {
     document.querySelector('.modal__add-product').style.display = "block";
 }
+
 function hideModalAdd() {
     document.querySelector('.modal__add-product').style.display = "none";
 }
+
 function displayModalEdit() {
     document.querySelector('.modal__edit-product').style.display = "block";
 }
+
 function hideModalEdit() {
     document.querySelector('.modal__edit-product').style.display = "none";
 }
+
 function displayModalEditOrder() {
     document.querySelector('.modal__edit-order').style.display = "block";
 }
+
 function hideModalEditOrder() {
     document.querySelector('.modal__edit-order').style.display = "none";
 }
-function hideModalFunction(){
+
+function hideModalFunction() {
     document.querySelector('.header__setting-noti').style.display = "none";
 }
-function hideModalDetail()
-{
+
+function hideModalDetail() {
     document.querySelector('.modal__detail-bill').style.display = "none";
 }
-function showModalDetail()
-{
+
+function showModalDetail() {
     document.querySelector('.modal__detail-bill').style.display = "block";
 }
 
 
 /*xử lý product */
-function view_data(){
+function view_data() {
     $.ajax({
         type: "GET",
         url: "XuLyProductAdmin.php",
-        success: function(data)
-        {
+        success: function(data) {
             $("#loadProduct-pc").html(data);
         }
     });
@@ -117,75 +124,92 @@ view_data();
 
 
 
-function deleteProduct(idDeleteProduct){
+function deleteProduct(idDeleteProduct) {
     var check = confirm("xóa hay không");
-              if(check == true ){
-    $.ajax({
-        type: "GET",
-        url: "XuLyProductAdmin.php",
-        data:{
-            idDeleteProduct,
-            act:"deleteProduct"
-        }, 
-        success: function(data)
-        {
-            $("#loadProduct-pc").html(data);
-        }
-    });
-}
+    if (check == true) {
+        $.ajax({
+            type: "GET",
+            url: "XuLyProductAdmin.php",
+            data: {
+                idDeleteProduct,
+                act: "deleteProduct"
+            },
+            success: function(data) {
+                $("#loadProduct-pc").html(data);
+            }
+        });
+    }
 }
 
-function editProduct(id){
-    $.post("editProduct.php",{id:id},function(data){
+function editProduct(id) {
+    $.post("editProduct.php", { id: id }, function(data) {
         $("#modal__editProduct").html(data);
     })
 }
 
-function phantrangsanpham(idtrang){
+function phantrangsanpham(idtrang) {
     var txtP = $('.search-input').val();
     $.ajax({
         type: "GET",
         url: "XuLyProductAdmin.php",
-        data:{
+        data: {
             idtrang,
             txtP,
             act: "phantrangsanpham"
-        }, 
-        success: function(data)
-        {
+        },
+        success: function(data) {
             $("#loadProduct-pc").html(data);
         }
     })
 }
-function showSearch(){
+
+function phantrangsanphamSize(idtrang) {
     var txtP = $('.search-input').val();
+    var sizeP = $('#check_size').val();
     $.ajax({
         type: "GET",
         url: "XuLyProductAdmin.php",
-        data:{
+        data: {
+            idtrang,
             txtP,
-            act: "searchProduct"
-        }, 
-        success: function(data)
-        {
+            sizeP,
+            act: "phantrangsanphamSize"
+        },
+        success: function(data) {
             $("#loadProduct-pc").html(data);
         }
-    })   
+    })
 }
 
-$(document).ready(function(){
+function showSearch() {
+    var txtP = $('.search-input').val();
+    var sizeP = $('#check_size').val();
+    $.ajax({
+        type: "GET",
+        url: "XuLyProductAdmin.php",
+        data: {
+            txtP,
+            sizeP,
+            act: "searchProduct"
+        },
+        success: function(data) {
+            $("#loadProduct-pc").html(data);
+        }
+    })
+}
+
+$(document).ready(function() {
     view_data();
     view_order();
 })
 
 /* xử lý đơn hàng */
 
-function view_order(){
+function view_order() {
     $.ajax({
         type: "GET",
         url: "XulyOrderAdmin.php",
-        success: function(data)
-        {
+        success: function(data) {
             console.log("abc");
             $("#loadOrder").html(data);
         }
@@ -193,84 +217,78 @@ function view_order(){
 }
 view_order();
 
-function phantrangdonhang(idorder){
+function phantrangdonhang(idorder) {
     var calendar1 = $('.calendar-a').val();
     var calendar2 = $('.calendar-b').val();
     $.ajax({
         type: "GET",
         url: "XulyOrderAdmin.php",
-        data:{
+        data: {
             calendar1,
             calendar2,
             idorder,
             act: "phantrangdonhang"
-            
-        }, 
-        success: function(data)
-        {
+
+        },
+        success: function(data) {
             $("#loadOrder").html(data);
         }
     });
 }
 
-function deleteOrder(idDeleteOrder){
+function deleteOrder(idDeleteOrder) {
     var check = confirm("xóa hay không");
-              if(check == true ){
-    $.ajax({
-        type: "GET",
-        url: "XulyOrderAdmin.php",
-        data:{
-            idDeleteOrder,
-            act:"deleteOrder"
-        }, 
-        success: function(data)
-        {
-         
-            $("#loadOrder").html(data);
-        }
-    });
-}
+    if (check == true) {
+        $.ajax({
+            type: "GET",
+            url: "XulyOrderAdmin.php",
+            data: {
+                idDeleteOrder,
+                act: "deleteOrder"
+            },
+            success: function(data) {
+
+                $("#loadOrder").html(data);
+            }
+        });
+    }
 }
 
-function view_detail(idDetail){
+function view_detail(idDetail) {
     $.ajax({
         type: "GET",
         url: "XulyOrderAdmin.php",
-        data:{
+        data: {
             idDetail,
             act: "chitietdonhang"
-        }, 
-        success: function(data)
-        {
+        },
+        success: function(data) {
             $("#show_detail").html(data);
         }
     });
 }
 
 
-function editOrder(id){
-    $.post("editOrder.php",{id:id},function(data){
+function editOrder(id) {
+    $.post("editOrder.php", { id: id }, function(data) {
         $("#show_editOrder").html(data);
     })
 }
 
-function showCalendar(){
+function showCalendar() {
     var calendar1 = $('.calendar-a').val();
     var calendar2 = $('.calendar-b').val();
     $.ajax({
         type: "GET",
         url: "XulyOrderAdmin.php",
-        data:{
+        data: {
             calendar1,
             calendar2,
-            act:"showcalendar"
-        }, 
-        success: function(data)
-        {
-         
+            act: "showcalendar"
+        },
+        success: function(data) {
+
             $("#loadOrder").html(data);
         }
     });
 }
-
-

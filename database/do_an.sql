@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 16, 2022 lúc 07:28 AM
+-- Thời gian đã tạo: Th5 18, 2022 lúc 05:00 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -66,7 +66,16 @@ INSERT INTO `tbl_binhluan` (`id`, `MaSanPham`, `TenKhachHang`, `BinhLuan`, `crea
 (15, 23, 'lamtruong123', 'giay gi dau di dau chan bo me', '2022-05-12 16:22:51'),
 (16, 23, 'lamtruong123', 'giay gi dau di dau chan bo me', '2022-05-12 16:23:01'),
 (17, 23, 'lamtruong123', 'giay gi dau di dau chan bo me', '2022-05-12 16:24:25'),
-(18, 0, 'lamtruong123', 'abc', '2022-05-13 11:52:42');
+(18, 0, 'lamtruong123', 'abc', '2022-05-13 11:52:42'),
+(19, 3, 'lamtruonghh', '21321', '2022-05-16 10:31:00'),
+(20, 73, 'lamtruonghh', 'quá thúi', '2022-05-16 13:30:59'),
+(21, 73, 'lamtruonghh', 'quá thúi', '2022-05-16 13:31:03'),
+(22, 73, 'lamtruonghh', 'đỉnh', '2022-05-16 13:31:27'),
+(23, 4, 'lamtruonghh', 'a', '2022-05-16 13:38:39'),
+(24, 4, 'lamtruonghh', 's', '2022-05-16 13:38:45'),
+(25, 4, 'lamtruonghh', 'hihi', '2022-05-16 13:38:55'),
+(26, 4, 'lamtruonghh', 'giày quá xấu', '2022-05-16 13:40:53'),
+(27, 4, 'lamtruonghh', '111', '2022-05-16 13:40:57');
 
 -- --------------------------------------------------------
 
@@ -93,7 +102,11 @@ INSERT INTO `tbl_chitietdonhang` (`MaCTDH`, `MaDonHang`, `GhiChu`, `MaSanPham`, 
 (115, 88, '', 28, 5, 42),
 (116, 88, '', 4, 4, 41),
 (117, 88, '', 3, 5, 41),
-(118, 88, '', 27, 3, 41);
+(118, 88, '', 27, 3, 41),
+(119, 89, '', 29, 1, 39),
+(120, 89, '', 27, 1, 40),
+(121, 89, '', 3, 1, 40),
+(122, 89, '', 4, 11, 41);
 
 -- --------------------------------------------------------
 
@@ -118,7 +131,8 @@ CREATE TABLE `tbl_donhang` (
 
 INSERT INTO `tbl_donhang` (`MaDonHang`, `MaKhachHang`, `NgayDat`, `TongTien`, `TrangThai`, `TenNguoiNhan`, `SDTNguoiNhan`, `DiaChiNguoiNhan`) VALUES
 (87, 41, '2022-05-12', 8952000, 1, 'Truong Thai', '0905040861', '111 abc'),
-(88, 37, '2022-05-15', 32162000, 1, 'Truong Thai', '0905040861', '111 abc');
+(88, 37, '2022-05-15', 32162000, 1, 'Truong Thai', '0905040861', '111 abc'),
+(89, 37, '2022-05-16', 28575000, 1, 'Truong Thai', '0905040861', 'nguyễn thời trung');
 
 -- --------------------------------------------------------
 
@@ -172,7 +186,7 @@ CREATE TABLE `tbl_khachhang` (
 
 INSERT INTO `tbl_khachhang` (`MaKhachHang`, `TenKhachHang`, `SDT`, `DiaChi`, `TenDangNhap`, `MatKhau`, `NgaySinh`, `Email`, `TrangThai`, `VaiTro`) VALUES
 (1, 'Thai Lam Truong13', '0905040861', 'ạdfhfkkdlk', 'lamtruong14', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', '2022-03-02', 'thailamtruong@gmail.com', 'Active', 1),
-(33, 'Hihi', '0905040861', '111 abc', 'lamtruong', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', NULL, 'thailamtruong2001@gmail.com', 'Lock', 3),
+(33, 'Hihi', '0905040861', '111 abc', 'lamtruong', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', NULL, 'thailamtruong2001@gmail.com', 'Active', 2),
 (34, NULL, '0905040861', '111 abc', 'lamtruong05', 'ff14a9faa64f86c0c4c3b0fd2751ab3f', NULL, 'thailamtruong2001@gmail.com', 'Active', 3),
 (35, 'abc', '0905040861', '111 abc', 'lamtruong08', '049a931ab8b3e006b50b7a75029f0d46', NULL, 'thailamtruong2001@gmail.com', 'Active', 3),
 (36, NULL, '0905040861', '111 abc', 'lamtruong55', '1e55c8d1ef48721f219d82197aedf046', NULL, 'thailamtruong2001@gmail.com', 'Lock', 2),
@@ -311,8 +325,8 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `HinhAnhSanPham`, `SoLuong
 (60, 'Asics Gel-Pulse 11 Running FW19', '1588457125.jpg', 9, 'Được tạo ra bởi việc kết hợp các thành phần tiên tiến với thiết kế mới nổi bật nhằm tôn vinh di sản của Tokyo. Sản phẩm này cho phép bạn giải quyết khoảng cách ở các chặng đường xa một cách thoải mái,', 3144000, '1', 0, '2022-03-22', '2022-03-22', 6),
 (61, 'Asics Gel-Quantum Infinity Jin Running', '1588457171.jpg', 10, 'Được tạo ra bởi việc kết hợp các thành phần tiên tiến với thiết kế mới nổi bật nhằm tôn vinh di sản của Tokyo.', 4044000, '1', 0, '2022-03-22', '2022-03-22', 6),
 (63, 'Giày Fila Disruptor 2 Trắng ', 'fila1.jpg', 10, 'Fila Disruptor 2 Trắng  sở hữu thiết kế khá ấn tượng, mang đậm phong cách sporty. Mẫu giày mang đến cho người mang sự trẻ trung, năng động, thoải mái, sắc trắng bao phủ hầu hết thân giày,  vừa là điểm nhấn, vừa mang đến sự tinh tế.', 1300000, '0', 0, '2022-03-22', '2022-03-22', 13),
-(73, 'BASAS1 BUMPER GUM - LOW TOP - OFFWHITE', 'PACO-RABANNE-INVICTUS-LEGEND-EDP-shooting_cfa57fe2-51d0-4633-9076-9773c4457f52_600x.png', 1, ' Goood1', 1000000, '1', 0, '2022-05-11', '2022-05-11', 4),
-(74, 'BASAS21 BUMPER GUM - LOW TOP - OFFWHITE', 'paco-rabanne-olympea-legend-eau-de-parfum-50ml_de75cec6-e463-4dc1-8e81-5e996f5ab673_600x.png', 5, ' Không đúng kích cỡ hoặc màu sắc? Quý khách có thể đổi size khác hay sản phẩm khác thật dễ dàng.', 1000000, '1', 0, '2022-05-11', '2022-05-11', 2);
+(73, 'BASAS1 BUMPER GUM - LOW TOP - OFFWHITE', 'pacorabanne_newpilarpr_pacophantom2021_conversion_SM_hub_singleimagead_1080x1080_0_NONE_SPR-18343_Packshot_600x.png', 31, 'hihi1313', 1000000, '1', 0, '2022-05-11', '2022-05-11', 1),
+(74, 'BASAS21 BUMPER GUM - LOW TOP - OFFWHITE', 'paco-rabanne-olympea-legend-eau-de-parfum-50ml_de75cec6-e463-4dc1-8e81-5e996f5ab673_600x.png', 5, ' Không đúng kích cỡ hoặc màu sắc? Quý khách có thể đổi size khác hay sản phẩm khác thật dễ dàng.', 1000000, '0', 0, '2022-05-11', '2022-05-11', 2);
 
 -- --------------------------------------------------------
 
@@ -335,9 +349,8 @@ INSERT INTO `tbl_size` (`id`, `MaSanPham`, `Size`, `SLSP`) VALUES
 (1, 4, 40, 15),
 (2, 4, 41, 50),
 (3, 4, 39, 100),
-
-(8, 3, 39, 0),
-(9, 3, 40, 0),
+(8, 3, 39, 12),
+(9, 3, 40, 11),
 (10, 3, 41, 20),
 (11, 5, 39, 100),
 (12, 5, 40, 100),
@@ -559,7 +572,8 @@ INSERT INTO `tbl_size` (`id`, `MaSanPham`, `Size`, `SLSP`) VALUES
 (228, 63, 39, 40),
 (229, 63, 40, 2),
 (230, 63, 41, 20),
-(231, 63, 42, 15);
+(231, 63, 42, 15),
+(232, 28, 38, 10);
 
 -- --------------------------------------------------------
 
@@ -698,25 +712,25 @@ ALTER TABLE `tbl_vaitro`
 -- AUTO_INCREMENT cho bảng `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
-  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_giohang`
 --
 ALTER TABLE `tbl_giohang`
-  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=335;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_khachhang`
@@ -746,7 +760,7 @@ ALTER TABLE `tbl_sanpham`
 -- AUTO_INCREMENT cho bảng `tbl_size`
 --
 ALTER TABLE `tbl_size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_vaitro`

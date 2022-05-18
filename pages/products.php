@@ -63,7 +63,7 @@ $result = $product->get_products_by_category($maLoai);
                                                 <img src="./admin/uploads/' . $row['HinhAnhSanPham'] . '" alt="">
                                             </div>
                                             <div class="product-left__item-name">
-                                                <a href="?page=detail&id=' . $row['MaSanPham'] . '">' . $row['TenSanPham'] . '</a>
+                                                <a href="Detail/' . $row['MaSanPham'] . '">' . $row['TenSanPham'] . '</a>
                                                 <span>' . number_format($row['GiaSanPham'], 0, '.', ',') . ' đ</span>
                                             </div>
                                         </div>';

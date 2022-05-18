@@ -14,12 +14,27 @@ if( isset($_POST['NoiDung'])){
         $sql = "INSERT INTO tbl_binhluan(MaSanPham,TenKhachHang,BinhLuan) VALUES('$MaSanPham','$tenDangNhap','$comment')";
         $result = $db->insert($sql);
         if($result){
-            echo '<script>alert("Bình luận thành công")</script>';
+            echo '<script>
+            Toast.fire({
+                icon: "success",
+                title: "Bình luận thành công",
+            });
+            </script>';
         }else{
-            echo '<script>alert("Bình luận thất bại")</script>';
+            echo '<script>
+            Toast.fire({
+                icon: "error",
+                title: "Bình luận thất bại",
+            });
+            </script>';
         }
     }else{
-        echo '<script>alert("Bình luận thất bại")</script>';
+        echo '<script>
+        Toast.fire({
+            icon: "error",
+            title: "Bình luận thất bại",
+        });
+        </script>';
     }
 
 }
